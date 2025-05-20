@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google I/O 2025 インタラクティブサマリー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Executive Summary (Home): Styled HTML list for quick overview. Goal: Inform.
+        - Gemini Models (Gemini AI): Interactive cards/table (HTML/JS) for comparison, Chart.js bar chart for 22% efficiency stat. Goal: Compare, Inform. Interaction: Click/filter.
+        - Gemini Subscriptions (Gemini AI): HTML table. Goal: Inform.
+        - Creative Tools (Imagen, Veo, Flow - Gemini AI): Tabbed HTML interface. Goal: Inform, Showcase. Interaction: Tabs.
+        - Search AI Mode (Search): Conceptual HTML comparison. Goal: Compare, Inform.
+        - Android XR Partnerships (XR & Mobile): Grid of HTML cards. Goal: Inform, Organize. Interaction: Clickable cards.
+        - Workspace AI Features (Productivity): HTML accordion/tabs. Goal: Inform. Interaction: Expand/tabs.
+        - Key Stats (e.g., AI Overview users, SynthID watermarks): Prominent text display. Goal: Inform.
+        - All textual content is summarized from the report for brevity and presented in structured HTML.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All visuals are HTML/CSS/Tailwind or Chart.js Canvas. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .nav-link { transition: all 0.3s ease; }
+        .nav-link.active { color: #0284c7; border-bottom-color: #0284c7; font-weight: 600; }
+        .section-title { border-bottom: 2px solid #0ea5e9; padding-bottom: 0.5rem; }
+        .card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .tab-button { padding: 0.5rem 1rem; border-radius: 0.375rem; transition: background-color 0.3s ease, color 0.3s ease; }
+        .tab-button.active { background-color: #0ea5e9; color: white; }
+        .tab-button:not(.active):hover { background-color: #e0f2fe; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .tooltip-custom {
+            position: absolute;
+            background-color: rgba(0,0,0,0.75);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 10;
+        }
+        .stat-value { font-size: 2.25rem; font-weight: 700; color: #0ea5e9; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-sky-600">Google I/O 2025</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">ホーム</a>
+                        <a href="#gemini" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">Gemini AI</a>
+                        <a href="#search" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">検索革命</a>
+                        <a href="#xr" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">XR & モバイル</a>
+                        <a href="#productivity" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">生産性向上</a>
+                        <a href="#developer" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">開発者</a>
+                        <a href="#responsible-ai" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 border-b-2 border-transparent">責任あるAI</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">メインメニューを開く</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">ホーム</a>
+                <a href="#gemini" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">Gemini AI</a>
+                <a href="#search" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">検索革命</a>
+                <a href="#xr" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">XR & モバイル</a>
+                <a href="#productivity" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">生産性向上</a>
+                <a href="#developer" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">開発者</a>
+                <a href="#responsible-ai" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50">責任あるAI</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <section id="home" class="mb-16 scroll-mt-16">
+            <h1 class="text-4xl font-bold text-sky-700 mb-6 text-center">Google I/O 2025: AIが全てのインタラクションを再定義</h1>
+            <p class="text-lg text-slate-600 mb-8 text-center max-w-3xl mx-auto">
+                Google I/O 2025では、Geminiファミリーを中心とするAIがGoogleのエコシステム全体でユーザーエクスペリエンスを根本から変革する数々のイノベーションが発表されました。このページでは、主要な発表内容をインタラクティブに探求できます。
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="card p-6 text-center">
+                    <div class="stat-value">Gemini</div>
+                    <p class="text-slate-600 mt-2">モデル群の進化と多様化。より直感的でエージェント的なAIインタラクションへ。</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="stat-value">検索</div>
+                    <p class="text-slate-600 mt-2">AIモードによるパーソナライズとタスク完了能力の強化。</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="stat-value">XR</div>
+                    <p class="text-slate-600 mt-2">Android XRプラットフォームとパートナーシップによる拡張現実への再参入。</p>
+                </div>
+            </div>
+            <p class="text-md text-slate-500 mb-4 text-center">Googleは「モバイルファースト」から「AIファースト」へと戦略を転換し、AIを中核に製品哲学を再構築しています。AIが情報を探すだけでなく、タスクを実行し、結果を委任する未来を目指しています。</p>
+        </section>
+
+        <section id="gemini" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-semibold text-slate-700 mb-8 section-title">🚀 Gemini革命：AIファースト戦略の原動力</h2>
+            <p class="text-lg text-slate-600 mb-8">Google I/O 2025では、AI戦略の中核を成すGeminiモデル群が大幅に強化され、その応用範囲が拡大。次世代モデル、自然なインタラクション、クリエイティブツール、開発者向け新機能、新たな収益化モデルまで、GeminiがGoogleのAIファーストの未来を牽引します。</p>
+
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">次世代Geminiモデル</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Gemini 2.5 Flash</h4>
+                        <p class="text-sm text-slate-600 mb-2">軽量・高効率モデル。22%の効率向上、ネイティブ言語テキスト読み上げ。大量処理タスク向け。</p>
+                        <span class="text-xs bg-sky-100 text-sky-700 px-2 py-1 rounded-full">一般提供開始</span>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Gemini 2.5 Pro</h4>
+                        <p class="text-sm text-slate-600 mb-2">高度な推論と効率性のバランス。主力モデル。Android Studio等に統合。</p>
+                        <span class="text-xs bg-sky-100 text-sky-700 px-2 py-1 rounded-full">6月初旬提供開始</span>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Gemini 2.5 Deep Think</h4>
+                        <p class="text-sm text-slate-600 mb-2">「強化された推論」モード。数学・コード・マルチモダリティで高性能。安全性評価中。</p>
+                        <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full">Google AI Ultra向け</span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm text-slate-600 mb-2">Gemini 2.5 Flashの効率向上 (22%) を視覚化:</p>
+                    <div class="chart-container p-4 bg-white rounded-lg shadow">
+                        <canvas id="geminiFlashChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">Gemini LiveとProject Astra</h3>
+                 <p class="text-slate-600 mb-4">AIとのインタラクションをより自然で実用的なものにするための重要な進展です。Gemini Liveはリアルタイム対話を実現し、Project Astraは実世界を理解し対話できる汎用AIアシスタントのビジョンを示します。</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Gemini Live</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>リアルタイム対話型インタラクション</li>
+                            <li>カメラを通じた「認識」、画面コンテンツ理解</li>
+                            <li>Android/iOSユーザーに無料提供</li>
+                            <li>カレンダー、Keep、マップ等との連携予定</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Project Astra</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>実世界をリアルタイムに理解・対話</li>
+                            <li>自然な音声出力、改善された記憶力</li>
+                            <li>コンピュータ制御、スマートフォン操作、アプリ操作、通話機能</li>
+                            <li>Android/iOS向けに提供予定</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">創造性の解放：Imagen 4, Veo 3, Flow</h3>
+                <p class="text-slate-600 mb-4">クリエイティブ分野におけるAIの可能性を大きく広げるツール群です。静止画、動画、音楽生成から、それらを統合した映画製作までをカバーします。</p>
+                <div id="creative-tools-tabs" class="mb-4 flex space-x-2 border-b">
+                    <button data-tab="imagen4" class="tab-button active">Imagen 4</button>
+                    <button data-tab="veo3" class="tab-button">Veo 3</button>
+                    <button data-tab="flow" class="tab-button">Flow</button>
+                    <button data-tab="lyria2" class="tab-button">Lyria 2</button>
+                </div>
+                <div id="creative-tools-content">
+                    <div data-tab-content="imagen4" class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Imagen 4</h4>
+                        <p class="text-sm text-slate-600">テキストから画像を生成。ディテール、テクスチャ表現、画像内テキスト生成が向上。Geminiアプリ、Workspaceアプリ（ドキュメント、スライド、Vids）に統合予定。</p>
+                    </div>
+                    <div data-tab-content="veo3" class="card p-6 hidden">
+                        <h4 class="font-bold text-xl mb-2">Veo 3</h4>
+                        <p class="text-sm text-slate-600">動画生成モデル。単一記述から台詞・効果音付き動画を生成可能。ネイティブ音声生成、動画品質向上。Google AI Ultra加入者向け（米国）。I/OオープニングクリップもVeo 3で制作。</p>
+                    </div>
+                    <div data-tab-content="flow" class="card p-6 hidden">
+                        <h4 class="font-bold text-xl mb-2">Flow</h4>
+                        <p class="text-sm text-slate-600">AI映画製作スイート。Imagen 4, Veo 3, Geminiモデルを統合。画像から動画作成、シーン追加、Lyria音楽統合、カメラ制御、シーンビルダー機能。Google AI Pro/Ultra加入者向け。</p>
+                    </div>
+                     <div data-tab-content="lyria2" class="card p-6 hidden">
+                        <h4 class="font-bold text-xl mb-2">Google Lyria / Lyria 2</h4>
+                        <p class="text-sm text-slate-600">音楽生成AIモデル。Music AI Sandboxの原動力。Lyria 2は企業、YouTubeクリエイター、ミュージシャンが利用可能。Lyria RealTimeはインタラクティブな楽器トラック作成を可能に。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">開発者向けGemini</h3>
+                <p class="text-slate-600 mb-4">開発者エコシステムの強化も重要な柱です。Julesコーディングエージェント、新しいAPI、専門モデルなどが発表されました。</p>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-4">
+                        <h4 class="font-semibold text-lg mb-1">Jules コーディングエージェント</h4>
+                        <p class="text-xs text-slate-500">Gemini 2.5 Pro搭載。テスト作成、機能構築、バグ修正等を自律的に行う。パブリックベータ無料提供中。</p>
+                    </div>
+                    <div class="card p-4">
+                        <h4 class="font-semibold text-lg mb-1">Gemini API強化</h4>
+                        <p class="text-xs text-slate-500">URL Context（リンクからコンテキスト取得）、Model Context Protocol（MCP）サポート。</p>
+                    </div>
+                    <div class="card p-4">
+                        <h4 class="font-semibold text-lg mb-1">ML Kit GenAI API</h4>
+                        <p class="text-xs text-slate-500">Gemini Nano使用。Summarizer, Language Detector, Translator API等。</p>
+                    </div>
+                    <div class="card p-4">
+                        <h4 class="font-semibold text-lg mb-1">MedGemma</h4>
+                        <p class="text-xs text-slate-500">医療分野向けファインチューニング用オープンモデル。マルチモーダル対応。</p>
+                    </div>
+                    <div class="card p-4">
+                        <h4 class="font-semibold text-lg mb-1">SignGemma</h4>
+                        <p class="text-xs text-slate-500">手話理解モデル（アメリカ手話→英語）。年内提供予定。</p>
+                    </div>
+                     <div class="card p-4">
+                        <h4 class="font-semibold text-lg mb-1">DolphinGemma</h4>
+                        <p class="text-xs text-slate-500">世界初のイルカ向けLLM。イルカのコミュニケーションパターン研究支援。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">新しいサブスクリプション階層</h3>
+                <p class="text-slate-600 mb-4">Geminiの高度な機能へのアクセスを提供するための新しいサブスクリプションモデルが発表されました。これにより、ユーザーはニーズに合わせて最適なプランを選択できます。</p>
+                <div class="overflow-x-auto bg-white rounded-lg shadow">
+                    <table class="min-w-full divide-y divide-slate-200">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">階層名</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">月額料金</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">主な機能/特典</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-slate-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">無料</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">$0</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">基本的なGemini機能へのアクセス</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Google AI Pro</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">$19.99</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">Geminiアプリ(2.5 Pro), Veo 2, Flow(Veo 2), Whisk(Veo 2), NotebookLM(上限緩和), Googleアプリ内Gemini, Chrome内Gemini, 2TBストレージ</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Google AI Ultra</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">$249.99</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">Geminiアプリ(2.5 Pro Deep Think, Veo 3), Flow(Veo 3), Whisk(上限最高), Project Marinerアクセス, 30TBストレージ, YouTube Premium</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="mt-4 text-sm text-slate-600">日本、ブラジル、インドネシア、英国の大学生は、学年度期間中、Google AI Proを無料で利用可能です。</p>
+            </div>
+        </section>
+
+        <section id="search" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-semibold text-slate-700 mb-8 section-title">🔍 Google検索の再構築：AI活用エージェント的体験</h2>
+            <p class="text-lg text-slate-600 mb-8">Google検索がAIによって根本から再定義され、よりパーソナライズされ、文脈を理解し、ユーザーのタスクを代行するエージェント的な存在へと進化します。</p>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">AIモード：パーソナライズされた文脈検索</h3>
+                <p class="text-slate-600 mb-4">AIモードは米国の全ユーザーに展開中。Gmailの文脈情報を活用し、よりパーソナライズされた検索結果を提供。複雑なクエリへの対応やカスタムチャート生成も可能です。AI Overviewは200カ国以上、40言語以上に拡大（月間15億ユーザー利用）。</p>
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">AIモードの主な特徴</h4>
+                    <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                        <li>Gmail連携によるパーソナライズ検索結果</li>
+                        <li>複雑なスポーツ関連質問への回答</li>
+                        <li>スポーツ・金融クエリでのカスタムチャート/グラフ生成</li>
+                        <li>新機能の先行提供プラットフォーム</li>
+                        <li>Gemini 2.5カスタムバージョンを近日利用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">キーワードを超えて：ディープサーチとマルチモーダルクエリ</h3>
+                <p class="text-slate-600 mb-4">テキスト入力だけでなく、音声、画像、動画での検索が可能に。「何でも聞いてください（Ask Anything）」のコンセプトのもと、より多様な入力方法と高度な理解能力を獲得します。</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">ディープサーチ</h4>
+                        <p class="text-sm text-slate-600">AIモードに搭載予定。専門的で完全に引用付きのレポートを作成。</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Search Live (with Project Astra)</h4>
+                        <p class="text-sm text-slate-600">Project Astraの視覚能力を活用。カメラを通して見ているものを「認識」し、リアルタイムに応答。視覚障碍者支援の実験的視覚通訳機能も。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">エージェント機能：情報検索からタスク完了へ</h3>
+                <p class="text-slate-600 mb-4">Google検索は情報提供だけでなく、ユーザーに代わって具体的な行動を実行する能力を強化。ショッピング支援からチケット購入、レストラン予約までをカバーします。</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                     <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">エージェント的ショッピング</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>検索絞り込みに連動する関連商品パネル</li>
+                            <li>衣服のバーチャル試着機能（AIが着用イメージを生成、生地の伸縮や体型も考慮）</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">「私の代わりに購入」／タスク完了</h4>
+                         <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>Project Marinerのエージェント機能をAIモードに搭載</li>
+                            <li>イベントチケット検索・購入、レストラン予約などを実行</li>
+                            <li>Google Payを使用して決済完了</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="xr" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-semibold text-slate-700 mb-8 section-title">🕶️ Android XR：モバイルコンピューティングの新次元</h2>
+            <p class="text-lg text-slate-600 mb-8">Android XRプラットフォームの発表を通じて、拡張現実（XR）分野への本格的な再参入を表明。AIとの緊密な連携と戦略的パートナーシップを軸に、より没入感がありインテリジェントなモバイル体験を目指します。</p>
+
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">Android XRプラットフォーム</h3>
+                <p class="text-slate-600 mb-4">Gemini時代に構築された新しいAndroidプラットフォーム。VRヘッドセットからARグラスまで、AIおよびVR/ARアプリケーション向けに設計。既存Androidアプリも動作。Qualcomm Snapdragon XRチップセット搭載、Geminiとの統合で「ユーザーが見ているものを理解し、ユーザーに代わって行動する」ことを目指します。</p>
+            </div>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">戦略的パートナーシップと最初のデバイス</h3>
+                <p class="text-slate-600 mb-4">多様なハードウェアパートナーとの協業を重視し、Android XRエコシステムを構築します。</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                    <div class="card p-4">
+                        <img src="https://placehold.co/100x50/0ea5e9/ffffff?text=Samsung" alt="Samsung" class="mx-auto h-12 mb-2 object-contain">
+                        <p class="text-sm font-semibold">Samsung</p>
+                        <p class="text-xs text-slate-500">Project Moohan (XRヘッドセット)</p>
+                    </div>
+                    <div class="card p-4">
+                        <img src="https://placehold.co/100x50/0ea5e9/ffffff?text=Gentle+Monster" alt="Gentle Monster" class="mx-auto h-12 mb-2 object-contain">
+                        <p class="text-sm font-semibold">Gentle Monster</p>
+                        <p class="text-xs text-slate-500">Android XRグラス</p>
+                    </div>
+                    <div class="card p-4">
+                        <img src="https://placehold.co/100x50/0ea5e9/ffffff?text=Warby+Parker" alt="Warby Parker" class="mx-auto h-12 mb-2 object-contain">
+                        <p class="text-sm font-semibold">Warby Parker</p>
+                        <p class="text-xs text-slate-500">Android XRグラス</p>
+                    </div>
+                    <div class="card p-4">
+                        <img src="https://placehold.co/100x50/0ea5e9/ffffff?text=XReal" alt="XReal" class="mx-auto h-12 mb-2 object-contain">
+                        <p class="text-sm font-semibold">XReal</p>
+                        <p class="text-xs text-slate-500">Project Aura (OST XRデバイス)</p>
+                    </div>
+                     <div class="card p-4">
+                        <img src="https://placehold.co/100x50/0ea5e9/ffffff?text=Qualcomm" alt="Qualcomm" class="mx-auto h-12 mb-2 object-contain">
+                        <p class="text-sm font-semibold">Qualcomm</p>
+                        <p class="text-xs text-slate-500">Snapdragon XRチップセット</p>
+                    </div>
+                    <div class="card p-4">
+                        <img src="https://placehold.co/100x50/cccccc/666666?text=Kering+Eyewear" alt="Kering Eyewear (Future)" class="mx-auto h-12 mb-2 object-contain opacity-60">
+                        <p class="text-sm font-semibold">Kering Eyewear</p>
+                        <p class="text-xs text-slate-500">将来参加予定</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">Android XRグラスの機能とビジョン</h3>
+                <p class="text-slate-600 mb-4">日常生活にシームレスに溶け込む、インテリジェントな拡張現実体験を提供。カメラ、マイク、スピーカーを搭載し、Geminiが周囲を認識。スマートフォンと連携し、ハンズフリーでアプリにアクセス。リアルタイム翻訳機能もデモされました。</p>
+            </div>
+        </section>
+
+        <section id="productivity" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-semibold text-slate-700 mb-8 section-title">💼 AIによる生産性とコラボレーションの変革</h2>
+            <p class="text-lg text-slate-600 mb-8">Google Workspaceのアップデートや未来的なコミュニケーションツールを通じて、AIが仕事の進め方やコミュニケーションのあり方を根本から変える可能性が示されました。</p>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-medium text-sky-600 mb-4">Google Workspaceがよりスマートに</h3>
+                <p class="text-slate-600 mb-4">スイート全体でAI機能が強化され、日常業務の効率化と質の向上が図られます。</p>
+                <div id="workspace-tabs" class="mb-4 flex space-x-1 sm:space-x-2 border-b flex-wrap">
+                    <button data-tab="gmail" class="tab-button active text-xs sm:text-sm">Gmail</button>
+                    <button data-tab="meet" class="tab-button text-xs sm:text-sm">Meet</button>
+                    <button data-tab="docs" class="tab-button text-xs sm:text-sm">ドキュメント</button>
+                    <button data-tab="vids" class="tab-button text-xs sm:text-sm">Vids</button>
+                </div>
+                <div id="workspace-content">
+                    <div data-tab-content="gmail" class="card p-6">
+                        <h4 class="font-bold text-xl mb-2">Gmail</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>パーソナライズされたスマートリプライ（ユーザーのトーンに適応）</li>
+                            <li>「受信トレイのクリーンアップ」機能（メール管理自動化）</li>
+                            <li>カレンダー予定作成機能統合</li>
+                            <li>今夏Gmail加入者向けに提供開始予定</li>
+                        </ul>
+                    </div>
+                    <div data-tab-content="meet" class="card p-6 hidden">
+                        <h4 class="font-bold text-xl mb-2">Google Meet</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>ほぼリアルタイムの音声翻訳機能（人間の通訳がいるかのよう）</li>
+                            <li>英語ースペイン語間翻訳がベータ版で提供中、対応言語追加予定</li>
+                            <li>AI Pro/Ultra加入者はテスト利用可能</li>
+                        </ul>
+                    </div>
+                    <div data-tab-content="docs" class="card p-6 hidden">
+                        <h4 class="font-bold text-xl mb-2">Googleドキュメント</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>Geminiサイドパネル応答の「グラウンディング」（特定ドキュメント内容に基づく）</li>
+                            <li>Imagen 4統合</li>
+                        </ul>
+                    </div>
+                    <div data-tab-content="vids" class="card p-6 hidden">
+                        <h4 class="font-bold text-xl mb-2">Google Vids</h4>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                            <li>スライドデッキ全体を動画に変換する新ツール</li>
+                            <li>AIアバター（スクリプトアップロードで利用可能）</li>
+                            <li>文字起こしからのトリミング、音声バランス調整機能など追加予定</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-medium text-sky-600 mb-4">Google Beam (旧Project Starline)</h3>
+                    <div class="card p-6">
+                        <p class="text-slate-600 mb-2">「AIファーストの3Dビデオコミュニケーションプラットフォーム」としてリブランド。複数のウェブカメラとAIを活用し、3Dライトフィールドディスプレイ上にユーザーをレンダリング。極めてリアルなビデオ会議体験を実現。</p>
+                        <p class="text-sm text-slate-500">HPが最初のデバイスを製造し、年内発売予定。</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-medium text-sky-600 mb-4">NotebookLMの機能強化</h3>
+                    <div class="card p-6">
+                        <p class="text-slate-600 mb-2">文書整理AIツールに「ビデオ概要」機能追加。PDFや写真などの大量データを動画に変換可能。文書を2人のホストが登場する短いポッドキャストクリップに変換することも。</p>
+                        <p class="text-sm text-slate-500">NotebookLMアプリはiOS/Android向けに提供開始。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="developer" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-semibold text-slate-700 mb-8 section-title">💻 開発者エコシステムの強化</h2>
+            <p class="text-lg text-slate-600 mb-8">開発者がAIの力を最大限に活用し、より優れたアプリケーションを効率的に構築できるよう、開発者向けツールとプログラムの強化にも注力しています。</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Firebase Studio</h4>
+                    <p class="text-sm text-slate-600">アプリプロトタイピングエージェント使用時にバックエンドを提案、Firebase App Hostingへの公開準備時にサービスをプロビジョニング。</p>
+                </div>
+                 <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Interest Invoker API</h4>
+                    <p class="text-sm text-slate-600">（実験的）ツールチップやホバーカードのような複雑なUI要素をJSなしで構築。オリジントライアル利用可能。</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Baseline機能</h4>
+                    <p class="text-sm text-slate-600">VS Code等で機能のBaselineステータス表示。CSS/HTML ESLint, Stylelintでもサポート。</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Google Developer Program特典拡充</h4>
+                    <p class="text-sm text-slate-600">Gemini Code Assist Standard、生成AI開発者向け年間クレジット、Google One AI Premium 3ヶ月無料利用など。</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Android Studioアップデート</h4>
+                    <p class="text-sm text-slate-600">組み込みGemini統合をGemini 2.5 Proで強化。Studio LabsでAI機能テスト容易に。</p>
+                </div>
+                 <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Google Playアップデート</h4>
+                    <p class="text-sm text-slate-600">問題発生時リリース停止機能。キュレーションされたPlayストアスペース拡大。新しいトピック閲覧ページ追加。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="responsible-ai" class="scroll-mt-16">
+            <h2 class="text-3xl font-semibold text-slate-700 mb-8 section-title">🛡️ 責任あるAIと広範な影響</h2>
+            <p class="text-lg text-slate-600 mb-8">AI技術の急速な進展に伴う社会的責任を認識し、透明性の確保、悪用防止、社会貢献のための取り組みも同時に進めています。</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">SynthID Detector</h4>
+                    <p class="text-sm text-slate-600 mb-2">AI生成コンテンツ識別支援の「検証ポータル」。コンテンツアップロードでSynthIDウォーターマーク有無を表示。既に100億個のコンテンツに適用。</p>
+                    <div class="text-center mt-4">
+                        <div class="stat-value">100億</div>
+                        <p class="text-xs text-slate-500">SynthIDウォーターマーク適用数</p>
+                    </div>
+                </div>
+                 <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">FireSat</h4>
+                    <p class="text-sm text-slate-600">衛星画像とAIを活用し山火事検知・消火活動を支援。ハリケーンへの備えにも応用。</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="font-bold text-xl mb-2">Chromeパスワード自動変更</h4>
+                    <p class="text-sm text-slate-600">侵害されたパスワード検出時、ブラウザが自動変更を促す。対応ウェブサイトで年内利用可能予定。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Google I/O 2025 インタラクティブサマリー. このページはデモンストレーション目的で作成されました。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+                });
+            }
+
+            // Smooth scrolling and active nav link highlighting
+            const navLinks = document.querySelectorAll('a.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            function changeNav(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        changeNav(targetId);
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                           mobileMenu.classList.add('hidden');
+                           mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+                        }
+                    }
+                });
+            });
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 80) { // Adjusted for sticky header
+                        current = section.getAttribute('id');
+                    }
+                });
+                if (current) {
+                    changeNav(current);
+                }
+            });
+
+
+            // Tab functionality
+            function setupTabs(tabContainerId, contentContainerId) {
+                const tabButtons = document.querySelectorAll(`#${tabContainerId} .tab-button`);
+                const tabContents = document.querySelectorAll(`#${contentContainerId} > div[data-tab-content]`);
+
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabName = button.dataset.tab;
+                        
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        tabContents.forEach(content => {
+                            if (content.dataset.tabContent === tabName) {
+                                content.classList.remove('hidden');
+                            } else {
+                                content.classList.add('hidden');
+                            }
+                        });
+                    });
+                });
+            }
+
+            setupTabs('creative-tools-tabs', 'creative-tools-content');
+            setupTabs('workspace-tabs', 'workspace-content');
+
+            // Chart.js: Gemini 2.5 Flash Efficiency
+            const geminiFlashCtx = document.getElementById('geminiFlashChart');
+            if (geminiFlashCtx) {
+                new Chart(geminiFlashCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Gemini 2.0 (Baseline)', 'Gemini 2.5 Flash'],
+                        datasets: [{
+                            label: '相対的効率',
+                            data: [100, 122], // Assuming 2.0 is 100, 2.5 Flash is 22% more efficient
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(75, 192, 192, 0.6)'
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '効率 (相対値)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y + (context.label === 'Gemini 2.5 Flash' ? '% (22%向上)' : '%');
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
