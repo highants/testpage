@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google I/O 2026 Summary Infographic</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;         /* 清潔感のある明るいグレー */
+            --card-bg: #ffffff;          /* カードの背景（白） */
+            --text-main: #1e293b;        /* メインテキスト（深いネイビーグレー） */
+            --text-muted: #64748b;       /* サブテキスト（中間グレー） */
+            --accent-terracotta: #e07a5f; /* 最重要キーインサイト（テラコッタ） */
+            --accent-green: #3d8b7a;      /* 実績・肯定的成長（セージグリーン） */
+            --accent-amber: #d97706;      /* 課題・リスク（アンバー） */
+            --border-color: #e2e8f0;     /* 境界線 */
+            --num-bg: #f1f5f9;           /* 数値背景用グレー */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.65;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--accent-terracotta);
+            text-transform: uppercase;
+            background: rgba(224, 122, 95, 0.08);
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ================= GENERAL STYLES ================= */
+        h2.section-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: 48px 0 24px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 28px 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            margin-bottom: 24px;
+        }
+
+        /* ================= STATS / METRICS ================= */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-terracotta);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .stat-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ================= TIMELINE / PROCESS ================= */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .timeline-item {
+            display: flex;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .timeline-badge {
+            background-color: var(--num-bg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border-color);
+            min-width: 100px;
+        }
+
+        .timeline-year {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .timeline-unit {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .timeline-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .timeline-text strong {
+            color: var(--text-main);
+            font-size: 16px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ================= GRID TWO COLUMNS ================= */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ================= TABLE DESIGN ================= */
+        .table-container {
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: var(--card-bg);
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13.5px;
+        }
+
+        th {
+            background-color: var(--num-bg);
+            color: var(--text-main);
+            font-weight: 700;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .row-title {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* ================= CHIP/TAG ================= */
+        .chip {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .chip-green {
+            background-color: rgba(61, 139, 122, 0.08);
+            color: var(--accent-green);
+        }
+
+        .chip-amber {
+            background-color: rgba(217, 119, 6, 0.08);
+            color: var(--accent-amber);
+        }
+
+        .chip-terracotta {
+            background-color: rgba(224, 122, 95, 0.08);
+            color: var(--accent-terracotta);
+        }
+
+        /* ================= INLINE METRIC HIGHLIGHT ================= */
+        .highlight-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background-color: var(--num-bg);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .highlight-num {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-terracotta);
+        }
+
+        .highlight-label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+    <div class="header">
+        <span class="section-tag">Google I/O 2026 Executive Summary</span>
+        <h1>エージェント型AIへの地殻変動</h1>
+        <p>従来の受動的な対話型ボットから、ユーザーの意図を先回りして自律稼働する「自律エージェント（Agentic AI）」へのインフラ・生態系移行分析</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <h2 class="section-title">
+        <span style="color: var(--accent-terracotta)">■</span> 1. エコシステムの大規模拡張
+    </h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">190億</div>
+            <div class="stat-label">API処理トークン / 分</div>
+            <div class="stat-desc">開発者コミュニティ向け。毎月850万人以上がGeminiモデルで開発を進行中。</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">25億人</div>
+            <div class="stat-label">AI Overviews MUA</div>
+            <div class="stat-desc">検索概要機能のアクティブユーザー数。対話型検索「AI Mode」は10億人突破。</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">9億人</div>
+            <div class="stat-label">Geminiアプリ MUA</div>
+            <div class="stat-desc">2025年の4億人から、わずか1年で約2.2倍へと劇的な垂直立ち上げを達成。</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 style="font-size: 16px; margin-bottom: 16px;">月間トークン処理量の爆発的な遷移スケール</h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">
+            処理能力と需要が複利的に加速し、月間トークン処理量は前年比約66倍という指数関数的な拡大を遂げています。
+        </p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <span class="timeline-year">2024</span>
+                    <span class="timeline-unit">tokens</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">
+                        <strong>9.7 兆トークン（実績）</strong>
+                        初期のGemini統合およびAI Overviewsのローンチ期。
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <span class="timeline-year">2025</span>
+                    <span class="timeline-unit">tokens</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">
+                        <strong>480 兆トークン（実績）</strong>
+                        ワークスペース、モバイル連携の定着による日常的利用の大幅増加。
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-badge" style="background-color: rgba(224, 122, 95, 0.05);">
+                    <span class="timeline-year" style="color: var(--accent-terracotta)">2026</span>
+                    <span class="timeline-unit" style="color: var(--accent-terracotta)">quadrillion</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">
+                        <strong style="color: var(--accent-terracotta)">3.2 京（quadrillion）トークン（予測値）</strong>
+                        常時稼働型自律エージェントの本格普及に伴う、天文学的な消費ステージ。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= SECTION 2 ================= -->
+    <h2 class="section-title">
+        <span style="color: var(--accent-green)">■</span> 2. 計算基盤と最先端コアモデル
+    </h2>
+
+    <div class="grid-2">
+        <div class="card">
+            <span class="chip chip-green" style="margin-bottom: 12px;">HARDWARE</span>
+            <h3 style="font-size: 16px; margin-bottom: 8px;">初のデュアルチップアプローチ</h3>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                リアルタイム自律推論の低遅延化と事前学習の超高速化を切り分けた個別インフラを構築。
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                <div style="padding: 10px; background: var(--bg-color); border-radius: 8px;">
+                    <strong>TPU 8t (Training) :</strong> 物理的制約を超えて100万台をJAX/Pathwaysスタックで連結。学習期間を数ヶ月から数週間に短縮。
+                </div>
+                <div style="padding: 10px; background: var(--bg-color); border-radius: 8px;">
+                    <strong>TPU 8i (Inference) :</strong> 実行プロセス全体の遅延（レイテンシ）を限界まで削減し、即時応答検索をサポート。
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="chip chip-terracotta" style="margin-bottom: 12px;">SOFTWARE</span>
+            <h3 style="font-size: 16px; margin-bottom: 8px;">Gemini 3.5 シリーズ</h3>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                他社フロントモデル比4倍の出力速度(TPS)を誇る「3.5 Flash」と、深層推理を拡張した「3.5 Pro」を体系化。
+            </p>
+            <div class="highlight-box">
+                <div class="highlight-num">4x</div>
+                <div class="highlight-label">Gemini 3.5 Flash 出力速度比（競合モデル比較）</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%">モデル名</th>
+                    <th style="width: 50%">主要なアーキテクチャの強み・特徴</th>
+                    <th style="width: 25%">展開スケジュール</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-title">Gemini 3.5 Flash</td>
+                    <td>多ステップの複雑自動化、コーディング、高効率なトークン消費。実務タスク検証（GDPVal）で大幅進化。</td>
+                    <td>提供中</td>
+                </tr>
+                <tr>
+                    <td class="row-title">Gemini 3.5 Pro</td>
+                    <td>マルチモーダル理解の究極化、コンテキストウィンドウのさらなる拡張。高度な専門推理層向け。</td>
+                    <td>2026年6月</td>
+                </tr>
+                <tr>
+                    <td class="row-title">Gemini Omni</td>
+                    <td>テキスト、音声、画像、動画の全モーダル入出力対応の「any-to-any」世界モデル。</td>
+                    <td>順次拡大展開</td>
+                </tr>
+                <tr>
+                    <td class="row-title">LiteRT-LM</td>
+                    <td>モバイル・エッジデバイス上で高速に稼働する、軽量オンデバイス生成AIランタイム。</td>
+                    <td>提供中</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ================= SECTION 3 ================= -->
+    <h2 class="section-title">
+        <span style="color: var(--accent-terracotta)">■</span> 3. 自律型コマースと日常・生産性
+    </h2>
+
+    <div class="grid-2">
+        <div class="card">
+            <span class="chip chip-terracotta" style="margin-bottom: 12px;">AUTONOMOUS COMMERCE</span>
+            <h3 style="font-size: 16px; margin-bottom: 8px;">安全決済規格「AP2」と UCP</h3>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;">
+                エージェントが人間の代わりに購入や契約を代理完了する世界初のセキュリティフレームワークを実装。
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                <div style="padding: 10px; background: rgba(224, 122, 95, 0.04); border-left: 3px solid var(--accent-terracotta); border-radius: 0 8px 8px 0;">
+                    <strong>Human Not Present (人間非介在決済) :</strong> ユーザーの設定した予算制約やブランド条件（デジタル委託契約：Mandates）を厳守した範囲内で、完全自動で取引を成立。
+                </div>
+                <div style="padding: 10px; background: var(--bg-color); border-radius: 8px;">
+                    <strong>UCP (Universal Commerce Protocol) :</strong> Shopify、Amazon、Stripeなど主要アライアンスと統合。カート商品を横断チェック。
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="chip chip-amber" style="margin-bottom: 12px;">PERSONAL AGENT</span>
+            <h3 style="font-size: 16px; margin-bottom: 8px;">常時稼働エージェント「Gemini Spark」</h3>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;">
+                端末の状態（電源オフ、オフライン）にかかわらず、Google Cloud上の仮想マシン上で自律バックグラウンド走行を続ける。
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                <div style="padding: 10px; background: var(--bg-color); border-radius: 8px;">
+                    <strong>クロス・アプリ同期 :</strong> Gmail、Docs、Calendar、Tasksと同期。受信トレイ自動整理や、代理会議室調整などを無人で実行。
+                </div>
+                <div style="padding: 10px; background: var(--bg-color); border-radius: 8px;">
+                    <strong>サードパーティ接続 :</strong> Adobe、Asana、Lyft、Zillowなど30以上の外部パートナーツールとMCP（Model Context Protocol）経由で相互接続。
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= SECTION 4 ================= -->
+    <h2 class="section-title">
+        <span style="color: var(--accent-amber)">■</span> 4. アンビエントOSとハードウェア統合
+    </h2>
+
+    <div class="card">
+        <h3 style="font-size: 16px; margin-bottom: 16px;">インテリジェントシステムとしてのAndroid 17・Aluminium OS</h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+            モバイルやPCを単なるアプリ動作箱ではなく、「画面やマイクから文脈を能動的につかむ知性」へと進化させます。
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div style="border: 1px solid var(--border-color); padding: 18px; border-radius: 10px;">
+                <h4 style="font-size: 14px; margin-bottom: 6px;">Android Halo ＆ Rambler</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted);">
+                    スマートフォンのステータスバーを柔らかく光らせ、自律タスクの進行を直感的に通知。また、Ramblerにより、言い淀みや言語混在音声を最初から流暢に執筆されたテキストに瞬時修正。
+                </p>
+            </div>
+            <div style="border: 1px solid var(--border-color); padding: 18px; border-radius: 10px;">
+                <h4 style="font-size: 14px; margin-bottom: 6px;">Aluminium OS ＆ Googlebook</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted);">
+                    Android技術をコアとし、一般のPCハードウェア上でAndroidアプリとChrome Webアプリを軽快に高速マルチタスク実行。Magic Pointerによる自動文脈アシストに対応。
+                </p>
+            </div>
+            <div style="border: 1px solid var(--border-color); padding: 18px; border-radius: 10px;">
+                <h4 style="font-size: 14px; margin-bottom: 6px;">XR音声スマートグラス</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted);">
+                    Samsung・Warby Parker等のコラボレーション。画面を排除した超軽量・骨伝導専用設計。現実世界の映像を内蔵カメラで捉え、ハンズフリーのGemini対話を実現。
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= SECTION 5 ================= -->
+    <h2 class="section-title">
+        <span style="color: var(--accent-green)">■</span> 5. 開発者向け生態系と動的UI技術
+    </h2>
+
+    <div class="card">
+        <span class="chip chip-green" style="margin-bottom: 12px;">DEVELOPER ECOSYSTEM</span>
+        <h3 style="font-size: 16px; margin-bottom: 12px;">Flutter GenUI SDKと動的コード配信の構想</h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;">
+            AIエージェントが、その瞬間のコンテキストやリクエストに応じて**「その場で最適化されたインタラクティブUI」を組み立ててユーザーに返す、革新的な技術ロードマップが進行中**です。
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <div style="padding: 12px; background: var(--num-bg); border-radius: 8px; display: flex; align-items: flex-start; gap: 12px;">
+                <span style="font-weight: 800; color: var(--accent-green);">A2UI</span>
+                <div>
+                    <strong>A2UI（Agent-to-UI）プロトコルの策定 :</strong> エージェントとUIの間で、動的に構築すべき画面仕様をやり取りするための次世代シリアライズ規格。
+                </div>
+            </div>
+            <div style="padding: 12px; background: var(--num-bg); border-radius: 8px; display: flex; align-items: flex-start; gap: 12px;">
+                <span style="font-weight: 800; color: var(--accent-green);">DART</span>
+                <div>
+                    <strong>インタープリタ型バイトコード対応 :</strong> Dartの言語仕様自体を再定義し、アプリストアの完全な再ビルド検証を待つことなく、AIが必要なロジックを安全かつ動的にクライアントに配信・実行（Ephemeral Code Delivery）。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <div style="text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+        Google I/O 2026 Executive Infographic Design. Configured with "Modern Casual DeepResearch" Design Tokens.
+    </div>
+
+</div>
+
+</body>
+</html>

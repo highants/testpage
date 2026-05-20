@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google I/O 2026 Analysis Report</title>
+    <style>
+        :root {
+            --primary: #1E293B;
+            --secondary: #64748B;
+            --tertiary: #E07A5F;
+            --accent-green: #3D8B7A;
+            --accent-amber: #D97706;
+            --neutral-light: #F8FAFC;
+            --neutral-white: #FFFFFF;
+            --border: #E2E8F0;
+            --num-bg: #F1F5F9;
+            
+            --rounded-sm: 8px;
+            --rounded-md: 14px;
+            --rounded-lg: 20px;
+            --rounded-pill: 999px;
+            
+            --gap-sm: 12px;
+            --gap-md: 24px;
+            --gap-lg: 40px;
+            --pad-sm: 16px;
+            --pad-md: 24px;
+            --pad-lg: 36px;
+        }
+
+        body {
+            background-color: var(--neutral-light);
+            color: var(--primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: var(--pad-lg);
+            line-height: 1.65;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--gap-lg);
+            text-align: center;
+            color: var(--primary);
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: var(--gap-lg) 0 var(--gap-md) 0;
+            color: var(--primary);
+            border-left: 4px solid var(--tertiary);
+            padding-left: var(--gap-sm);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: 0 0 var(--gap-sm) 0;
+            color: var(--primary);
+        }
+
+        p {
+            font-size: 14px;
+            color: var(--secondary);
+            margin: 0 0 var(--gap-sm) 0;
+        }
+
+        .caption {
+            font-size: 11px;
+            line-height: 1.4;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+        }
+
+        /* Components */
+        .summary-card {
+            background-color: var(--neutral-white);
+            border: 1px solid var(--border);
+            border-top: 6px solid var(--tertiary);
+            border-radius: var(--rounded-md);
+            padding: var(--pad-lg);
+            margin-bottom: var(--gap-lg);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.04);
+        }
+
+        .summary-card h3 {
+            color: var(--tertiary);
+            font-size: 18px;
+            margin-bottom: var(--gap-sm);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--gap-md);
+            margin-bottom: var(--gap-lg);
+        }
+
+        .insight-card {
+            background-color: var(--neutral-white);
+            border: 1px solid var(--border);
+            border-radius: var(--rounded-md);
+            padding: var(--pad-md) var(--pad-lg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .metric-callout {
+            background-color: var(--num-bg);
+            color: var(--primary);
+            border-radius: var(--rounded-sm);
+            padding: var(--pad-sm);
+            display: inline-flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: var(--gap-sm);
+        }
+
+        .metric-value {
+            font-size: 20px;
+            margin-right: 8px;
+            color: var(--tertiary);
+        }
+
+        .source-badge {
+            background-color: rgba(100, 116, 139, 0.08);
+            color: var(--secondary);
+            border-radius: var(--rounded-pill);
+            padding: 2px 8px;
+            font-size: 11px;
+            display: inline-block;
+            margin-top: var(--gap-sm);
+            text-decoration: none;
+        }
+
+        .status-green { color: var(--accent-green); font-weight: bold; }
+        .status-amber { color: var(--accent-amber); font-weight: bold; }
+
+        footer {
+            margin-top: var(--gap-lg);
+            padding: var(--pad-md);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>エージェント型AIへの地殻変動：Google I/O 2026 分析レポート</h1>
+
+    <!-- Summary Area -->
+    <div class="summary-card">
+        <h3>Key Takeaway: 受動的チャットから自律的エージェントへ</h3>
+        <p>Google I/O 2026は、AIがユーザーの意図を先回りして行動する「エージェント型AI（Agentic AI）」への完全移行を宣言した。Geminiを検索、OS、ハードウェア、決済プロトコルまで垂直統合し、デジタルライフ全体の「オーケストレーター」となるインフラ戦略を提示している。</p>
+        <div class="metric-callout">
+            <span class="metric-value">3.2京 tokens</span> 月間処理量 (2026年予測)
+        </div>
+        <span class="source-badge">Source: [1], [8]</span>
+    </div>
+
+    <!-- Section 1: Infrastructure -->
+    <h2>計算基盤とコアモデル</h2>
+    <div class="grid">
+        <div class="insight-card">
+            <div>
+                <h3>デュアルチップ・アーキテクチャ</h3>
+                <p>学習特化の「TPU 8t」と推論特化の「TPU 8i」を導入。物理的制約を超えて100万台のTPU群を分散スケールさせ、学習期間を数ヶ月から数週間に短縮。</p>
+            </div>
+            <span class="source-badge">Source: [10]</span>
+        </div>
+        <div class="insight-card">
+            <div>
+                <h3>Gemini 3.5 Flashの超高速化</h3>
+                <div class="metric-callout">
+                    <span class="metric-value">4倍</span> 競合比出力速度 (TPS)
+                </div>
+                <p>多ステップの複雑な推論とコーディングに特化し、実務タスク評価（GDPVal）で従来モデルを大幅に凌駕。</p>
+            </div>
+            <span class="source-badge">Source: [9], [10]</span>
+        </div>
+    </div>
+
+    <!-- Section 2: User Experience -->
+    <h2>UI/UXとクリエイティブ表現</h2>
+    <div class="grid">
+        <div class="insight-card">
+            <div>
+                <h3>Gemini Omni: any-to-any 世界モデル</h3>
+                <p>テキスト、音声、画像、動画の全モーダル入出力に対応。キャラクターの一貫性を維持したリアルタイム動画生成を実現。</p>
+                <p class="status-amber">⚠️ 高負荷：動画2本でAI Pro制限の86%を消費する事例あり</p>
+            </div>
+            <span class="source-badge">Source: [2], [6]</span>
+        </div>
+        <div class="insight-card">
+            <div>
+                <h3>Neural Expressive デザイン言語</h3>
+                <p>ジェネレーティブUIをベースに、流動的なアニメーションとハプティクスを統合。テキストの壁を排除し、視覚的な段階展開を実現。</p>
+            </div>
+            <span class="source-badge">Source: [2], [17]</span>
+        </div>
+    </div>
+
+    <!-- Section 3: Autonomous Agents -->
+    <h2>自律稼働エージェントの社会実装</h2>
+    <div class="grid">
+        <div class="insight-card">
+            <div>
+                <h3>Gemini Spark (Agent Remy)</h3>
+                <p>クラウド上の専用VMで24時間365日稼働。ユーザーがオフラインの状態でも、メール整理やイベント調整を自律的に完結させる。</p>
+                <p class="status-green">✓ MCP経由でAdobe, Uber, Zillowなど30以上の外部ツールと連携</p>
+            </div>
+            <span class="source-badge">Source: [2], [10]</span>
+        </div>
+        <div class="insight-card">
+            <div>
+                <h3>検索体験の再定義</h3>
+                <p>「インテリジェントAI検索ボックス」への刷新。特定のトピックを24時間監視する「Search Agents」が更新情報をプロアクティブに通知。</p>
+            </div>
+            <span class="source-badge">Source: [2], [9]</span>
+        </div>
+    </div>
+
+    <!-- Section 4: Agentic Commerce -->
+    <h2>自律型コマース・インフラ</h2>
+    <div class="grid">
+        <div class="insight-card">
+            <div>
+                <h3>Universal Cart & UCP</h3>
+                <p>Google全サービスを横断する永続的カート。UCP（Universal Commerce Protocol）により、AIエージェントが商品調査から決済までを一貫して遂行。</p>
+            </div>
+            <span class="source-badge">Source: [9], [13], [23]</span>
+        </div>
+        <div class="insight-card">
+            <div>
+                <h3>AP2: 安全な自律決済権</h3>
+                <p>「Mandates（デジタル契約委託書）」により予算上限とブランドを制限。人間が介在しない「Human Not Present」決済を安全に実現。</p>
+                <p class="status-green">✓ FIDO Allianceへ規格を寄託し業界標準化を推進</p>
+            </div>
+            <span class="source-badge">Source: [12], [24]</span>
+        </div>
+    </div>
+
+    <!-- Section 5: OS & Hardware -->
+    <h2>エンドポイントの進化</h2>
+    <div class="grid">
+        <div class="insight-card">
+            <div>
+                <h3>Android 17: インテリジェントシステム</h3>
+                <p>OSを「行動意図の解読システム」へ再定義。Android Haloによるバックグラウンド動作の可視化と、PQC（ポスト量子暗号）によるデータ保護を実装。</p>
+            </div>
+            <span class="source-badge">Source: [10], [23], [27]</span>
+        </div>
+        <div class="insight-card">
+            <div>
+                <h3>Ambient Hardware</h3>
+                <p>Aluminium OS搭載のGooglebook、およびAndroid XR搭載の音声スマートグラスを展開。画面に依存しないアンビエントなAI体験を提供。</p>
+            </div>
+            <span class="source-badge">Source: [2], [3]</span>
+        </div>
+    </div>
+
+    <!-- Section 6: Dev Ecosystem -->
+    <h2>開発者エコシステム</h2>
+    <div class="grid">
+        <div class="insight-card">
+            <div>
+                <h3>Antigravity 2.0 & Firebase AI Logic</h3>
+                <p>自律開発エージェントのサンドボックス化と、プロンプト改ざんを防ぐ「Template-Only Mode」を実装。開発の安全性と速度を両立。</p>
+            </div>
+            <span class="source-badge">Source: [9], [15], [32]</span>
+        </div>
+        <div class="insight-card">
+            <div>
+                <h3>Flutter GenUI SDK</h3>
+                <p>AIが動的にUIを組み立てる「A2UIプロトコル」を推進。Dartへのインタープリタ型バイトコード導入により、動的コード配信を実現。</p>
+            </div>
+            <span class="source-badge">Source: [33]</span>
+        </div>
+    </div>
+
+    <footer>
+        <p class="caption">© 2026 Google I/O Analysis | Structured by Modern Casual DeepResearch System</p>
+    </footer>
+</div>
+
+</body>
+</html>
