@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>メルピピアAS（モリグー） スキル・パフォーマンス総覧</title>
+  <style>
+    /* =========================================
+       Design System: Modern Casual DeepResearch
+       ========================================= */
+    :root {
+      /* Colors */
+      --primary: #1E293B;
+      --secondary: #64748B;
+      --tertiary: #E07A5F;
+      --accent-green: #3D8B7A;
+      --accent-amber: #D97706;
+      --neutral-light: #F8FAFC;
+      --neutral-white: #FFFFFF;
+      --border: #E2E8F0;
+      --num-bg: #F1F5F9;
+
+      /* Spacing */
+      --gap-sm: 12px;
+      --gap-md: 24px;
+      --gap-lg: 40px;
+      --pad-sm: 16px;
+      --pad-md: 24px;
+      --pad-lg: 36px;
+      
+      /* Rounded */
+      --rounded-sm: 8px;
+      --rounded-md: 14px;
+      --rounded-lg: 20px;
+      --rounded-pill: 999px;
+    }
+
+    body {
+      background-color: var(--neutral-light);
+      color: var(--primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: var(--gap-lg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 var(--gap-lg) 0;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: 0 0 var(--gap-md) 0;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: var(--gap-sm) 0;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--secondary);
+      margin: 0 0 var(--gap-sm) 0;
+    }
+
+    ul {
+      margin: 0 0 var(--gap-md) 0;
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--secondary);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gap-md);
+      margin-bottom: var(--gap-lg);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-md);
+      margin-bottom: var(--gap-lg);
+    }
+
+    /* Components */
+    .insight-card {
+      background-color: var(--neutral-white);
+      border: 1px solid var(--border);
+      border-radius: var(--rounded-md);
+      padding: var(--pad-md) var(--pad-lg);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .insight-card.hero {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.04);
+      border-top: 4px solid var(--tertiary);
+      margin-bottom: var(--gap-lg);
+    }
+
+    .insight-card.hero h2 {
+      color: var(--tertiary);
+    }
+
+    .metric-callout {
+      background-color: var(--num-bg);
+      color: var(--primary);
+      border-radius: var(--rounded-sm);
+      padding: var(--pad-sm);
+      margin-bottom: var(--gap-md);
+      display: flex;
+      align-items: center;
+      gap: var(--gap-sm);
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .source-badge {
+      background-color: rgba(100, 116, 139, 0.08);
+      color: var(--secondary);
+      border-radius: var(--rounded-pill);
+      padding: 4px 12px;
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      width: fit-content;
+      text-decoration: none;
+    }
+
+    .badge-top {
+      margin-bottom: var(--gap-md);
+    }
+
+    .badge-bottom {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* Utility Colors */
+    .text-green { color: var(--accent-green); }
+    .text-amber { color: var(--accent-amber); }
+    .text-tertiary { color: var(--tertiary); }
+    .divider { height: 1px; background-color: var(--border); border: none; margin: var(--gap-sm) 0 var(--gap-md); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>メルピピアAS（モリグー） スキル・パフォーマンス総覧</h1>
+
+    <div class="insight-card hero">
+      <div class="source-badge badge-top">Key Takeaway</div>
+      <h2>風属性に極振りした超攻撃的サポーター＆デバッファー</h2>
+      <p>
+        アナザースタイルとして実装されたメルピピア（モリグー）は、風属性キャラクターとの強固なシナジーを持ちます。特化型の祈祷スキルによる風属性ダメージ100%バフ、風キャラ3人以上の編成で発動する再攻撃、そしてステラバースト中のランダムな通常攻撃変化（耐久/バフ/極大火力）など、前線を強力に牽引する能力を秘めています。
+      </p>
+      <div class="source-badge badge-bottom">出典: アナザーエデン Ver 3.15.20 アップデート情報</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="insight-card">
+        <div class="source-badge badge-top">Buffer Insight</div>
+        <h2>祈祷「未来予知・順風満帆」</h2>
+        <p>風属性パーティの要となる専用祈祷バフ。発動中のリターンが極めて大きいのが特徴です。</p>
+        
+        <div class="metric-callout">
+          <span class="metric-value text-green">[ +100% ]</span>
+          <span class="metric-label">祈祷中の風属性与ダメージUP</span>
+        </div>
+
+        <h3>スキル詳細（消費MP: 35）</h3>
+        <ul>
+          <li><strong>発動時効果:</strong> [先制]祈祷を発動(1ターン)。味方全体に風属性攻撃50%UP(1t)＋バリア貫通(3回)を付与。</li>
+          <li><strong>祈祷中効果:</strong> 味方全体の風属性ダメージ100%UP＋コンボ倍率1%UP。</li>
+          <li><strong>予知蓄積:</strong> 味方が敵の攻撃を受けなかったターン終了時、味方全体に「予知」を1蓄積。</li>
+        </ul>
+        <div class="source-badge badge-bottom">カテゴリ: 先制 / 祈祷 / バフ</div>
+      </div>
+
+      <div class="insight-card">
+        <div class="source-badge badge-top">Attacker Insight</div>
+        <h2>極・グルグル斬っ！ / 超ザクザク斬っ！</h2>
+        <p>条件次第で圧倒的な手数を誇る風属性斬攻撃スキルと、強烈なブレイク・デバフ付与。</p>
+        
+        <div class="metric-callout">
+          <span class="metric-value">[ MAX 3回 ]</span>
+          <span class="metric-label">最高攻撃回数（前衛風3人以上条件）</span>
+        </div>
+
+        <h3>極・グルグル斬っ！（消費MP: 47）</h3>
+        <ul>
+          <li>敵全体に風属性斬攻撃3回(特大3倍)＋ブレイク[風]3蓄積。</li>
+          <li><strong>編成ボーナス:</strong> 前衛に風キャラが3人以上いる場合、再度スキルを実行する。</li>
+        </ul>
+        <hr class="divider">
+        <h3>超ザクザク斬っ！（消費MP: 49）</h3>
+        <ul>
+          <li>敵単体に風属性斬攻撃2回(大)＋ブレイク[風]3蓄積＋腕知20%DOWN(5t)。</li>
+          <li>ANOTHER ZONE時はブレイク蓄積数とデバフ効果量が2倍に強化。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="insight-card">
+        <div class="source-badge badge-top">Stellar Skill</div>
+        <h2>わるーいイタズラ / <br>メルメル★マジック</h2>
+        <p>強力なデバフと、ステラバースト時限定の特殊リソース回復スキルです。</p>
+        
+        <div class="metric-callout">
+          <span class="metric-value text-amber">[ -40% ]</span>
+          <span class="metric-label">腕知速・物魔耐性DOWN</span>
+        </div>
+        
+        <ul>
+          <li><strong>わるーいイタズラ (通常時):</strong> [先制] 敵全体無属性魔法(極大)＋毒ペイン(永続/耐性無視)＋各種ステータス40%DOWN(3t)。</li>
+          <li><strong>メルメル★マジック (SB時):</strong> 自身のHP・MPを100%回復。使用後、通常攻撃がランダムなアクションに変化。</li>
+        </ul>
+      </div>
+
+      <div class="insight-card">
+        <div class="source-badge badge-top">Special Gimmick</div>
+        <h2>通常攻撃変化ルーレット</h2>
+        <p>「メルメル★マジック」使用後、通常攻撃が以下の3系統いずれかに変化します（使用後に再抽選）。</p>
+        
+        <ul>
+          <li><strong>がちがちガード (耐久系):</strong> 自身にバリアや守護等の強固な防御支援を付与。</li>
+          <li><strong>わくわくエール (火力系):</strong> 味方全体に「下克上」＋「オーバークリティカル」(5t)を付与し、爆発力を強化。</li>
+          <li><strong>バラバラ超乱刃 (攻撃系):</strong> 自身の腕力100%UP(5t)後、敵全体に風属性斬攻撃8回(極大40倍・防御無視)を放つ。</li>
+        </ul>
+      </div>
+
+      <div class="insight-card">
+        <div class="source-badge badge-top">Passive & VC</div>
+        <h2>アビリティ・VC</h2>
+        <p>パーティの風属性キャラ数に依存して恩恵が跳ね上がる、特化型のアビリティ構成です。</p>
+        
+        <div class="metric-callout">
+          <span class="metric-value text-amber">風属性依存</span>
+          <span class="metric-label">3人以上の編成が鍵</span>
+        </div>
+
+        <ul>
+          <li><strong>かくれんぼ状態:</strong> 祈祷発動中のターン開始時、自身がターゲットにされにくくなる。</li>
+          <li><strong>天の力ブースト:</strong> 前衛風キャラ3人以上で、戦闘開始時および行動時の「天」蓄積量が増加(中)。</li>
+          <li><strong>VC:</strong> 風王陣展開＋敵全体にブレイク[風]。SB時(天が多い時)はANOTHER ZONEを3ターン延長。</li>
+        </ul>
+        <div class="source-badge badge-bottom">要配慮: 他属性出張時の恩恵は限定的</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
