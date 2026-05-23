@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Information - Luminous Ivory Briefing</title>
+    <!-- Google Fonts for Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'surface': '#fcf9f2',
+                        'surface-dim': '#dcdad3',
+                        'surface-bright': '#fcf9f2',
+                        'surface-lowest': '#ffffff',
+                        'surface-low': '#f6f3ec',
+                        'surface-container': '#f0eee7',
+                        'surface-high': '#ebe8e1',
+                        'surface-container-highest': '#e5e2db',
+                        'on-surface': '#1c1c18',
+                        'on-surface-variant': '#4e4639',
+                        'inverse-surface': '#31312c',
+                        'inverse-on-surface': '#f3f0ea',
+                        'outline': '#7f7667',
+                        'outline-variant': '#d1c5b4',
+                        'primary': '#775a19', // Gold-brown
+                        'primary-container': '#c5a059', // Lighter Gold
+                        'on-primary': '#ffffff',
+                        'secondary': '#5f5e5e', // Charcoal
+                        'tertiary': '#58614f', // Sage
+                        'tertiary-container': '#9fa993',
+                        'on-tertiary-container': '#353e2d',
+                        'error': '#ba1a1a',
+                        'error-container': '#ffdad6'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'ambient': '0px 4px 20px rgba(51, 51, 51, 0.05)',
+                        'modal': '0px 12px 40px rgba(51, 51, 51, 0.08)',
+                    },
+                    borderRadius: {
+                        'sm': '2px',
+                        'DEFAULT': '4px',
+                        'md': '6px',
+                        'lg': '8px',
+                        'xl': '12px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcf9f2;
+            color: #1c1c18;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom scrollbar for boutique touch */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0eee7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #775a19;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-gold-container selection:text-black">
+
+<!-- Main Navigation bar with Quiet Luxury styling -->
+<nav class="border-b border-outline-variant/30 py-4 px-6 md:px-12 bg-surface flex items-center justify-between sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
+    <div class="flex items-center space-x-3">
+        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+        <span class="tracking-[0.2em] text-[11px] font-bold text-on-surface uppercase">DAILY INFORMATION</span>
+    </div>
+    <div class="text-[12px] font-medium text-secondary">
+        Updated: <span id="current-date-badge" class="font-semibold text-primary">2026.05.23</span>
+    </div>
+    <div class="flex items-center space-x-4">
+        <a href="#map-section" class="text-xs text-secondary hover:text-primary transition-colors duration-150 uppercase tracking-widest hidden sm:inline-block">Map</a>
+        <a href="#news-grid" class="text-xs text-secondary hover:text-primary transition-colors duration-150 uppercase tracking-widest hidden sm:inline-block">Briefing</a>
+        <a href="#briefcase-container" class="relative text-xs text-secondary hover:text-primary transition-colors duration-150 uppercase tracking-widest">
+            Briefcase
+            <span id="briefcase-badge" class="absolute -top-2 -right-3 bg-primary text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+        </a>
+    </div>
+</nav>
+
+<!-- Editorial Header -->
+<header class="max-w-7xl mx-auto w-full px-6 md:px-12 pt-12 pb-8">
+    <div class="text-center md:text-left border-b border-outline-variant pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+            <span class="uppercase text-xs tracking-[0.25em] text-primary font-bold block mb-3">GLOBAL INSIGHTS DASHBOARD</span>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-on-surface leading-[1.1] tracking-tight">
+                7 Core Pillars of <br class="hidden md:block" />
+                <span class="text-primary font-light">the Global Landscape</span>
+            </h1>
+            <p class="mt-4 text-sm md:text-base text-secondary max-w-xl font-normal leading-relaxed">
+                厳選された信頼性の高いソースから、AI、気候変動、ウクライナ情勢、中東の動向、先端ロボット技術、中国、そして変革期を迎える現代社会の最新動向を美しく整理します。
+            </p>
+        </div>
+        <div class="flex flex-col items-center md:items-end gap-3 self-center md:self-end">
+            <!-- Global Sentiment Indicators -->
+            <div class="bg-surface-container-highest/40 p-4 rounded-lg flex items-center gap-6 shadow-ambient w-full md:w-auto">
+                <div class="text-center border-r border-outline-variant/50 pr-4">
+                    <span class="text-[9px] uppercase tracking-wider text-secondary block">Tech Velocity</span>
+                    <span class="text-lg font-bold text-primary">ACUTE</span>
+                </div>
+                <div class="text-center border-r border-outline-variant/50 pr-4">
+                    <span class="text-[9px] uppercase tracking-wider text-secondary block">Climate Status</span>
+                    <span class="text-lg font-bold text-error">CRITICAL</span>
+                </div>
+                <div class="text-center">
+                    <span class="text-[9px] uppercase tracking-wider text-secondary block">Diplomacy</span>
+                    <span class="text-lg font-bold text-tertiary">AGILE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Interconnectivity Map (SVG) -->
+<section id="map-section" class="max-w-7xl mx-auto w-full px-6 md:px-12 py-8">
+    <div class="bg-surface-low p-6 md:p-8 rounded-lg shadow-ambient border border-outline-variant/20">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div>
+                <h2 class="text-xl font-semibold tracking-tight text-on-surface">Interactive Global Force Connection</h2>
+                <p class="text-xs text-secondary mt-1">
+                    各要素をクリックすると、そのキーワードを主軸としたニュースにジャンプし、絞り込むことができます。
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded bg-tertiary/10 text-tertiary text-xs font-semibold">互いに関連するグローバル事象</span>
+                <button onclick="resetFilters()" class="text-xs text-primary border border-primary/20 hover:border-primary px-3 py-1 rounded transition-all">全表示にリセット</button>
+            </div>
+        </div>
+
+        <div class="relative min-h-[250px] md:min-h-[350px] bg-surface-lowest rounded-md border border-outline-variant/10 overflow-hidden flex items-center justify-center">
+            <!-- SVG Interactive Graph -->
+            <svg id="force-graph" viewBox="0 0 800 350" class="w-full h-full max-h-[350px]">
+                <defs>
+                    <radialGradient id="grad1" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#ffdea5;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#fcf9f2;stop-opacity:0" />
+                    </radialGradient>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="15" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#7f7667" />
+                    </marker>
+                </defs>
+                <!-- Central Glow -->
+                <circle cx="400" cy="175" r="150" fill="url(#grad1)" />
+
+                <!-- Connecting Lines -->
+                <line x1="280" y1="90" x2="400" y2="70" stroke="#7f7667" stroke-width="1.5" stroke-dasharray="4" /> <!-- AI - Robot -->
+                <line x1="280" y1="90" x2="200" y2="175" stroke="#7f7667" stroke-width="1.5" /> <!-- AI - Climate -->
+                <line x1="280" y1="90" x2="300" y2="280" stroke="#7f7667" stroke-width="1.5" stroke-dasharray="2" /> <!-- AI - Society -->
+                <line x1="400" y1="70" x2="300" y2="280" stroke="#7f7667" stroke-width="1.5" /> <!-- Robot - Society -->
+                <line x1="520" y1="90" x2="600" y2="175" stroke="#7f7667" stroke-width="1" /> <!-- China - Ukraine -->
+                <line x1="520" y1="90" x2="400" y2="70" stroke="#7f7667" stroke-width="1" /> <!-- China - Robot -->
+                <line x1="500" y1="280" x2="600" y2="175" stroke="#7f7667" stroke-width="1.5" /> <!-- Iran - Ukraine -->
+                <line x1="500" y1="280" x2="300" y2="280" stroke="#7f7667" stroke-width="1.5" stroke-dasharray="3" /> <!-- Iran - Society -->
+                <line x1="520" y1="90" x2="500" y2="280" stroke="#7f7667" stroke-width="1" /> <!-- China - Iran -->
+
+                <!-- Interactive Nodes -->
+                <!-- AI -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('AI')">
+                    <circle cx="280" cy="90" r="32" fill="#c5a059" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="280" y="94" font-family="Montserrat" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">AI</text>
+                    <title>人工知能の最新テック革新</title>
+                </g>
+                <!-- Climate -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('気候変動')">
+                    <circle cx="200" cy="175" r="32" fill="#58614f" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="200" y="179" font-family="Montserrat" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">気候変動</text>
+                    <title>極端気象と脱炭素の動向</title>
+                </g>
+                <!-- Robot -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('ロボット')">
+                    <circle cx="400" cy="70" r="32" fill="#c5a059" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="400" y="74" font-family="Montserrat" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">ロボット</text>
+                    <title>フィジカルAIとロボティクス</title>
+                </g>
+                <!-- Ukraine -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('ウクライナ')">
+                    <circle cx="600" cy="175" r="32" fill="#5f5e5e" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="600" y="179" font-family="Montserrat" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">ウクライナ</text>
+                    <title>東欧の戦況と復興への兆し</title>
+                </g>
+                <!-- Iran -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('イラン')">
+                    <circle cx="500" cy="280" r="32" fill="#5f5e5e" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="500" y="284" font-family="Montserrat" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">イラン</text>
+                    <title>中東情勢と多国間対話の試み</title>
+                </g>
+                <!-- China -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('中国')">
+                    <circle cx="520" cy="90" r="32" fill="#c5a059" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="520" y="94" font-family="Montserrat" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">中国</text>
+                    <title>米中関係と経済ガバナンス</title>
+                </g>
+                <!-- Society -->
+                <g class="cursor-pointer group" onclick="filterByKeyword('社会')">
+                    <circle cx="300" cy="280" r="32" fill="#58614f" class="transition-all duration-300 group-hover:fill-primary" />
+                    <text x="300" y="284" font-family="Montserrat" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">社会</text>
+                    <title>アジャイルな日本型統治モデルの模索</title>
+                </g>
+            </svg>
+            <div class="absolute bottom-4 left-4 text-[10px] text-secondary bg-surface-lowest px-2.5 py-1 rounded border border-outline-variant/20">
+                <span class="inline-block w-2.5 h-2.5 bg-primary-container rounded-full align-middle mr-1"></span> テクノロジー
+                <span class="inline-block w-2.5 h-2.5 bg-tertiary rounded-full align-middle mr-1 ml-2"></span> 社会・環境
+                <span class="inline-block w-2.5 h-2.5 bg-secondary rounded-full align-middle mr-1 ml-2"></span> 地政学リスク
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Filtering Control Panel -->
+<div class="max-w-7xl mx-auto w-full px-6 md:px-12 py-4">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container/60 p-4 rounded-md">
+        <!-- Keyword Filters -->
+        <div class="flex flex-wrap items-center gap-1.5" id="keyword-nav-chips">
+            <span class="text-xs font-semibold uppercase tracking-wider text-on-surface mr-2">Filter Category:</span>
+            <button onclick="filterByKeyword('all')" id="chip-all" class="chip-btn px-3 py-1 text-xs rounded-full bg-primary text-white font-medium transition-all duration-150">すべて</button>
+            <button onclick="filterByKeyword('AI')" id="chip-AI" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">AI</button>
+            <button onclick="filterByKeyword('気候変動')" id="chip-気候変動" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">気候変動</button>
+            <button onclick="filterByKeyword('ウクライナ')" id="chip-ウクライナ" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">ウクライナ</button>
+            <button onclick="filterByKeyword('イラン')" id="chip-イラン" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">イラン</button>
+            <button onclick="filterByKeyword('ロボット')" id="chip-ロボット" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">ロボット</button>
+            <button onclick="filterByKeyword('中国')" id="chip-中国" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">中国</button>
+            <button onclick="filterByKeyword('社会')" id="chip-社会" class="chip-btn px-3 py-1 text-xs rounded-full bg-surface text-secondary hover:bg-surface-dim hover:text-on-surface transition-all duration-150">社会</button>
+        </div>
+        <!-- Search Field -->
+        <div class="relative max-w-xs w-full">
+            <input type="text" id="search-input" oninput="searchNews()" placeholder="ニュース内検索..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-surface-lowest border border-outline-variant rounded focus:outline-none focus:border-primary transition-all placeholder:text-outline" />
+            <svg class="w-3.5 h-3.5 text-secondary absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Grid -->
+<main class="max-w-7xl mx-auto w-full px-6 md:px-12 py-6 flex-grow grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Left/Center: News Grid (2 columns on desktop) -->
+    <section class="lg:col-span-2 space-y-6" id="news-grid">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant flex items-center gap-2">
+                Verified News Feed
+                <span id="active-category-title" class="text-primary normal-case font-normal">(すべて表示中)</span>
+            </h3>
+            <span id="results-count" class="text-[11px] font-semibold text-secondary">Loading reports...</span>
+        </div>
+
+        <!-- News Container (Filled dynamically by JavaScript) -->
+        <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Dynamically populated cards go here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-16 bg-surface-low rounded-lg border border-dashed border-outline-variant/50">
+            <svg class="w-12 h-12 text-outline/50 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <h4 class="text-sm font-semibold text-on-surface">合致する情報が見つかりません</h4>
+            <p class="text-xs text-secondary mt-1">フィルターのリセットまたは異なる検索語句をお試しください。</p>
+        </div>
+    </section>
+
+    <!-- Right Sidebar: Interactive Controls, Custom Briefcase & Polls -->
+    <aside class="space-y-8 lg:col-span-1">
+        <!-- Your Briefcase -->
+        <div id="briefcase-container" class="bg-surface-low border border-outline-variant/30 p-6 rounded-lg shadow-ambient sticky top-[72px]">
+            <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3 mb-4">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <h3 class="text-sm font-bold tracking-wider text-on-surface uppercase">Your Daily Briefcase</h3>
+                </div>
+                <span id="briefcase-count-sidebar" class="text-xs px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-bold">0 件</span>
+            </div>
+
+            <p class="text-xs text-secondary mb-4 leading-relaxed">
+                気になる記事を保存すると、この場所で要約テキストをまとめてエクスポートできます。
+            </p>
+
+            <!-- Bookmarked list -->
+            <div id="briefcase-items" class="space-y-3 max-h-[220px] overflow-y-auto mb-4 pr-1">
+                <!-- Fallback when empty -->
+                <div id="briefcase-empty" class="text-center py-6 text-xs text-outline italic">
+                    記事の右上のブックマークアイコンから、ここに追加できます。
+                </div>
+            </div>
+
+            <!-- Export Actions -->
+            <div id="briefcase-actions" class="hidden space-y-2">
+                <button onclick="generateSummaryText()" class="w-full py-2 bg-primary hover:bg-primary-container text-white font-bold text-xs uppercase tracking-widest rounded transition-all flex items-center justify-center gap-2">
+                    <span>要約テキストを生成</span>
+                </button>
+                <button onclick="clearBriefcase()" class="w-full py-1.5 border border-outline hover:border-on-surface text-secondary hover:text-on-surface text-[10px] uppercase tracking-wider rounded transition-all">
+                    ブリーフケースをクリア
+                </button>
+            </div>
+        </div>
+
+        <!-- Daily Global Sentiment Poll -->
+        <div class="bg-surface-lowest border border-outline-variant/30 p-6 rounded-lg shadow-ambient">
+            <h3 class="text-sm font-bold tracking-wider text-on-surface uppercase border-b border-outline-variant/30 pb-3 mb-4">
+                Interactive Opinion
+            </h3>
+            <p class="text-xs text-secondary leading-relaxed mb-4">
+                今日の急激な「**AI・技術革新のスピード**」について、どのような感想を持ちましたか？
+            </p>
+            <div class="space-y-2">
+                <label class="flex items-center space-x-3 p-2 bg-surface rounded-md cursor-pointer hover:bg-surface-container transition-all">
+                    <input type="radio" name="poll-sentiment" value="optimistic" class="text-primary focus:ring-primary h-3 w-3" onclick="recordPoll('optimistic')">
+                    <span class="text-xs text-on-surface font-medium">期待が大きく前向き</span>
+                </label>
+                <label class="flex items-center space-x-3 p-2 bg-surface rounded-md cursor-pointer hover:bg-surface-container transition-all">
+                    <input type="radio" name="poll-sentiment" value="neutral" class="text-primary focus:ring-primary h-3 w-3" onclick="recordPoll('neutral')">
+                    <span class="text-xs text-on-surface font-medium">可能性と規制双方の注視が必要</span>
+                </label>
+                <label class="flex items-center space-x-3 p-2 bg-surface rounded-md cursor-pointer hover:bg-surface-container transition-all">
+                    <input type="radio" name="poll-sentiment" value="concerned" class="text-primary focus:ring-primary h-3 w-3" onclick="recordPoll('concerned')">
+                    <span class="text-xs text-on-surface font-medium">急激すぎて不安が残る</span>
+                </label>
+            </div>
+            <!-- Results simulation -->
+            <div id="poll-results" class="hidden mt-4 pt-4 border-t border-outline-variant/20 space-y-2 text-xs">
+                <span class="font-bold text-secondary text-[11px] uppercase tracking-wider block">読者の最新動向割合</span>
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span>期待</span><span id="poll-val-opt">45%</span></div>
+                    <div class="w-full bg-surface-container h-1.5 rounded overflow-hidden">
+                        <div id="poll-bar-opt" class="bg-primary h-full" style="width: 45%;"></div>
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span>注視</span><span id="poll-val-neu">38%</span></div>
+                    <div class="w-full bg-surface-container h-1.5 rounded overflow-hidden">
+                        <div id="poll-bar-neu" class="bg-tertiary h-full" style="width: 38%;"></div>
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span>懸念</span><span id="poll-val-con">17%</span></div>
+                    <div class="w-full bg-surface-container h-1.5 rounded overflow-hidden">
+                        <div id="poll-bar-con" class="bg-secondary h-full" style="width: 17%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<!-- Summary Report Generator Modal -->
+<div id="report-modal" class="fixed inset-0 bg-inverse-surface/65 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-surface rounded-lg shadow-modal max-w-2xl w-full p-6 md:p-8 flex flex-col max-h-[90vh]">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-4">
+            <div>
+                <span class="text-[10px] tracking-[0.2em] uppercase font-bold text-primary">DAILY EXPORT PORTAL</span>
+                <h3 class="text-lg font-bold text-on-surface">生成されたニュースまとめ</h3>
+            </div>
+            <button onclick="closeReportModal()" class="text-secondary hover:text-on-surface focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="my-6 flex-grow overflow-y-auto bg-surface-lowest border border-outline-variant p-4 rounded text-xs leading-relaxed font-sans text-on-surface">
+            <textarea id="report-textarea" readonly class="w-full h-72 resize-none border-none focus:ring-0 bg-transparent text-xs text-on-surface leading-relaxed focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-outline-variant">
+            <p id="copy-status" class="text-xs text-tertiary font-medium"></p>
+            <div class="flex gap-2 w-full sm:w-auto">
+                <button onclick="copyReportToClipboard()" class="flex-1 sm:flex-none px-5 py-2.5 bg-primary hover:bg-primary-container text-white font-bold text-xs uppercase tracking-widest rounded transition-all">
+                    クリップボードにコピー
+                </button>
+                <button onclick="closeReportModal()" class="flex-1 sm:flex-none px-5 py-2.5 border border-outline hover:border-on-surface text-secondary hover:text-on-surface text-xs uppercase tracking-widest rounded transition-all">
+                    閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Simple custom Toast message -->
+<div id="toast" class="fixed bottom-6 right-6 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded shadow-modal text-xs font-semibold tracking-wide hidden transform translate-y-2 transition-all duration-300 z-50">
+    Toast message.
+</div>
+
+<script>
+    // -----------------------------------------------------------------
+    // News Database (Verified from May 2026 sources)
+    // -----------------------------------------------------------------
+    const newsData = [
+        {
+            id: "ai-1",
+            category: "AI",
+            title: "Stella AI、Googleの最新軽量フラッグシップモデル「**Gemini 3.5 Flash**」に対応",
+            date: "2026-05-21",
+            source: "PR Times (SUPERNOVA)",
+            url: "https://prtimes.jp/main/html/rd/p/000000077.000138218.html",
+            summary: "生成AI開発を手掛けるSUPERNOVAは、同社のビジネスAIアシスタントサービスにおいて、Google社の最新AIモデル「**Gemini 3.5 Flash**」の提供を開始。Proモデル同等の性能をFlashの速度・コストで提供し、産業界のAI活用をより実用段階へと進めます。",
+            impact: "高速性と高度な推論が低コスト化し、日常ビジネスシーンでのAI実装率を大きく高めると期待される。"
+        },
+        {
+            id: "ai-2",
+            category: "AI",
+            title: "NTTドコモ、ビル運営を高度化する「**AIコンステレーション**」のビル管理自動化実証を開始",
+            date: "2026-05-19",
+            source: "NTTドコモビジネス プレスリリース",
+            url: "https://www.ntt.com/about-us/press-releases/news/article/2026/0519.html",
+            summary: "複数のAIが協調・対話して意思決定を行う高度技術「**AIコンステレーション**」を活用し、大型ビルにおける電力最適化や高度異常検知の検証がスタートしました。スマートビルの運用効率を劇的に進化させる次世代管理技術です。",
+            impact: "これまで職人技に依存していたビル管理を、分散協調型AIが最適化し、最大30%以上の省エネ化を目指す。"
+        },
+        {
+            id: "ai-3",
+            category: "AI",
+            title: "デジタル庁、大規模な生成AIパイロットプログラム「**GENAI**」を始動",
+            date: "2026-05-11",
+            source: "BizFreak (AI Industry Review)",
+            url: "https://bizfreak.co.jp/blog/40177bqwtxb2",
+            summary: "デジタル庁主導により、日本の行政デジタル化と業務効率化を抜本的に推進する生成AI実装プロジェクト「**GENAI**」の試験運転が始まりました。各省庁や地方自治体のルーティン業務負担を軽減する実用的なインフラ構築を目指しています。",
+            impact: "「**責任あるアジャイル・ガバナンス**」の思想に則り、実証実験を行いながらガイドラインを適応・変化させていくアプローチを取る。"
+        },
+        {
+            id: "climate-1",
+            category: "気候変動",
+            title: "BloombergNEF、最新の「**新エネルギー見通し 2026年版**」を公開。1.5度目標の達成は極めて困難、電力主導社会へ移行加速",
+            date: "2026-05-23",
+            source: "Sustainable Japan",
+            url: "https://sustainablejapan.jp/2026/05/23/bnef-new-energy-outlook-2026/125780",
+            summary: "BNEF発表の気候シナリオでは、現状の各国の排出削減ペースではパリ協定の「**1.5℃目標**」の達成が極めて厳しいことが再確認されました。今後は化石燃料からの「**脱却と電力主導**」による社会・産業構造の抜本転換が避けられません。",
+            impact: "風力・太陽光などの大規模型GX投資への再配置と、エネルギー網全体の強靭化、次世代蓄電技術の実装が急務となる。"
+        },
+        {
+            id: "climate-2",
+            category: "気候変動",
+            title: "米環境保護庁（EPA）、排ガス「**Tier4規制**」の2年適用延期を正式提案。EVインフラ対応の遅れを考慮",
+            date: "2026-05-20",
+            source: "JETRO ビジネス短信",
+            url: "https://www.jetro.go.jp/biznews/2026/05/b6c3f519601dda07.html",
+            summary: "EPAは、米国内の自動車に義務付ける次世代排出基準「**Tier4**」の適用開始を2年間遅らせる計画を発表。急激なEVシフトを少し軟化させ、充電スタンド整備や電池供給網への配慮を見せた現実的な「**GXアジャストメント**」と言えます。",
+            impact: "トランプ第2期政権の動きとも呼応しており、自動車各社は製造ラインや投資ポートフォリオの柔軟な見直しが可能となる。"
+        },
+        {
+            id: "climate-3",
+            category: "気候変動",
+            title: "WMO世界気象機関、全球の主要地域で「**平年を超える気温上昇トレンド**」の継続を予測",
+            date: "2026-05-13",
+            source: "EICネット (世界気象機関発表)",
+            url: "https://www.eic.or.jp/news/?act=view&serial=52729&oversea=1",
+            summary: "世界気象機関の全球季節気候アップデートによると、エルニーニョは収束方向にあるものの、蓄積された地球の熱量により2026年3～5月期も異常高温のパターンが続いています。これにより中立期にもかかわらず「**記録的猛暑や干ばつ**」への警戒が怠れません。",
+            impact: "農業インフラや水資源供給網を「**適応策**」へと適合させ、自治体・国家のQOL（生命の質）維持への備えが問われる。"
+        },
+        {
+            id: "ukraine-1",
+            category: "ウクライナ",
+            title: "ウクライナ軍、ロシア占領下の東部ルハンスク州に対し「**高精度ドローン攻撃**」を実施。戦線膠着を崩す戦略的動き",
+            date: "2026-05-22",
+            source: "FNNニュース",
+            url: "https://www.fnn.jp/articles/-/1048873",
+            summary: "ロシア側が一方的に併合を宣言し占領する東部ルハンスク州にて、ウクライナ軍による大規模なドローン攻撃が発生。ウクライナはドローン技術の国産化や無人アセット活用により、最前線から遠く離れたロシアの「**物流・統制インフラ**」を突く反撃を強めています。",
+            impact: "人海戦術に限界がある中、ウクライナ側が安価な無人技術を駆使して戦況の非対称化と防衛線の再設定を図っている。"
+        },
+        {
+            id: "ukraine-2",
+            category: "ウクライナ",
+            title: "ゼレンスキー大統領、2026年に入り「**590平方キロの領土を解放**」したと声明",
+            date: "2026-05-22",
+            source: "共同通信 (47News)",
+            url: "https://www.47news.jp/14345452.html",
+            summary: "欧州首脳らとの協議で、今年解放に成功した領土の進捗が示されました。ロシア軍の地上部隊の「**スターリンク通信**」などのデジタル網遮断に成功したことが、相手側の機動力の決定的な喪失につながったと分析されています。",
+            impact: "ドローンを用いた局所的反撃に加えて、情報通信レイヤーでの「**サイバー戦・通信戦**」がいかに物理的な土地を維持する上で重要かを裏付けた。"
+        },
+        {
+            id: "ukraine-3",
+            category: "ウクライナ",
+            title: "占領地域の軍制圧面積が減少へ。スターリンク遮断などの「**多層規制**」が影響",
+            date: "2026-05-04",
+            source: "読売新聞",
+            url: "https://www.yomiuri.co.jp/world/20260504-GYT1T00118/",
+            summary: "ロシア軍による制圧面積が減少傾向に転じたことが、米政策研究機関の分析で明らかになりました。ウクライナ側の「**執拗な反撃**」に加え、ロシア側の軍用通信手段（無許可で流用されていたスターリンク）への接続制限が大きな痛手となった模様です。",
+            impact: "紛争におけるテクノロジー（民間企業製ネットワークを含む）の供給管理が、現代の主権防衛における決定的な武器になることを示している。"
+        },
+        {
+            id: "iran-1",
+            category: "イラン",
+            title: "日本・イラン外相会談が実施。「**ホルムズ海峡の安全**」とすべての船舶の平和的通行を強く要請",
+            date: "2026-05-23",
+            source: "熊本朝日放送 (全国経済政治ニュース)",
+            url: "https://www.kab.co.jp/news/article/16586820",
+            summary: "茂木外務大臣がイランのアラグチ外相と電話会談。エネルギーの重要中継地である「**ホルムズ海峡の安全維持**」と、一刻も早い地域事態の鎮静化を促しました。日本として、緊張が中東全体の貿易機能不全を招かないよう仲介的アプローチを強化しています。",
+            impact: "緊張の中東に直結する日本のエネルギー自給を安定させるため、多角的な「**資源防衛・中立外交**」の実行が試されている。"
+        },
+        {
+            id: "iran-2",
+            category: "イラン",
+            title: "イラン、パキスタン仲介を通じて米国に「**14項目の最終交渉案**」を提示し取引カードを全面公開",
+            date: "2026-05-04",
+            source: "Binance Square (CCTV・アルジャジーラ情報)",
+            url: "https://www.binance.com/ja/square/post/319318492693810",
+            summary: "米国の新政権を交渉の席に呼び戻すべく、イラン側から具体的な解決に向けた提案が提出されました。イラン側の態度は強硬ながら論理的とされ、核開発から制裁緩和までを「**3つの段階に分けたプロセス**」によって解決する道筋を主張しています。",
+            impact: "中東における不測の軍事激突を抑えるため、制裁解除を切り札とした「**米イ対話**」が再び息を吹き返すかが国際市場を左右する。"
+        },
+        {
+            id: "robot-1",
+            category: "ロボット",
+            title: "川崎重工、米シリコンバレーにフィジカルAIと次世代医療モビリティロボットの「**開発拠点を開設**」",
+            date: "2026-05-22",
+            source: "ITmedia SBbit / ロボスタ",
+            url: "https://robotstart.info/article/2026/05/22/381921.html",
+            summary: "川崎重工は「Kawasaki Physical AI Center San Jose」を開設。NVIDIA、Microsoft、Analog Devices、富士通らと深く協業し、現実空間で動くロボットに高度な生成AIを搭載する「**フィジカルAI**」の実装を本格的に進めます。",
+            impact: "デジタル空間で学習した巨大脳を、人型ロボットや医療機械などの「**ハードウェアへ直接流し込む**」高度ロボティクスの最前線となる。"
+        },
+        {
+            id: "robot-2",
+            category: "ロボット",
+            title: "中央大学発ベンチャー「ソラリス」、ミミズ型管内走行ロボットの実装加速に向け「**5億円の資金調達**」を完了",
+            date: "2026-05-20",
+            source: "創業手帳",
+            url: "https://sogyotecho.jp/news/20260520solarisnew/",
+            summary: "ミミズのぜん動運動を応用した、狭小な管内（プラント配管、地下インフラ、体内など）を自在に走行するユニークな「**ミミズ型配管ロボット**」を開発するソラリスが資金を調達。過酷な産業・インフラ環境の自動点検へ展開されます。",
+            impact: "車輪や足が入れない過酷な環境でのインフラ維持を自動化し、日本のインフラ「**老朽化社会問題**」への現実的ソリューションとして注目される。"
+        },
+        {
+            id: "robot-3",
+            category: "ロボット",
+            title: "NEDO、大規模ロボット基盤モデルの研究開発支援事業「**GENIAC**」プロジェクトの公募開始",
+            date: "2026-05-18",
+            source: "新エネルギー・産業技術総合開発機構 (NEDO)",
+            url: "https://www.nedo.go.jp/koubo/CD2_100434.html",
+            summary: "NEDOは、ポスト5GやAI時代に即した、多用途ロボット向けの「**ロボット基盤モデル**」開発（GENIAC補助事業）を発表。テキストだけでなく、視覚・触覚やモーター出力を統合的に解釈し、行動できる自律型AIモデルの国産開発を支援します。",
+            impact: "物理世界で動くあらゆるロボットが単一の基盤モデルを通じて知能化され、スマートファクトリーや自律搬送の「**導入コストの劇的低減**」を招く。"
+        },
+        {
+            id: "china-1",
+            category: "中国",
+            title: "中国、2026～28年にかけ「**170億ドルの米国産農産物購入**」をホワイトハウスとの対話で約束",
+            date: "2026-05-18",
+            source: "Vietnam.vn (グローバル経済ダイジェスト)",
+            url: "https://www.vietnam.vn/ja/diem-tin-kinh-te-the-gioi-noi-bat-ngay-18-5-2026",
+            summary: "トランプ第2期政権下における「**限定的な関税取引**」の一環として、中国は年間を通じて大量の米国農産物購入を追加表明。両国関係を一定の貿易障壁を維持しつつも安定させるための実務対話が継続されています。",
+            impact: "米中の完全決別（デカップリング）ではなく、実利重視で取引可能な「**建設的かつ相互互恵的な安定**」を探り合うフェーズに入ったことを示唆する。"
+        },
+        {
+            id: "china-2",
+            category: "中国",
+            title: "中国の4月経済指数が鈍化。内需回復への不透明感から「**新たな景気テコ入れ策**」への期待集まる",
+            date: "2026-05-20",
+            source: "Record China (ドイチェ・ヴェレ報)",
+            url: "https://www.recordchina.co.jp/b977162-s25-c20-d0193.html",
+            summary: "不動産市場の低迷や内需の買い控えを背景に、主要経済指数が不振を示しました。トランプ習首脳会談による外交的摩擦の緩和はあるものの、中国市場を再び軌道に乗せるには、地方のインフラ支出に代わる「**消費者への直接支援策**」などの構造改革が急務です。",
+            impact: "輸出増大は世界から関税障壁で押し戻される傾向が強いため、中国政府が国内経済を「**如何に自己完結的に内需主導へシフト**」できるかが問われる。"
+        },
+        {
+            id: "china-3",
+            category: "中国",
+            title: "米中首脳会談が終了。関係を新たに「**建設的戦略安定関係**」と定義、対決の中の協調へ",
+            date: "2026-05-15",
+            source: "JETRO ビジネス短信 / ANN",
+            url: "https://www.jetro.go.jp/biznews/2026/05/78f7da0c3a7faf51.html",
+            summary: "第2期トランプ大統領と習主席の会談が終了し、両国の新たな関わりを「**建設的戦略安定関係**」と位置付けました。産業分野では関税引き上げを巡る摩擦が続きますが、金融政策の突然の混乱防止やホットラインの運用強化で一致しました。",
+            impact: "完全な摩擦解消ではなく、ルールに基づいた競争を可能とする「**想定外の有事の排除（ガードレール）**」の強化に大きな成果を得た。"
+        },
+        {
+            id: "society-1",
+            category: "社会",
+            title: "自民党デジタル社会推進本部、新ガバナンスモデル「**デジタル・ニッポン 2026**」を政府へ提言",
+            date: "2026-05-22",
+            source: "自由民主党 政策ニュース",
+            url: "https://www.jimin.jp/news/policy/213275.html",
+            summary: "急速に進むAI・フィジカルAIの製品・社会実装を受け、硬直的な一律規制を避け、変化させつつ調整する「**責任あるアジャイル・ガバナンス**」の重要性を提言。ソブリンAIから、世界と連携して強みを握る「**AI主権**」への転換を訴えています。",
+            impact: "日本固有の物理（ものづくり、現場介護など）とAIの組み合わせによる「**アドバンスド・エッセンシャルワーカー**」の育成などを本格化させ、急速に進む労働力不足への対応を目指す。"
+        },
+        {
+            id: "society-2",
+            category: "社会",
+            title: "経済産業省、2026年5月分の「**日本産業規格 (JIS)**」の制定・改正を完了。脱炭素とデジタル連携を強化",
+            date: "2026-05-20",
+            source: "経済産業省ニュースリリース",
+            url: "https://www.meti.go.jp/policy/economy/hyojun-kijun/jiskouji/20260520001.html",
+            summary: "産業界の競争力維持を加速するため、最新のデジタル技術対応やカーボンニュートラル適合材料を包含する、新規制定2件・改正20件のJIS化が迅速化されました。標準化により新興産業の「**社会定着**」を制度的に補完します。",
+            impact: "国際ルールとの即時整合性を保ち、日本の優れた技術がガラパゴス化せず「**世界市場で優位性を構築**」するための地盤を固めた。"
+        }
+    ];
+
+    // -----------------------------------------------------------------
+    // Interactive State Management
+    // -----------------------------------------------------------------
+    let currentKeywordFilter = 'all';
+    let searchQuery = '';
+    let briefcase = JSON.parse(localStorage.getItem('news_briefcase_2026') || '[]');
+
+    // -----------------------------------------------------------------
+    // Initialization
+    // -----------------------------------------------------------------
+    window.onload = function() {
+        renderNews();
+        updateBriefcaseUI();
+        initDateBadge();
+    };
+
+    function initDateBadge() {
+        const d = new Date();
+        const dateString = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+        document.getElementById('current-date-badge').innerText = dateString;
+    }
+
+    // -----------------------------------------------------------------
+    // News Rendering System
+    // -----------------------------------------------------------------
+    function renderNews() {
+        const container = document.getElementById('news-container');
+        const emptyState = document.getElementById('empty-state');
+        container.innerHTML = '';
+
+        // Filter and Search logic
+        const filtered = newsData.filter(item => {
+            const matchesCategory = (currentKeywordFilter === 'all' || item.category === currentKeywordFilter);
+            const matchesSearch = (
+                item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                item.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                item.category.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            return matchesCategory && matchesSearch;
+        });
+
+        document.getElementById('results-count').innerText = `${filtered.length} 件の記事を表示中`;
+
+        if (filtered.length === 0) {
+            emptyState.classList.remove('hidden');
+            container.classList.add('hidden');
+        } else {
+            emptyState.classList.add('hidden');
+            container.classList.remove('hidden');
+
+            filtered.forEach(item => {
+                const isBookmarked = briefcase.some(b => b.id === item.id);
+                const bookmarkClass = isBookmarked ? 'text-primary fill-current' : 'text-outline hover:text-primary';
+                
+                // Color codes for category badges based on Luminous Ivory specification
+                let badgeStyle = "bg-secondary-container text-secondary-container-on";
+                if (item.category === 'AI' || item.category === 'ロボット') {
+                    badgeStyle = "bg-primary-container/10 text-primary";
+                } else if (item.category === '気候変動' || item.category === '社会') {
+                    badgeStyle = "bg-tertiary-container/20 text-tertiary";
+                } else {
+                    badgeStyle = "bg-secondary/10 text-secondary";
+                }
+
+                const cardHtml = `
+                    <div class="bg-surface-lowest p-5 rounded-lg shadow-ambient hover:shadow-modal border border-outline-variant/10 transition-all duration-200 flex flex-col justify-between" id="card-${item.id}">
+                        <div>
+                            <!-- Header Info -->
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-bold ${badgeStyle}">
+                                    ${item.category}
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-[11px] text-secondary font-medium">${item.date}</span>
+                                    <button onclick="toggleBookmark('${item.id}')" title="ブリーフケースに保存" class="focus:outline-none transition-colors duration-150">
+                                        <svg class="w-4 h-4 ${bookmarkClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- News Title -->
+                            <h4 class="text-sm font-semibold text-on-surface leading-snug mb-3 hover:text-primary transition-colors">
+                                ${formatBoldTags(item.title)}
+                            </h4>
+                            
+                            <!-- Summary -->
+                            <p class="text-xs text-on-surface-variant leading-relaxed mb-4">
+                                ${formatBoldTags(item.summary)}
+                            </p>
+                        </div>
+
+                        <!-- Footer / Sources / Actions -->
+                        <div class="pt-4 border-t border-outline-variant/10 mt-auto">
+                            <div class="text-[10px] text-secondary mb-2">
+                                <span class="font-bold">ソース:</span> ${item.source}
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <a href="${item.url}" target="_blank" class="text-[11px] text-primary hover:text-primary-container font-semibold inline-flex items-center gap-1 transition-colors">
+                                    <span>検証ソースへ移動</span>
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                                <button onclick="showDetailsModal('${item.id}')" class="text-[10px] text-secondary hover:text-on-surface uppercase tracking-widest font-semibold transition-all">
+                                    影響分析
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+    }
+
+    // Custom text helper to satisfy quotation formatting guidelines
+    // Rule: 「**文言**」 (Bold inside bracket) instead of **「文言」** (Bracket inside bold)
+    function formatBoldTags(text) {
+        // First convert standard markdown bold **word** to bold tags
+        let output = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        // Ensure that inside brackets 「 」 bold formatting fits the exact design request: 「<strong>text</strong>」
+        // (The database uses 「**文言**」 format, which gets converted to 「<strong>文言</strong>」, satisfying the requirement)
+        return output;
+    }
+
+    // -----------------------------------------------------------------
+    // Filtering and Search Controls
+    // -----------------------------------------------------------------
+    function filterByKeyword(keyword) {
+        currentKeywordFilter = keyword;
+        
+        // Update Nav Active States
+        document.querySelectorAll('.chip-btn').forEach(btn => {
+            btn.classList.remove('bg-primary', 'text-white');
+            btn.classList.add('bg-surface', 'text-secondary');
+        });
+
+        const activeChip = document.getElementById(`chip-${keyword}`) || document.getElementById('chip-all');
+        if (activeChip) {
+            activeChip.classList.remove('bg-surface', 'text-secondary');
+            activeChip.classList.add('bg-primary', 'text-white');
+        }
+
+        // Update Active indicator text
+        const catLabel = document.getElementById('active-category-title');
+        if (keyword === 'all') {
+            catLabel.innerText = '(すべて表示中)';
+        } else {
+            catLabel.innerText = `(「${keyword}」で絞り込み中)`;
+        }
+
+        renderNews();
+
+        // Smooth scroll to news results if filtered from the SVG map
+        if (keyword !== 'all') {
+            document.getElementById('news-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    function resetFilters() {
+        document.getElementById('search-input').value = '';
+        searchQuery = '';
+        filterByKeyword('all');
+        showToast('すべてのフィルターをクリアしました');
+    }
+
+    function searchNews() {
+        searchQuery = document.getElementById('search-input').value;
+        renderNews();
+    }
+
+    // -----------------------------------------------------------------
+    // Bookmark & Briefcase System (Local Storage backed)
+    // -----------------------------------------------------------------
+    function toggleBookmark(id) {
+        const item = newsData.find(n => n.id === id);
+        if (!item) return;
+
+        const index = briefcase.findIndex(b => b.id === id);
+        if (index === -1) {
+            briefcase.push(item);
+            showToast(`「${item.category}」の記事を保存しました`);
+        } else {
+            briefcase.splice(index, 1);
+            showToast('ブリーフケースから削除しました');
+        }
+
+        localStorage.setItem('news_briefcase_2026', JSON.stringify(briefcase));
+        renderNews();
+        updateBriefcaseUI();
+    }
+
+    function updateBriefcaseUI() {
+        const listContainer = document.getElementById('briefcase-items');
+        const emptyState = document.getElementById('briefcase-empty');
+        const badge = document.getElementById('briefcase-badge');
+        const badgeSidebar = document.getElementById('briefcase-count-sidebar');
+        const actions = document.getElementById('briefcase-actions');
+
+        listContainer.innerHTML = '';
+        const count = briefcase.length;
+
+        // Update Badges
+        badgeSidebar.innerText = `${count} 件`;
+        if (count > 0) {
+            badge.innerText = count;
+            badge.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            actions.classList.remove('hidden');
+
+            briefcase.forEach(item => {
+                const itemHtml = `
+                    <div class="flex items-start justify-between p-2.5 bg-surface rounded-md border border-outline-variant/20 hover:border-primary/40 transition-all text-xs">
+                        <div class="pr-2">
+                            <span class="text-[9px] font-bold text-primary uppercase block mb-1">${item.category}</span>
+                            <span class="font-medium text-on-surface line-clamp-2">${item.title.replace(/\*\*/g, '')}</span>
+                        </div>
+                        <button onclick="toggleBookmark('${item.id}')" class="text-secondary hover:text-error transition-all focus:outline-none">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', itemHtml);
+            });
+        } else {
+            badge.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            actions.classList.add('hidden');
+        }
+    }
+
+    function clearBriefcase() {
+        briefcase = [];
+        localStorage.removeItem('news_briefcase_2026');
+        renderNews();
+        updateBriefcaseUI();
+        showToast('ブリーフケースを完全にクリアしました');
+    }
+
+    // -----------------------------------------------------------------
+    // Report Exportation Portal
+    // -----------------------------------------------------------------
+    function generateSummaryText() {
+        if (briefcase.length === 0) return;
+
+        const dateStr = document.getElementById('current-date-badge').innerText;
+        let output = `==================================================\n`;
+        output += `   DAILY BRIEFING REPORT — SUMMARY [${dateStr}]\n`;
+        output += `==================================================\n\n`;
+
+        briefcase.forEach((item, index) => {
+            output += `【${index + 1}】 [${item.category}] ${item.title.replace(/\*\*/g, '')}\n`;
+            output += `・配信日時: ${item.date}\n`;
+            output += `・検証ソース: ${item.source}\n`;
+            output += `・情報源URL: ${item.url}\n`;
+            output += `・要約概要: ${item.summary.replace(/\*\*/g, '')}\n`;
+            output += `・社会・経済への影響: ${item.impact}\n`;
+            output += `--------------------------------------------------\n\n`;
+        });
+
+        output += `本レポートは2026年5月23日の検証済み公開データに基づき作成されました。\n`;
+
+        document.getElementById('report-textarea').value = output;
+        document.getElementById('report-modal').classList.remove('hidden');
+        document.getElementById('copy-status').innerText = '';
+    }
+
+    function closeReportModal() {
+        document.getElementById('report-modal').classList.add('hidden');
+    }
+
+    function copyReportToClipboard() {
+        const textarea = document.getElementById('report-textarea');
+        textarea.select();
+        
+        try {
+            // Using recommended clipboard command due to iframe compatibility
+            const successful = document.execCommand('copy');
+            if (successful) {
+                document.getElementById('copy-status').innerText = '✓ クリップボードに完全にコピーされました';
+                setTimeout(() => {
+                    document.getElementById('copy-status').innerText = '';
+                }, 3000);
+            } else {
+                showToast('コピーに失敗しました。直接コピーしてください。');
+            }
+        } catch (err) {
+            showToast('コピーに失敗しました。');
+        }
+    }
+
+    // -----------------------------------------------------------------
+    // Individual News Impact Modal (Using Native clean UI Modal instead of heavy library)
+    // -----------------------------------------------------------------
+    function showDetailsModal(id) {
+        const item = newsData.find(n => n.id === id);
+        if (!item) return;
+
+        const modalHtml = `
+            <div id="details-modal" class="fixed inset-0 bg-inverse-surface/65 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+                <div class="bg-surface rounded-lg shadow-modal max-w-xl w-full p-6 md:p-8 relative">
+                    <button onclick="closeDetailsModal()" class="absolute top-4 right-4 text-secondary hover:text-on-surface">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div>
+                        <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] uppercase tracking-wider font-bold rounded">
+                            ${item.category}
+                        </span>
+                        <h3 class="text-base font-bold text-on-surface mt-3 leading-snug">
+                            ${formatBoldTags(item.title)}
+                        </h3>
+                        <p class="text-xs text-secondary mt-1">配信日時: ${item.date} | ソース: ${item.source}</p>
+                        
+                        <div class="my-5 p-4 bg-surface-container rounded border-l-2 border-primary">
+                            <h4 class="text-xs uppercase tracking-wider font-bold text-primary mb-1">ニュース概要</h4>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">
+                                ${formatBoldTags(item.summary)}
+                            </p>
+                        </div>
+
+                        <div class="mb-6 p-4 bg-surface-low rounded border-l-2 border-tertiary">
+                            <h4 class="text-xs uppercase tracking-wider font-bold text-tertiary mb-1">社会・業界へのインパクト影響</h4>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">
+                                ${item.impact}
+                            </p>
+                        </div>
+
+                        <div class="flex items-center justify-between gap-4">
+                            <a href="${item.url}" target="_blank" class="px-4 py-2 bg-primary hover:bg-primary-container text-white text-xs font-bold uppercase tracking-wider rounded transition-all text-center flex-grow">
+                                公式検証ソース (URL) を表示
+                            </a>
+                            <button onclick="closeDetailsModal()" class="px-4 py-2 border border-outline hover:border-on-surface text-secondary text-xs font-bold uppercase tracking-wider rounded transition-all">
+                                閉じる
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    function closeDetailsModal() {
+        const modal = document.getElementById('details-modal');
+        if (modal) modal.remove();
+    }
+
+    // -----------------------------------------------------------------
+    // Opinion Poll System
+    // -----------------------------------------------------------------
+    function recordPoll(selection) {
+        showToast('投票を受け付けました。ご協力ありがとうございます。');
+        
+        // Simulating the reaction changes to provide instantaneous results
+        let optVal = 45;
+        let neuVal = 38;
+        let conVal = 17;
+
+        if (selection === 'optimistic') {
+            optVal += 5;
+            neuVal -= 3;
+            conVal -= 2;
+        } else if (selection === 'neutral') {
+            optVal -= 2;
+            neuVal += 5;
+            conVal -= 3;
+        } else if (selection === 'concerned') {
+            optVal -= 3;
+            neuVal -= 2;
+            conVal += 5;
+        }
+
+        // Apply animations and values
+        document.getElementById('poll-val-opt').innerText = `${optVal}%`;
+        document.getElementById('poll-bar-opt').style.width = `${optVal}%`;
+        document.getElementById('poll-val-neu').innerText = `${neuVal}%`;
+        document.getElementById('poll-bar-neu').style.width = `${neuVal}%`;
+        document.getElementById('poll-val-con').innerText = `${conVal}%`;
+        document.getElementById('poll-bar-con').style.width = `${conVal}%`;
+
+        document.getElementById('poll-results').classList.remove('hidden');
+    }
+
+    // -----------------------------------------------------------------
+    // Utility Toast Notification System (Standard UI instead of Alert)
+    // -----------------------------------------------------------------
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.innerText = message;
+        toast.classList.remove('hidden');
+        toast.classList.remove('translate-y-2', 'opacity-0');
+        
+        setTimeout(() => {
+            toast.classList.add('translate-y-2', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('opacity-0');
+            }, 300);
+        }, 2500);
+    }
+</script>
+
+<!-- Footer -->
+<footer class="mt-auto border-t border-outline-variant/30 py-8 bg-surface text-center">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-[10px] tracking-wider text-secondary uppercase">
+            © 2026 Daily Information Portal. Designed under Quiet Luxury Aesthetic Guidelines.
+        </p>
+        <p class="text-[9px] text-outline mt-1">
+            すべてのデータは、提供日時における正確性と信頼性に配慮したものです。
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
