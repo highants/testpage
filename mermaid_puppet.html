@@ -1,0 +1,625 @@
+<!-- Add your HTML here --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <!-- ==============================================
+         1. 舞台背景・ライティング用グラデーション
+         ============================================== -->
+    <linearGradient id="oceanBg" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#38ef7d" stop-opacity="0.8"/>
+      <stop offset="15%" stop-color="#11998e"/>
+      <stop offset="60%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#051329"/>
+    </linearGradient>
+    <linearGradient id="sandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd194"/><stop offset="40%" stop-color="#d19153"/><stop offset="100%" stop-color="#5a3d28"/>
+    </linearGradient>
+    <linearGradient id="sunRayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/><stop offset="50%" stop-color="#c4fff9" stop-opacity="0.18"/><stop offset="100%" stop-color="#0f3460" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="bubbleGrad" cx="35%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/><stop offset="40%" stop-color="#a8ffeb" stop-opacity="0.5"/><stop offset="80%" stop-color="#4facfe" stop-opacity="0.2"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.6"/>
+    </radialGradient>
+    <linearGradient id="coralPink" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#841e62"/><stop offset="100%" stop-color="#ff6b8b"/>
+    </linearGradient>
+    <linearGradient id="coralOrange" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#f39c12"/>
+    </linearGradient>
+    <linearGradient id="seaweedGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0a5043"/><stop offset="50%" stop-color="#1dd1a1"/><stop offset="100%" stop-color="#55efc4"/>
+    </linearGradient>
+    <radialGradient id="pearlGlow" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#fbc2eb"/><stop offset="85%" stop-color="#a18cd1"/><stop offset="100%" stop-color="#6c5ce7"/>
+    </radialGradient>
+
+    <!-- 巨大海底神殿用グラデーション -->
+    <radialGradient id="templeAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#55efc4" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#00cec9" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0f3460" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="templeWallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ef3d6"/><stop offset="35%" stop-color="#1dd1a1"/><stop offset="70%" stop-color="#10ac84"/><stop offset="100%" stop-color="#0b3b46"/>
+    </linearGradient>
+    <linearGradient id="templeRoofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="40%" stop-color="#fbc2eb"/><stop offset="80%" stop-color="#a6c1ee"/><stop offset="100%" stop-color="#4834d4"/>
+    </linearGradient>
+    <linearGradient id="templeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff9d9"/><stop offset="40%" stop-color="#f1c40f"/><stop offset="100%" stop-color="#d35400"/>
+    </linearGradient>
+    <radialGradient id="windowGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="60%" stop-color="#ffeaa7"/><stop offset="100%" stop-color="#fdcb6e" stop-opacity="0.4"/>
+    </radialGradient>
+
+    <!-- キャラクターグラデーション -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff0ea"/><stop offset="100%" stop-color="#ffd5c6"/></linearGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ff758c"/><stop offset="50%" stop-color="#ff4b72"/><stop offset="100%" stop-color="#b81b4c"/></linearGradient>
+    <linearGradient id="hairHighlight" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ffa8ba"/><stop offset="100%" stop-color="#ff5379"/></linearGradient>
+    <linearGradient id="shellBraGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f8a5c2"/><stop offset="60%" stop-color="#a29bfe"/><stop offset="100%" stop-color="#6c5ce7"/></linearGradient>
+    <linearGradient id="tailGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#55efc4"/><stop offset="40%" stop-color="#00cec9"/><stop offset="80%" stop-color="#0984e3"/><stop offset="100%" stop-color="#1b1464"/></linearGradient>
+    <linearGradient id="finGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#81ecec" stop-opacity="0.85"/><stop offset="50%" stop-color="#74b9ff" stop-opacity="0.6"/><stop offset="100%" stop-color="#a29bfe" stop-opacity="0.2"/></linearGradient>
+    <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0984e3"/><stop offset="50%" stop-color="#00cec9"/><stop offset="100%" stop-color="#032b56"/></linearGradient>
+
+    <linearGradient id="kingSkinGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffeaa7"/><stop offset="60%" stop-color="#f8c291"/><stop offset="100%" stop-color="#e58e26"/></linearGradient>
+    <linearGradient id="silverHairGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="60%" stop-color="#dff9fb"/><stop offset="100%" stop-color="#95afc0"/></linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff9d9"/><stop offset="35%" stop-color="#f1c40f"/><stop offset="85%" stop-color="#d35400"/><stop offset="100%" stop-color="#7e3b00"/></linearGradient>
+    <linearGradient id="kingTailGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00cec9"/><stop offset="35%" stop-color="#0984e3"/><stop offset="75%" stop-color="#1b1464"/><stop offset="100%" stop-color="#0c0733"/></linearGradient>
+    <linearGradient id="kingFinGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#55efc4" stop-opacity="0.85"/><stop offset="50%" stop-color="#0984e3" stop-opacity="0.65"/><stop offset="100%" stop-color="#130f40" stop-opacity="0.3"/></linearGradient>
+    <radialGradient id="magicGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="40%" stop-color="#ffeaa7" stop-opacity="0.8"/><stop offset="80%" stop-color="#00cec9" stop-opacity="0.3"/><stop offset="100%" stop-color="#00cec9" stop-opacity="0"/></radialGradient>
+
+    <linearGradient id="skinCoolGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff8f9"/><stop offset="100%" stop-color="#fcd3de"/></linearGradient>
+    <linearGradient id="hairVioletGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5f27cd"/><stop offset="40%" stop-color="#341f97"/><stop offset="100%" stop-color="#1e1045"/></linearGradient>
+    <linearGradient id="tailVioletGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a55eea"/><stop offset="40%" stop-color="#8854d0"/><stop offset="80%" stop-color="#3867d6"/><stop offset="100%" stop-color="#1e272e"/></linearGradient>
+    <linearGradient id="finVioletGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#d6a2e8" stop-opacity="0.85"/><stop offset="50%" stop-color="#8854d0" stop-opacity="0.6"/><stop offset="100%" stop-color="#3867d6" stop-opacity="0.2"/></linearGradient>
+    <linearGradient id="shellVioletGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e056fd"/><stop offset="100%" stop-color="#4834d4"/></linearGradient>
+
+    <linearGradient id="skinWarmGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff5eb"/><stop offset="100%" stop-color="#fedac2"/></linearGradient>
+    <linearGradient id="hairGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffeaa7"/><stop offset="45%" stop-color="#f39c12"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="tailSunsetGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff7675"/><stop offset="40%" stop-color="#e17055"/><stop offset="80%" stop-color="#d63031"/><stop offset="100%" stop-color="#6c1414"/></linearGradient>
+    <linearGradient id="finSunsetGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fab1a0" stop-opacity="0.85"/><stop offset="50%" stop-color="#ff7675" stop-opacity="0.6"/><stop offset="100%" stop-color="#f39c12" stop-opacity="0.2"/></linearGradient>
+    <linearGradient id="shellCoralGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff9ff3"/><stop offset="100%" stop-color="#ff4757"/></linearGradient>
+
+    <linearGradient id="fishBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffeaa7"/><stop offset="60%" stop-color="#fdcb6e"/><stop offset="100%" stop-color="#e17055"/></linearGradient>
+    <linearGradient id="fishStripeGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#00cec9"/><stop offset="100%" stop-color="#0984e3"/></linearGradient>
+    <linearGradient id="fishFinGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#74b9ff" stop-opacity="0.8"/><stop offset="100%" stop-color="#81ecec" stop-opacity="0.5"/></linearGradient>
+    <linearGradient id="jellyBellGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fd79a8" stop-opacity="0.85"/><stop offset="60%" stop-color="#a29bfe" stop-opacity="0.6"/><stop offset="100%" stop-color="#e056fd" stop-opacity="0.9"/></linearGradient>
+    <radialGradient id="jellyGlow" cx="50%" cy="30%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/><stop offset="50%" stop-color="#ffeaa7" stop-opacity="0.4"/><stop offset="100%" stop-color="#fd79a8" stop-opacity="0"/></radialGradient>
+    <linearGradient id="seahorseBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff9ff3"/><stop offset="50%" stop-color="#feca57"/><stop offset="100%" stop-color="#ff6b6b"/></linearGradient>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- ==============================================
+         2. アニメーションCSS（transform-box固定）
+         ============================================== -->
+    <style>
+      /* 全アニメーションパーツの変形基準を「パーツ自身」に強制固定 */
+      .mermaid-float, .mermaid-tail-sway, .mermaid-fin-flutter, .mermaid-hair-flow,
+      .mermaid-arm-left, .mermaid-arm-right, .king-float, .king-tail-sway,
+      .king-beard-sway, .king-trident-arm, .sister-violet-float, .violet-tail-sway,
+      .violet-hair-drift, .sister-gold-float, .gold-tail-sway, .gold-hair-bounce,
+      .fish-swim, .fish-tail-wag, .fish-pectoral-fin, .jelly-float,
+      .tentacle-sway-1, .tentacle-sway-2, .seahorse-bob, .seahorse-fin-flutter,
+      .temple-pearl-pulse, .trident-sparkle, .light-ray, .light-ray-2,
+      .sway-left, .sway-right, .sway-slow {
+        transform-box: fill-box;
+      }
+
+      /* 神殿の真珠発光 */
+      .temple-pearl-pulse { transform-origin: 50% 50%; animation: pearlPulse 4s ease-in-out infinite alternate; }
+      @keyframes pearlPulse { 0% { transform: scale(0.95); opacity: 0.85; } 100% { transform: scale(1.1); opacity: 1; } }
+      .temple-light { animation: windowFlicker 5s ease-in-out infinite alternate; }
+      @keyframes windowFlicker { 0% { opacity: 0.75; } 100% { opacity: 1; } }
+
+      /* 背景・海藻・光 */
+      .sway-left { transform-origin: 50% 100%; animation: swayL 5s ease-in-out infinite alternate; }
+      .sway-right { transform-origin: 50% 100%; animation: swayR 6s ease-in-out infinite alternate; }
+      .sway-slow { transform-origin: 50% 100%; animation: swayL 8s ease-in-out infinite alternate; }
+      @keyframes swayL { 0% { transform: rotate(0deg) skewX(0deg); } 100% { transform: rotate(4deg) skewX(6deg); } }
+      @keyframes swayR { 0% { transform: rotate(0deg) skewX(0deg); } 100% { transform: rotate(-5deg) skewX(-7deg); } }
+      .light-ray { transform-origin: 50% 0%; animation: shimmer 7s ease-in-out infinite alternate; }
+      .light-ray-2 { transform-origin: 50% 0%; animation: shimmer 9s ease-in-out infinite alternate-reverse; }
+      @keyframes shimmer { 0% { opacity: 0.4; transform: scaleX(1); } 100% { opacity: 0.85; transform: scaleX(1.15); } }
+      .bubble { animation: rise 6s ease-in infinite; }
+      @keyframes rise { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 0.8; } 80% { opacity: 0.8; } 100% { transform: translateY(-750px) translateX(25px); opacity: 0; } }
+
+      /* 人魚姫 */
+      .mermaid-float { transform-origin: 50% 50%; animation: swimFloat 6s ease-in-out infinite alternate; }
+      @keyframes swimFloat { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-16px) rotate(2deg); } 100% { transform: translateY(8px) rotate(-1.5deg); } }
+      .mermaid-tail-sway { transform-origin: 50% 0%; animation: tailSway 4s ease-in-out infinite alternate; }
+      @keyframes tailSway { 0% { transform: rotate(-5deg); } 100% { transform: rotate(7deg); } }
+      .mermaid-fin-flutter { transform-origin: 50% 0%; animation: finFlutter 3s ease-in-out infinite alternate; }
+      @keyframes finFlutter { 0% { transform: scaleX(0.92) rotate(-6deg); } 100% { transform: scaleX(1.08) rotate(8deg); } }
+      .mermaid-hair-flow { transform-origin: 50% 0%; animation: hairFlow 5s ease-in-out infinite alternate; }
+      @keyframes hairFlow { 0% { transform: rotate(-3deg) skewX(-2deg); } 100% { transform: rotate(5deg) skewX(4deg); } }
+      .mermaid-arm-left { transform-origin: 100% 0%; animation: armSwayLeft 5s ease-in-out infinite alternate; }
+      @keyframes armSwayLeft { 0% { transform: rotate(0deg); } 100% { transform: rotate(-8deg); } }
+      .mermaid-arm-right { transform-origin: 0% 0%; animation: armSwayRight 4.5s ease-in-out infinite alternate; }
+      @keyframes armSwayRight { 0% { transform: rotate(0deg); } 100% { transform: rotate(6deg); } }
+
+      /* 海の王様 */
+      .king-float { transform-origin: 50% 50%; animation: kingSwim 7s ease-in-out infinite alternate; }
+      @keyframes kingSwim { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px) rotate(1deg); } 100% { transform: translateY(8px) rotate(-1deg); } }
+      .king-tail-sway { transform-origin: 50% 0%; animation: kingTail 5s ease-in-out infinite alternate; }
+      @keyframes kingTail { 0% { transform: rotate(-4deg); } 100% { transform: rotate(5deg); } }
+      .king-beard-sway { transform-origin: 50% 0%; animation: beardWave 4s ease-in-out infinite alternate; }
+      @keyframes beardWave { 0% { transform: rotate(-2deg) skewX(-2deg); } 100% { transform: rotate(3deg) skewX(3deg); } }
+      .king-trident-arm { transform-origin: 0% 0%; animation: armHold 6s ease-in-out infinite alternate; }
+      @keyframes armHold { 0% { transform: rotate(0deg); } 50% { transform: rotate(-2deg) translateY(-4px); } 100% { transform: rotate(2deg) translateY(3px); } }
+      .trident-sparkle { transform-origin: 50% 50%; animation: sparkle 2.5s ease-in-out infinite alternate; }
+      @keyframes sparkle { 0% { transform: scale(0.85); opacity: 0.5; } 100% { transform: scale(1.15); opacity: 1; } }
+
+      /* お姉さんたち */
+      .sister-violet-float { transform-origin: 50% 50%; animation: floatElegance 6.5s ease-in-out infinite alternate; }
+      @keyframes floatElegance { 0% { transform: translateY(0); } 50% { transform: translateY(-14px) rotate(-1.5deg); } 100% { transform: translateY(8px) rotate(1deg); } }
+      .violet-tail-sway { transform-origin: 50% 0%; animation: tailVioletSway 4.5s ease-in-out infinite alternate; }
+      @keyframes tailVioletSway { 0% { transform: rotate(-5deg); } 100% { transform: rotate(6deg); } }
+      .violet-hair-drift { transform-origin: 50% 0%; animation: hairDrift 5s ease-in-out infinite alternate; }
+
+      .sister-gold-float { transform-origin: 50% 50%; animation: floatBouncy 5s ease-in-out infinite alternate; }
+      @keyframes floatBouncy { 0% { transform: translateY(8px) rotate(2deg); } 50% { transform: translateY(-18px) rotate(-2deg); } 100% { transform: translateY(4px) rotate(1.5deg); } }
+      .gold-tail-sway { transform-origin: 50% 0%; animation: tailGoldSway 3.5s ease-in-out infinite alternate; }
+      @keyframes tailGoldSway { 0% { transform: rotate(6deg); } 100% { transform: rotate(-8deg); } }
+      .gold-hair-bounce { transform-origin: 50% 0%; animation: hairBounce 4s ease-in-out infinite alternate; }
+      @keyframes hairBounce { 0% { transform: rotate(-3deg) scaleY(0.98); } 100% { transform: rotate(5deg) scaleY(1.03); } }
+
+      /* 生き物たち */
+      .fish-swim { transform-origin: 50% 50%; animation: fishMove 4s ease-in-out infinite alternate; }
+      @keyframes fishMove { 0% { transform: translate(0, 0) rotate(-3deg); } 50% { transform: translate(20px, -15px) rotate(4deg); } 100% { transform: translate(-8px, 12px) rotate(-2deg); } }
+      .fish-tail-wag { transform-origin: 100% 50%; animation: tailWag 0.8s ease-in-out infinite alternate; }
+      @keyframes tailWag { 0% { transform: rotate(-12deg); } 100% { transform: rotate(15deg); } }
+      .fish-pectoral-fin { transform-origin: 0% 50%; animation: finFlap 1.2s ease-in-out infinite alternate; }
+      @keyframes finFlap { 0% { transform: rotate(0deg); } 100% { transform: rotate(-25deg); } }
+
+      .jelly-float { transform-origin: 50% 50%; animation: jellyPulse 5s ease-in-out infinite; }
+      @keyframes jellyPulse { 0% { transform: translateY(15px) scale(0.95, 1.05); } 40% { transform: translateY(-25px) scale(1.08, 0.92); } 100% { transform: translateY(15px) scale(0.95, 1.05); } }
+      .tentacle-sway-1 { transform-origin: 50% 0%; animation: tentacleWave1 4s ease-in-out infinite alternate; }
+      .tentacle-sway-2 { transform-origin: 50% 0%; animation: tentacleWave2 3.5s ease-in-out infinite alternate-reverse; }
+      @keyframes tentacleWave1 { 0% { transform: rotate(-6deg); } 100% { transform: rotate(8deg); } }
+      @keyframes tentacleWave2 { 0% { transform: rotate(7deg); } 100% { transform: rotate(-9deg); } }
+
+      .seahorse-bob { transform-origin: 50% 50%; animation: seahorseBobbing 5s ease-in-out infinite alternate; }
+      @keyframes seahorseBobbing { 0% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(4deg); } 100% { transform: translateY(8px) rotate(-3deg); } }
+      .seahorse-fin-flutter { transform-origin: 50% 50%; animation: fastFlutter 0.3s ease-in-out infinite alternate; }
+      @keyframes fastFlutter { 0% { transform: scaleX(0.8); } 100% { transform: scaleX(1.2); } }
+    </style>
+  </defs>
+
+  <!-- ==============================================================
+       LAYER 0: 深海の海・水面からの光
+       ============================================================== -->
+  <rect width="1200" height="800" fill="url(#oceanBg)"/>
+
+  <g class="light-ray">
+    <polygon points="200,0 280,0 450,800 150,800" fill="url(#sunRayGrad)"/>
+    <polygon points="500,0 620,0 900,800 650,800" fill="url(#sunRayGrad)"/>
+  </g>
+  <g class="light-ray-2">
+    <polygon points="350,0 410,0 520,800 300,800" fill="url(#sunRayGrad)" opacity="0.6"/>
+    <polygon points="800,0 950,0 1250,800 1000,800" fill="url(#sunRayGrad)" opacity="0.7"/>
+  </g>
+
+  <!-- ==============================================================
+       LAYER 1: 巨大な海底神殿（グランド・オーシャン・パレス）
+       ============================================================== -->
+  <g id="grand-undersea-temple" opacity="0.9" filter="url(#softGlow)">
+    <!-- 神殿の後背発光オーラ -->
+    <ellipse cx="600" cy="380" rx="420" ry="280" fill="url(#templeAura)"/>
+
+    <!-- 神殿の岩山・土台テラス -->
+    <path d="M120,680 Q320,530 600,540 Q880,530 1080,680 L1150,800 L50,800 Z" fill="#09243f"/>
+    <path d="M300,580 L900,580 L940,640 L260,640 Z" fill="#0e4359" stroke="#1dd1a1" stroke-width="1.5"/>
+    <path d="M360,540 L840,540 L870,580 L330,580 Z" fill="#135d6e" stroke="#55efc4" stroke-width="1.5"/>
+
+    <!-- 左翼棟（西の尖塔群 ＆ 回廊橋） -->
+    <g id="temple-west-wing">
+      <path d="M380,380 Q480,350 560,390 L560,420 Q480,380 380,410 Z" fill="#0a4d5c" stroke="#55efc4" stroke-width="1.5"/>
+      <path d="M400,395 Q480,365 540,400" stroke="#ffeaa7" stroke-width="2" stroke-dasharray="6,6" fill="none"/>
+      <path d="M260,550 L280,320 Q300,180 310,130 Q320,180 340,320 L360,550 Z" fill="url(#templeWallGrad)"/>
+      <path d="M280,340 Q310,320 340,350 M285,270 Q310,250 335,280 M295,200 Q310,185 325,210" stroke="url(#templeGold)" stroke-width="2.5" fill="none"/>
+      <circle cx="310" cy="125" r="9" fill="url(#pearlGlow)" class="temple-pearl-pulse"/>
+
+      <path d="M350,540 L360,370 Q420,310 480,370 L490,540 Z" fill="url(#templeWallGrad)"/>
+      <path d="M340,380 Q420,270 500,380 Q420,360 340,380 Z" fill="url(#templeRoofGrad)"/>
+      <path d="M420,275 L420,370 M420,275 L380,375 M420,275 L460,375" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+      <circle cx="420" cy="270" r="7" fill="url(#pearlGlow)"/>
+
+      <g class="temple-light">
+        <path d="M300,370 Q310,355 320,370 L320,410 L300,410 Z" fill="url(#windowGlow)"/>
+        <path d="M302,440 Q310,425 318,440 L318,480 L302,480 Z" fill="url(#windowGlow)"/>
+        <path d="M400,410 Q420,390 440,410 L440,460 L400,460 Z" fill="url(#windowGlow)"/>
+      </g>
+    </g>
+
+    <!-- 右翼棟（東の尖塔群 ＆ 回廊橋） -->
+    <g id="temple-east-wing">
+      <path d="M820,380 Q720,350 640,390 L640,420 Q720,380 820,410 Z" fill="#0a4d5c" stroke="#55efc4" stroke-width="1.5"/>
+      <path d="M800,395 Q720,365 660,400" stroke="#ffeaa7" stroke-width="2" stroke-dasharray="6,6" fill="none"/>
+      <path d="M840,550 L860,320 Q880,180 890,130 Q900,180 920,320 L940,550 Z" fill="url(#templeWallGrad)"/>
+      <path d="M860,340 Q890,320 920,350 M865,270 Q890,250 915,280 M875,200 Q890,185 905,210" stroke="url(#templeGold)" stroke-width="2.5" fill="none"/>
+      <circle cx="890" cy="125" r="9" fill="url(#pearlGlow)" class="temple-pearl-pulse"/>
+
+      <path d="M710,540 L720,370 Q780,310 840,370 L850,540 Z" fill="url(#templeWallGrad)"/>
+      <path d="M700,380 Q780,270 860,380 Q780,360 700,380 Z" fill="url(#templeRoofGrad)"/>
+      <path d="M780,275 L780,370 M780,275 L740,375 M780,275 L820,375" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+      <circle cx="780" cy="270" r="7" fill="url(#pearlGlow)"/>
+
+      <g class="temple-light">
+        <path d="M880,370 Q890,355 900,370 L900,410 L880,410 Z" fill="url(#windowGlow)"/>
+        <path d="M882,440 Q890,425 898,440 L898,480 L882,480 Z" fill="url(#windowGlow)"/>
+        <path d="M760,410 Q780,390 800,410 L800,460 L760,460 Z" fill="url(#windowGlow)"/>
+      </g>
+    </g>
+
+    <!-- 中央本殿（大聖堂 ＆ 巨大真珠） -->
+    <g id="temple-central-sanctuary">
+      <path d="M530,540 L550,220 Q600,80 600,40 Q600,80 650,220 L670,540 Z" fill="url(#templeWallGrad)"/>
+      <path d="M555,240 Q600,200 645,240 Q600,225 555,240 Z" fill="url(#templeGold)"/>
+      <path d="M565,160 Q600,130 635,160 Q600,145 565,160 Z" fill="url(#templeGold)"/>
+
+      <g class="temple-pearl-pulse" transform="translate(600, 35)">
+        <circle cx="0" cy="0" r="16" fill="url(#pearlGlow)"/>
+        <circle cx="-5" cy="-5" r="4" fill="#ffffff"/>
+        <path d="M-14,8 Q0,18 14,8 L10,18 L-10,18 Z" fill="url(#templeGold)"/>
+      </g>
+
+      <path d="M460,540 Q460,320 600,300 Q740,320 740,540 Z" fill="url(#templeRoofGrad)"/>
+      <path d="M600,300 Q600,440 600,540 M600,300 Q530,380 480,540 M600,300 Q670,380 720,540 M600,300 Q490,340 460,450 M600,300 Q710,340 740,450" stroke="#ffffff" stroke-width="2.5" opacity="0.6" fill="none"/>
+
+      <g transform="translate(600, 390)">
+        <circle cx="0" cy="0" r="32" fill="url(#templeGold)"/>
+        <circle cx="0" cy="0" r="27" fill="#0984e3"/>
+        <circle cx="0" cy="0" r="24" fill="url(#windowGlow)" class="temple-light"/>
+        <path d="M0,-24 L0,24 M-24,0 L24,0 M-16,-16 L16,16 M-16,16 L16,-16" stroke="url(#templeGold)" stroke-width="2.5"/>
+        <circle cx="0" cy="0" r="8" fill="url(#templeRoofGrad)"/>
+      </g>
+
+      <g transform="translate(600, 500)">
+        <path d="M-65,40 Q0,-45 65,40 Q0,25 -65,40 Z" fill="url(#templeGold)"/>
+        <path d="M-45,40 Q0,-15 45,40 L45,45 L-45,45 Z" fill="url(#windowGlow)" class="temple-light"/>
+        <path d="M0,-15 L0,45" stroke="#d35400" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==============================================================
+       LAYER 2: 中景の海底（砂丘・小石）
+       ============================================================== -->
+  <g id="midground-seabed">
+    <path d="M-20,680 Q200,600 550,640 T1220,620 L1220,800 L-20,800 Z" fill="#3d5a58" opacity="0.6"/>
+    <path d="M-20,710 Q280,640 680,690 Q980,720 1220,670 L1220,800 L-20,800 Z" fill="url(#sandGrad)"/>
+    <ellipse cx="450" cy="740" rx="12" ry="5" fill="#a07148"/>
+    <ellipse cx="480" cy="755" rx="8" ry="3" fill="#805333"/>
+    <ellipse cx="760" cy="735" rx="15" ry="6" fill="#a07148"/>
+    <circle cx="790" cy="745" r="3" fill="#ffeaa7"/>
+    <ellipse cx="320" cy="760" rx="20" ry="7" fill="#744a29" opacity="0.7"/>
+  </g>
+
+  <!-- =================================================================
+       LAYER 3: 【 人形劇パペット ステージエリア（正常位置・アニメーション） 】
+       ================================================================= -->
+  <g id="puppet-stage-area">
+
+    <!-- 1. クラゲ（右上を優雅に漂う） -->
+    <g transform="translate(860, 100) scale(0.65)">
+      <g class="jelly-float">
+        <g fill="none" stroke-linecap="round" opacity="0.7">
+          <path class="tentacle-sway-1" d="M35,100 Q20,160 40,220 T25,300" stroke="#a29bfe" stroke-width="3"/>
+          <path class="tentacle-sway-2" d="M85,100 Q105,160 80,220 T100,300" stroke="#a29bfe" stroke-width="3"/>
+          <path class="tentacle-sway-1" d="M50,105 Q75,160 50,210 Q75,260 55,320" stroke="#fd79a8" stroke-width="4" stroke-dasharray="4,2"/>
+          <path class="tentacle-sway-2" d="M70,105 Q45,160 70,210 Q45,260 65,320" stroke="#fd79a8" stroke-width="4" stroke-dasharray="4,2"/>
+        </g>
+        <path d="M0,90 Q0,0 60,0 Q120,0 120,90 Q90,105 60,95 Q30,105 0,90 Z" fill="url(#jellyBellGrad)"/>
+        <ellipse cx="60" cy="45" rx="45" ry="30" fill="url(#jellyGlow)"/>
+        <path d="M0,90 Q15,102 30,95 Q45,105 60,95 Q75,105 90,95 Q105,102 120,90" stroke="#ffffff" stroke-width="3.5" fill="none" opacity="0.8"/>
+        <path d="M35,55 Q45,47 52,55" stroke="#2d3436" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M68,55 Q75,47 85,55" stroke="#2d3436" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <circle cx="35" cy="65" r="5" fill="#ff7675" opacity="0.6"/><circle cx="85" cy="65" r="5" fill="#ff7675" opacity="0.6"/><circle cx="60" cy="66" r="2.5" fill="#d63031"/>
+      </g>
+    </g>
+
+    <!-- 2. 海の王様（左側に堂々と構える） -->
+    <g transform="translate(60, 160) scale(0.68)">
+      <g class="king-float">
+        <g class="king-beard-sway">
+          <path d="M280,240 Q200,320 220,440 Q240,510 200,580 Q270,550 300,460 Q340,560 410,580 Q430,490 400,430 Q460,330 420,240 Z" fill="url(#silverHairGrad)"/>
+          <path d="M250,380 Q190,460 210,540 Q240,480 260,450 Z" fill="#95afc0" opacity="0.4"/>
+          <path d="M390,380 Q450,450 430,530 Q410,480 380,450 Z" fill="#95afc0" opacity="0.4"/>
+        </g>
+        <g class="king-tail-sway">
+          <path d="M305,470 Q300,580 325,650 Q345,710 365,740 Q385,710 395,640 Q410,570 395,470 Z" fill="url(#kingTailGrad)"/>
+          <path d="M295,490 Q270,510 285,530 Q305,525 310,500 Z" fill="url(#goldGrad)"/>
+          <path d="M395,490 Q420,510 405,530 Q385,525 380,500 Z" fill="url(#goldGrad)"/>
+          <g stroke="#ffd700" stroke-width="2" stroke-linecap="round" opacity="0.5" fill="none">
+            <path d="M320,510 Q350,520 380,510"/><path d="M325,545 Q350,555 375,545"/><path d="M330,585 Q350,595 370,585"/>
+          </g>
+          <g transform="translate(0, 10)">
+            <path d="M365,730 Q280,770 190,850 Q260,845 325,805 Q355,780 365,745 Z" fill="url(#kingFinGrad)"/>
+            <path d="M365,730 Q450,770 540,850 Q470,845 405,805 Q375,780 365,745 Z" fill="url(#kingFinGrad)"/>
+            <path d="M365,740 Q270,800 215,845 M365,740 Q460,800 515,845" stroke="#f1c40f" stroke-width="1.8" stroke-linecap="round" opacity="0.7" fill="none"/>
+          </g>
+        </g>
+        <g>
+          <path d="M280,310 Q220,340 230,410 Q235,430 250,430 Q265,430 265,410 Q260,360 295,335 Z" fill="url(#kingSkinGrad)"/>
+          <path d="M232,390 L262,390 L258,415 L235,415 Z" fill="url(#goldGrad)"/>
+          <circle cx="247" cy="402" r="3" fill="#0984e3"/>
+        </g>
+        <g>
+          <path d="M280,300 L270,360 Q265,420 305,475 L395,475 Q435,420 430,360 L420,300 Z" fill="url(#kingSkinGrad)"/>
+          <path d="M310,295 Q350,325 390,295 Q375,340 350,345 Q325,340 310,295 Z" fill="url(#goldGrad)"/>
+          <circle cx="350" cy="335" r="5" fill="#e74c3c"/>
+          <path d="M295,465 Q350,490 405,465 L400,485 Q350,510 300,485 Z" fill="url(#goldGrad)"/>
+          <circle cx="350" cy="485" r="14" fill="url(#goldGrad)"/><circle cx="350" cy="485" r="7" fill="#0984e3"/><circle cx="350" cy="485" r="3" fill="#ffffff" opacity="0.8"/>
+        </g>
+        <g class="king-trident-arm">
+          <g>
+            <rect x="495" y="80" width="12" height="650" rx="6" fill="url(#goldGrad)"/>
+            <path d="M501,40 L490,130 Q501,150 512,130 Z" fill="url(#goldGrad)"/>
+            <path d="M460,90 Q465,150 501,165 Q485,130 480,105 Z" fill="url(#goldGrad)"/>
+            <path d="M542,90 Q537,150 501,165 Q517,130 522,105 Z" fill="url(#goldGrad)"/>
+            <circle cx="501" cy="155" r="8" fill="#00cec9"/><circle cx="499" cy="153" r="3" fill="#ffffff"/>
+            <g class="trident-sparkle" transform="translate(501, 40)">
+              <circle cx="0" cy="0" r="35" fill="url(#magicGlow)"/>
+              <path d="M-15,0 L15,0 M0,-15 L0,15" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+          </g>
+          <path d="M420,310 Q475,330 495,380 Q505,395 490,405 Q475,405 465,390 Q445,355 410,340 Z" fill="url(#kingSkinGrad)"/>
+          <path d="M465,370 L492,385 L480,405 L455,390 Z" fill="url(#goldGrad)"/>
+          <circle cx="498" cy="395" r="12" fill="url(#kingSkinGrad)"/>
+        </g>
+        <g>
+          <path d="M325,240 Q325,290 350,295 Q375,290 375,240 Q375,210 350,210 Q325,210 325,240 Z" fill="url(#kingSkinGrad)"/>
+          <path d="M325,225 Q338,215 348,223" stroke="url(#silverHairGrad)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <path d="M375,225 Q362,215 352,223" stroke="url(#silverHairGrad)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <circle cx="337" cy="235" r="4.5" fill="#0984e3"/><circle cx="335" cy="233" r="1.5" fill="#ffffff"/>
+          <circle cx="363" cy="235" r="4.5" fill="#0984e3"/><circle cx="361" cy="233" r="1.5" fill="#ffffff"/>
+          <path d="M350,230 L347,248 L353,248" stroke="#c07120" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <g class="king-beard-sway">
+            <path d="M350,250 Q320,245 295,265 Q330,270 350,260 Q370,270 405,265 Q380,245 350,250 Z" fill="url(#silverHairGrad)"/>
+            <path d="M325,265 Q310,340 330,390 Q345,430 350,445 Q355,430 370,390 Q390,340 375,265 Q350,285 325,265 Z" fill="url(#silverHairGrad)"/>
+          </g>
+          <g transform="translate(305, 140)">
+            <path d="M0,55 L5,15 L25,40 L45,0 L65,40 L85,15 L90,55 Z" fill="url(#goldGrad)"/>
+            <rect x="0" y="55" width="90" height="12" rx="3" fill="#d35400"/>
+            <circle cx="45" cy="20" r="5" fill="#0984e3"/><circle cx="5" cy="25" r="3" fill="#e74c3c"/><circle cx="85" cy="25" r="3" fill="#e74c3c"/>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- 3. 長女エレナ（王様の隣・落ち着いた佇まい） -->
+    <g transform="translate(260, 210) scale(0.65)">
+      <g class="sister-violet-float">
+        <g class="violet-hair-drift">
+          <path d="M230,220 Q160,300 190,440 Q210,530 170,600 Q230,560 250,470 Q280,570 330,580 Q310,490 350,420 Q390,320 330,220 Z" fill="url(#hairVioletGrad)"/>
+          <path d="M235,210 Q210,270 230,330" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="3,4" fill="none" opacity="0.85"/>
+        </g>
+        <g class="violet-tail-sway">
+          <path d="M250,420 Q240,490 260,540 Q275,580 290,610 Q305,580 310,530 Q315,480 310,420 Z" fill="url(#tailVioletGrad)"/>
+          <path d="M245,415 Q225,440 240,455 Q260,450 270,425 Z" fill="url(#finVioletGrad)"/>
+          <path d="M315,415 Q335,440 320,455 Q300,450 290,425 Z" fill="url(#finVioletGrad)"/>
+          <g>
+            <path d="M290,605 Q220,645 170,710 Q220,705 265,670 Q285,645 290,620 Z" fill="url(#finVioletGrad)"/>
+            <path d="M290,605 Q360,645 410,710 Q360,705 315,670 Q295,645 290,620 Z" fill="url(#finVioletGrad)"/>
+          </g>
+        </g>
+        <g>
+          <path d="M265,270 L260,310 Q245,330 250,420 L310,420 Q315,330 300,310 L295,270 Z" fill="url(#skinCoolGrad)"/>
+          <g transform="translate(242, 330)"><path d="M5,25 Q-5,5 18,0 Q35,5 30,25 Q18,30 5,25 Z" fill="url(#shellVioletGrad)"/><circle cx="18" cy="15" r="3.5" fill="#ffffff"/></g>
+          <g transform="translate(282, 330)"><path d="M5,25 Q0,5 17,0 Q40,5 30,25 Q18,30 5,25 Z" fill="url(#shellVioletGrad)"/><circle cx="17" cy="15" r="3.5" fill="#ffffff"/></g>
+          <g fill="#ffffff" opacity="0.9"><circle cx="255" cy="418" r="2.5"/><circle cx="273" cy="423" r="3"/><circle cx="280" cy="424" r="3.5"/><circle cx="296" cy="421" r="2.5"/></g>
+        </g>
+        <g>
+          <path d="M245,320 Q215,350 210,390 Q215,400 225,395 Q235,370 255,335 Z" fill="url(#skinCoolGrad)"/>
+          <path d="M305,320 Q345,340 375,375 Q385,385 375,395 Q365,395 350,380 Q325,355 295,335 Z" fill="url(#skinCoolGrad)"/>
+          <circle cx="370" cy="382" r="3" fill="#ffffff"/>
+        </g>
+        <g>
+          <path d="M245,210 Q245,275 280,285 Q315,275 315,210 Q315,170 280,170 Q245,170 245,210 Z" fill="url(#skinCoolGrad)"/>
+          <circle cx="258" cy="245" r="8" fill="#e056fd" opacity="0.3"/><circle cx="302" cy="245" r="8" fill="#e056fd" opacity="0.3"/>
+          <ellipse cx="265" cy="233" rx="5.5" ry="7" fill="#5f27cd"/><circle cx="263" cy="230" r="2" fill="#ffffff"/>
+          <ellipse cx="295" cy="233" rx="5.5" ry="7" fill="#5f27cd"/><circle cx="293" cy="230" r="2" fill="#ffffff"/>
+          <path d="M275,257 Q280,262 286,257" stroke="#9b59b6" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M242,205 Q240,160 280,155 Q320,160 318,205 Q300,175 280,175 Q260,175 242,205 Z" fill="url(#hairVioletGrad)"/>
+          <g transform="translate(280, 160)">
+            <path d="M-25,10 Q0,-5 25,10" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <circle cx="0" cy="-6" r="4.5" fill="#ffffff"/><circle cx="-14" cy="0" r="3.5" fill="#ffffff"/><circle cx="14" cy="0" r="3.5" fill="#ffffff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- 4. 熱帯魚（人魚姫の左下でおしゃべり） -->
+    <g transform="translate(420, 290) scale(0.65)">
+      <g class="fish-swim">
+        <g class="fish-tail-wag">
+          <path d="M140,300 Q80,240 70,270 Q105,300 70,330 Q80,360 140,300 Z" fill="url(#fishFinGrad)"/>
+        </g>
+        <path d="M190,245 Q210,210 240,230 Q225,250 215,255 Z" fill="url(#fishFinGrad)"/>
+        <path d="M200,345 Q220,375 235,360 Q225,350 215,345 Z" fill="url(#fishFinGrad)"/>
+        <path d="M130,300 Q145,240 210,245 Q285,250 280,300 Q285,350 210,355 Q145,360 130,300 Z" fill="url(#fishBodyGrad)"/>
+        <path d="M185,248 Q200,300 185,352 Q170,350 170,300 Q170,250 185,248 Z" fill="url(#fishStripeGrad)" opacity="0.85"/>
+        <path d="M225,250 Q240,300 225,350 Q215,348 215,300 Q215,252 225,250 Z" fill="url(#fishStripeGrad)" opacity="0.85"/>
+        <circle cx="250" cy="280" r="14" fill="#ffffff"/><circle cx="253" cy="280" r="8" fill="#2c3e50"/><circle cx="255" cy="277" r="3.5" fill="#ffffff"/>
+        <circle cx="245" cy="305" r="7" fill="#ff7675" opacity="0.5"/>
+        <g class="fish-pectoral-fin"><path d="M215,315 Q245,310 240,335 Q220,335 215,315 Z" fill="url(#fishFinGrad)"/></g>
+        <circle cx="295" cy="290" r="3" fill="#ffffff" opacity="0.6"/>
+      </g>
+    </g>
+
+    <!-- 5. 主人公の人魚姫（ステージ中央） -->
+    <g transform="translate(480, 160) scale(0.76)">
+      <g class="mermaid-float">
+        <g class="mermaid-hair-flow">
+          <path d="M250,220 Q180,300 210,430 Q230,520 180,590 Q240,550 270,460 Q300,560 360,570 Q330,480 370,410 Q420,310 350,220 Z" fill="url(#hairGrad)"/>
+          <path d="M220,380 Q160,460 170,550 Q200,480 235,440 Z" fill="#ff758c" opacity="0.6"/>
+        </g>
+        <g class="mermaid-tail-sway">
+          <path d="M270,420 Q265,490 285,540 Q295,570 310,600 Q325,570 325,530 Q335,480 330,420 Z" fill="url(#tailGrad)"/>
+          <path d="M265,415 Q245,435 255,450 Q275,445 285,425 Z" fill="url(#finGrad)"/>
+          <path d="M335,415 Q355,435 345,450 Q325,445 315,425 Z" fill="url(#finGrad)"/>
+          <g stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.4" fill="none">
+            <path d="M278,450 Q288,458 298,450 Q308,458 318,450"/>
+            <path d="M283,475 Q293,483 303,475 Q313,483 323,475"/>
+            <path d="M288,505 Q296,512 304,505 Q312,512 320,505"/>
+          </g>
+          <g class="mermaid-fin-flutter">
+            <path d="M310,595 Q250,630 190,690 Q240,685 285,655 Q305,635 310,610 Z" fill="url(#finGrad)"/>
+            <path d="M310,595 Q370,630 430,685 Q380,680 335,650 Q315,635 310,610 Z" fill="url(#finGrad)"/>
+          </g>
+        </g>
+        <g class="mermaid-arm-left">
+          <path d="M250,320 Q205,340 180,380 Q175,390 185,395 Q195,395 205,375 Q235,345 260,335 Z" fill="url(#skinGrad)"/>
+          <circle cx="190" cy="382" r="3" fill="#ffffff" opacity="0.9"/>
+        </g>
+        <g>
+          <path d="M285,270 L280,310 Q265,330 270,420 L330,420 Q335,330 320,310 L315,270 Z" fill="url(#skinGrad)"/>
+          <g transform="translate(260, 330)"><path d="M5,25 Q-5,5 18,0 Q35,5 30,25 Q18,30 5,25 Z" fill="url(#shellBraGrad)"/><circle cx="18" cy="15" r="3.5" fill="#ffffff"/></g>
+          <g transform="translate(305, 330)"><path d="M5,25 Q0,5 17,0 Q40,5 30,25 Q18,30 5,25 Z" fill="url(#shellBraGrad)"/><circle cx="17" cy="15" r="3.5" fill="#ffffff"/></g>
+          <g fill="#ffffff" opacity="0.85"><circle cx="275" cy="418" r="2.5"/><circle cx="283" cy="421" r="2.5"/><circle cx="300" cy="424" r="3.5"/><circle cx="317" cy="421" r="2.5"/></g>
+        </g>
+        <g class="mermaid-arm-right">
+          <path d="M340,320 Q370,350 375,390 Q375,405 360,405 Q350,400 350,385 Q345,355 330,335 Z" fill="url(#skinGrad)"/>
+        </g>
+        <g>
+          <path d="M265,210 Q265,275 300,285 Q335,275 335,210 Q335,170 300,170 Q265,170 265,210 Z" fill="url(#skinGrad)"/>
+          <circle cx="276" cy="245" r="9" fill="#ff7675" opacity="0.35"/><circle cx="324" cy="245" r="9" fill="#ff7675" opacity="0.35"/>
+          <g>
+            <path d="M272,226 Q284,218 294,228" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="283" cy="233" rx="6.5" ry="8" fill="url(#eyeGrad)"/><circle cx="283" cy="233" r="3.5" fill="#041a36"/><circle cx="281" cy="229" r="2.5" fill="#ffffff"/>
+          </g>
+          <g>
+            <path d="M306,228 Q316,218 328,226" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="317" cy="233" rx="6.5" ry="8" fill="url(#eyeGrad)"/><circle cx="317" cy="233" r="3.5" fill="#041a36"/><circle cx="315" cy="229" r="2.5" fill="#ffffff"/>
+          </g>
+          <circle cx="300" cy="243" r="1.2" fill="#e17055"/>
+          <path d="M294,256 Q300,263 306,256" stroke="#d63031" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <g>
+            <path d="M260,205 Q255,160 300,155 Q345,160 340,205 Q320,175 300,175 Q275,175 260,205 Z" fill="url(#hairHighlight)"/>
+            <path d="M262,190 Q240,230 245,290 Q255,330 235,370 Q255,330 260,270 Q265,220 275,195 Z" fill="url(#hairGrad)"/>
+            <path d="M335,190 Q355,230 350,290 Q345,340 365,390 Q345,345 335,290 Q330,230 325,195 Z" fill="url(#hairGrad)"/>
+          </g>
+          <g transform="translate(330, 185) rotate(20) scale(0.8)">
+            <path d="M0,-18 L5,-5 L18,-5 L8,4 L12,17 L0,9 L-12,17 L-8,4 L-18,-5 L-5,-5 Z" fill="#ffeaa7"/>
+            <circle cx="0" cy="0" r="3" fill="#fdcb6e"/>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- 6. 次女コリーナ（右側で元気に手を振る） -->
+    <g transform="translate(710, 220) scale(0.65)">
+      <g class="sister-gold-float">
+        <g class="gold-hair-bounce">
+          <path d="M70,70 Q-10,140 20,270 Q40,360 -10,430 Q60,410 85,310 Q115,420 180,420 Q150,320 190,250 Q240,150 170,70 Z" fill="url(#hairGoldGrad)"/>
+          <circle cx="15" cy="290" r="22" fill="#ffeaa7" opacity="0.3"/>
+          <circle cx="170" cy="270" r="25" fill="#ffeaa7" opacity="0.3"/>
+        </g>
+        <g class="gold-tail-sway">
+          <path d="M90,270 Q85,340 105,390 Q115,420 130,450 Q145,420 145,380 Q155,330 150,270 Z" fill="url(#tailSunsetGrad)"/>
+          <path d="M85,265 Q65,285 75,300 Q95,295 105,275 Z" fill="url(#finSunsetGrad)"/>
+          <path d="M155,265 Q175,285 165,300 Q145,295 135,275 Z" fill="url(#finSunsetGrad)"/>
+          <g>
+            <path d="M130,445 Q70,480 10,540 Q60,535 105,505 Q125,485 130,460 Z" fill="url(#finSunsetGrad)"/>
+            <path d="M130,445 Q190,480 250,535 Q200,530 155,500 Q135,485 130,460 Z" fill="url(#finSunsetGrad)"/>
+          </g>
+        </g>
+        <g>
+          <path d="M105,120 L100,160 Q85,180 90,270 L150,270 Q155,180 140,160 L135,120 Z" fill="url(#skinWarmGrad)"/>
+          <g transform="translate(80, 180)"><path d="M5,25 Q-5,5 18,0 Q35,5 30,25 Q18,30 5,25 Z" fill="url(#shellCoralGrad)"/><circle cx="18" cy="15" r="3.5" fill="#ffffff"/></g>
+          <g transform="translate(125, 180)"><path d="M5,25 Q0,5 17,0 Q40,5 30,25 Q18,30 5,25 Z" fill="url(#shellCoralGrad)"/><circle cx="17" cy="15" r="3.5" fill="#ffffff"/></g>
+          <g fill="#ffeaa7" opacity="0.9"><circle cx="95" cy="268" r="2.5"/><circle cx="113" cy="273" r="3"/><circle cx="120" cy="274" r="3.5"/><circle cx="136" cy="271" r="2.5"/></g>
+        </g>
+        <g>
+          <path d="M85,170 Q45,190 15,210 Q5,220 15,230 Q25,230 45,215 Q75,195 100,185 Z" fill="url(#skinWarmGrad)"/>
+          <path d="M145,170 Q180,180 205,150 Q215,140 220,150 Q220,160 200,185 Q170,205 135,185 Z" fill="url(#skinWarmGrad)"/>
+          <circle cx="25" cy="220" r="3" fill="#ff7675"/>
+          <circle cx="210" cy="155" r="3" fill="#f1c40f"/>
+        </g>
+        <g>
+          <path d="M85,60 Q85,125 120,135 Q155,125 155,60 Q155,20 120,20 Q85,20 85,60 Z" fill="url(#skinWarmGrad)"/>
+          <circle cx="96" cy="95" r="9" fill="#ff7675" opacity="0.45"/><circle cx="144" cy="95" r="9" fill="#ff7675" opacity="0.45"/>
+          <ellipse cx="103" cy="82" rx="6" ry="7.5" fill="#00b894"/><circle cx="101" cy="78" r="2.2" fill="#ffffff"/>
+          <ellipse cx="137" cy="82" rx="6" ry="7.5" fill="#00b894"/><circle cx="135" cy="78" r="2.2" fill="#ffffff"/>
+          <circle cx="120" cy="93" r="1.2" fill="#e17055"/>
+          <path d="M113,104 Q120,116 127,104 Q120,106 113,104 Z" fill="#d63031"/>
+          <path d="M80,55 Q75,10 120,5 Q165,10 160,55 Q140,25 120,25 Q95,25 80,55 Z" fill="url(#hairGoldGrad)"/>
+          <g transform="translate(155, 25) scale(0.85)">
+            <path d="M0,0 Q15,-15 30,-5 Q25,15 0,0 Z" fill="#ff7675"/>
+            <path d="M0,0 Q15,20 0,35 Q-15,20 0,0 Z" fill="#ff4757"/>
+            <circle cx="0" cy="0" r="5" fill="#feca57"/>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- 7. タツノオトシゴ（右下真珠貝の横） -->
+    <g transform="translate(820, 480) scale(0.55)">
+      <g class="seahorse-bob">
+        <g class="seahorse-fin-flutter">
+          <path d="M15,110 Q-10,125 5,145 Q20,140 20,125 Z" fill="#81ecec" opacity="0.8"/>
+        </g>
+        <path d="M50,0 Q30,-20 40,-35 Q55,-20 65,-15 Q75,-30 85,-15 Q75,0 65,5 Z" fill="#feca57"/>
+        <path d="M65,5 Q95,15 90,50 Q80,70 55,75 Q35,80 30,110 Q25,160 60,180 Q85,195 75,220 Q60,240 35,225 Q20,210 35,195 Q45,205 35,212" stroke="url(#seahorseBodyGrad)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M45,90 Q65,95 60,110 Q50,140 40,160" stroke="#fff9d9" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.9"/>
+        <path d="M90,30 L120,35 Q125,42 115,47 L85,45 Z" fill="#ff7675"/>
+        <circle cx="78" cy="25" r="10" fill="#ffffff"/><circle cx="80" cy="25" r="5.5" fill="#2d3436"/><circle cx="82" cy="22" r="2.5" fill="#ffffff"/>
+        <circle cx="88" cy="45" r="4.5" fill="#ff4757" opacity="0.6"/>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- ==============================================================
+       LAYER 4: 近景・舞台袖（珊瑚・海藻・真珠貝）
+       ============================================================== -->
+  <g id="stage-left-wing">
+    <g class="sway-slow">
+      <path d="M40,750 Q10,550 90,420 Q120,320 80,220 Q70,330 30,440 Q-20,580 10,760 Z" fill="url(#seaweedGrad)" opacity="0.7"/>
+      <path d="M90,770 Q140,600 110,480 Q80,380 130,280 Q100,390 60,490 Q20,620 60,780 Z" fill="url(#seaweedGrad)" opacity="0.5"/>
+    </g>
+    <g class="sway-left">
+      <path d="M70,780 Q130,620 70,490 Q30,390 90,260 Q40,380 20,510 Q0,650 30,790 Z" fill="url(#seaweedGrad)"/>
+    </g>
+    <path d="M-30,820 L-30,690 Q50,670 90,720 Q130,750 160,820 Z" fill="#2d3436"/>
+    <path d="M20,700 Q15,620 -10,580 Q0,570 25,610 Q30,550 50,520 Q65,530 50,580 Q80,540 110,530 Q115,550 85,590 Q120,610 130,640 Q80,650 50,680 Z" fill="url(#coralPink)"/>
+    <circle cx="110" cy="740" r="16" fill="#ff7675"/><circle cx="125" cy="735" r="12" fill="#fd79a8"/>
+    <path d="M120,780 L126,762 L144,760 L130,748 L134,730 L118,740 L104,728 L106,748 L94,758 L110,762 Z" fill="#ff7675" transform="rotate(15, 120, 760) scale(0.7)"/>
+  </g>
+
+  <g id="stage-right-wing">
+    <g class="sway-slow">
+      <path d="M1130,760 Q1060,580 1120,440 Q1160,330 1110,230 Q1180,340 1150,460 Q1110,600 1160,770 Z" fill="url(#seaweedGrad)" opacity="0.6"/>
+    </g>
+    <g class="sway-right">
+      <path d="M1100,780 Q1040,610 1090,480 Q1130,370 1060,270 Q1120,380 1060,500 Q1010,630 1060,790 Z" fill="url(#seaweedGrad)"/>
+    </g>
+    <path d="M1020,820 Q1060,700 1140,680 Q1200,670 1230,820 Z" fill="#222f3e"/>
+    <path d="M1090,690 Q1070,610 1040,570 Q1055,560 1080,595 Q1090,530 1120,490 Q1135,505 1115,560 Q1155,520 1190,510 Q1195,530 1155,570 Q1190,585 1210,630 Q1160,640 1125,670 Z" fill="url(#coralOrange)"/>
+    
+    <!-- オオシャコガイと輝く真珠 -->
+    <g id="giant-clam" transform="translate(940, 710) scale(0.85)">
+      <path d="M10,60 Q70,100 130,60 Q140,30 120,20 Q70,45 20,20 Q0,30 10,60 Z" fill="#dcdde1"/>
+      <ellipse cx="70" cy="45" rx="45" ry="18" fill="#ffb8b8"/>
+      <circle cx="70" cy="40" r="16" fill="url(#pearlGlow)" filter="url(#softGlow)"/>
+      <circle cx="65" cy="35" r="4" fill="#ffffff" opacity="0.9"/>
+      <path d="M15,25 Q70,-35 125,25 Q135,5 115,-10 Q70,-45 25,-10 Q5,5 15,25 Z" fill="#f5f6fa"/>
+      <path d="M70,-35 L70,15 M45,-25 L55,20 M95,-25 L85,20 M25,-10 L40,22 M115,-10 L100,22" stroke="#dcdde1" stroke-width="3" fill="none"/>
+    </g>
+  </g>
+
+  <!-- ==============================================================
+       LAYER 5: 最前面のエフェクト（立ちのぼる気泡）
+       ============================================================== -->
+  <g id="foreground-bubbles">
+    <circle class="bubble" cx="250" cy="780" r="14" fill="url(#bubbleGrad)" style="animation-delay: 0s; animation-duration: 7s;"/>
+    <circle class="bubble" cx="270" cy="790" r="8" fill="url(#bubbleGrad)" style="animation-delay: 2.5s; animation-duration: 6s;"/>
+    <circle class="bubble" cx="450" cy="770" r="18" fill="url(#bubbleGrad)" style="animation-delay: 1.2s; animation-duration: 8.5s;"/>
+    <circle class="bubble" cx="620" cy="760" r="10" fill="url(#bubbleGrad)" style="animation-delay: 3.8s; animation-duration: 5.5s;"/>
+    <circle class="bubble" cx="800" cy="780" r="22" fill="url(#bubbleGrad)" style="animation-delay: 0.7s; animation-duration: 9s;"/>
+    <circle class="bubble" cx="830" cy="790" r="9" fill="url(#bubbleGrad)" style="animation-delay: 4.2s; animation-duration: 6.5s;"/>
+    <circle class="bubble" cx="980" cy="770" r="15" fill="url(#bubbleGrad)" style="animation-delay: 2.0s; animation-duration: 7.5s;"/>
+  </g>
+
+</svg>
