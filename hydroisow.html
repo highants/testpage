@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYDRO-ISOSTATIC ADJUSTMENT // 統合観測パノラマ (16:9)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-panel: #1e293b;
+      --bg-card: #ffffff;
+      --border-dark: #334155;
+      --border-light: #e2e8f0;
+      --text-heading: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-mono: #38bdf8;
+      --primary: #0284c7;
+      --accent: #ea580c;
+      --accent-glow: rgba(234, 88, 12, 0.15);
+      --font-sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--bg-main);
+      color: var(--text-body);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 16:9 Exhibition Frame */
+    .dashboard-viewport {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+      padding: 1rem 1.4rem;
+      gap: 0.8rem;
+    }
+
+    /* Top Global Header */
+    .sys-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-dark);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-mono);
+      flex-shrink: 0;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Main Exhibition Canvas (Split: 320px sidebar + flex grid of 5 plates) */
+    .main-exhibition {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Left Narrative & Axioms Column */
+    .sidebar-intel {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.8rem;
+      overflow: hidden;
+    }
+
+    .title-group h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+    }
+
+    .title-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .concept-prose {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text-body);
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .axiom-box {
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 3px solid var(--primary);
+      padding: 0.6rem 0.8rem;
+      border-radius: 0 4px 4px 0;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #7dd3fc;
+    }
+
+    .metrics-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .metric-cell {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-dark);
+      border-radius: 4px;
+      padding: 0.5rem 0.6rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      line-height: 1.1;
+    }
+
+    .metric-caption {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      line-height: 1.2;
+    }
+
+    .verdict-callout {
+      background: var(--accent-glow);
+      border: 1px solid rgba(234, 88, 12, 0.4);
+      padding: 0.6rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.73rem;
+      color: #fed7aa;
+      line-height: 1.45;
+    }
+
+    /* Right Plate Matrix Grid (Upper 3 plates + Lower 2 plates) */
+    .matrix-grid {
+      display: grid;
+      grid-template-rows: 1.1fr 1fr;
+      gap: 0.8rem;
+      min-height: 0;
+    }
+
+    .matrix-row-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.05fr;
+      gap: 0.8rem;
+      min-height: 0;
+    }
+
+    .matrix-row-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      min-height: 0;
+    }
+
+    .plate-panel {
+      background-color: var(--bg-card);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plate-panel svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Bottom Status Strip */
+    .sys-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border-dark);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-viewport">
+    <!-- Top System Header -->
+    <header class="sys-header">
+      <span>GIA KINETIC EQUILIBRIUM OBSERVATION PLATFORM // 全球水力学・固体地球相互作用モデル</span>
+      <div class="status-badge">
+        <span class="pulse-dot"></span>
+        <span>VISCOELASTIC_STATE: CONTINUOUS_RELAXATION</span>
+      </div>
+    </header>
+
+    <!-- Main Exhibition Canvas -->
+    <main class="main-exhibition">
+      <!-- Left Narrative & Axiom Console -->
+      <aside class="sidebar-intel">
+        <div class="title-group">
+          <div class="title-sub">GIA Integrated Theory</div>
+          <h1>Hydro-Isostasy: 大地が撓み、海が応える力学系</h1>
+        </div>
+
+        <div class="concept-prose">
+          <p>
+            大地は不動の器ではなく、数万年という時間軸においては自重と水圧によって変形する粘弾性の膜にすぎません。氷床の融解と深海底の沈降、そして深部マントルの極めて緩慢な側方流動が織りなす閉じた力学回路を一望のもとに提示します。
+          </p>
+        </div>
+
+        <div class="axiom-box">
+          P_hydro = ∫ ρ(z) · g · dz = Const.<br>
+          Δh_actual = Δh_rigid - Δw<br>
+          Buffer Ratio: Δw / Δh_rigid ≈ 1/3
+        </div>
+
+        <div class="metrics-summary">
+          <div class="metric-cell">
+            <div class="metric-value">~33%</div>
+            <div class="metric-caption">海底沈降による幾何学的相殺比率</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-value">10²¹ Pa·s</div>
+            <div class="metric-caption">上部マントル粘性率（遅延の主因）</div>
+          </div>
+        </div>
+
+        <div class="verdict-callout">
+          <strong>地質学的錯視の看破:</strong> 縄文海進の海退は海水の減少ではなく、遅延沈降する外洋底が海水を沖合へ吸引した（サイフォニング）結果である。
+        </div>
+
+        <div class="title-sub" style="color: var(--text-muted); font-size: 0.65rem;">
+          SYSTEM SPEC: 5-MODULE UNIFIED COUPLING
+        </div>
+      </aside>
+
+      <!-- Right 5-Plate Matrix -->
+      <div class="matrix-grid">
+        <!-- Top Row: Module 01, 02, 03 -->
+        <div class="matrix-row-top">
+          <!-- PLATE 01 -->
+          <div class="plate-panel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+              <defs>
+                <linearGradient id="bgP1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+                <linearGradient id="waterP1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.16"/><stop offset="100%" stop-color="#0369A1" stop-opacity="0.5"/></linearGradient>
+                <linearGradient id="mantleP1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#334155"/><stop offset="100%" stop-color="#1E293B"/></linearGradient>
+                <linearGradient id="crustP1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#64748B"/><stop offset="100%" stop-color="#475569"/></linearGradient>
+                <linearGradient id="iceP1" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="50%" stop-color="#E0F2FE"/><stop offset="100%" stop-color="#BAE6FD"/></linearGradient>
+                <marker id="ptrA1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#EA580C"/></marker>
+                <marker id="ptrC1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#0284C7"/></marker>
+              </defs>
+              <style>
+                .mono1 { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #64748B; }
+                .head1 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #0F172A; }
+                .sub1 { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; fill: #0284C7; }
+                .amb1 { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; fill: #EA580C; }
+                .cyn1 { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; fill: #0284C7; }
+              </style>
+              <rect width="960" height="540" fill="url(#bgP1)"/>
+              <g transform="translate(48, 28)">
+                <text class="mono1" x="0" y="10">MODULE 01 // VERTICAL HYDROSTATIC EQUILIBRIUM</text>
+                <text class="mono1" x="864" y="10" text-anchor="end">AIRY_MODEL</text>
+                <line x1="0" y1="18" x2="864" y2="18" stroke="#CBD5E1" stroke-width="1.2"/>
+              </g>
+              <!-- Left Card: Iceberg -->
+              <g transform="translate(48, 60)">
+                <rect width="412" height="340" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+                <text class="head1" x="24" y="28">01 / 水文：流体中の氷山</text>
+                <text class="sub1" x="24" y="44">BUOYANCY [ ρ_ice: 0.92 / ρ_w: 1.03 ]</text>
+                <rect x="24" y="125" width="364" height="150" fill="url(#waterP1)" rx="2"/>
+                <line x1="24" y1="125" x2="388" y2="125" stroke="#0284C7" stroke-width="1.5"/>
+                <polygon points="185,75 142,125 236,125" fill="url(#iceP1)" stroke="#BAE6FD" stroke-width="1.2"/>
+                <polygon points="142,125 120,180 152,248 195,255 238,210 236,125" fill="url(#iceP1)" stroke="#7DD3FC" stroke-width="1.2"/>
+                <line x1="95" y1="75" x2="95" y2="125" stroke="#94A3B8" stroke-width="0.9"/>
+                <text class="mono1" x="84" y="104" text-anchor="end">約10%</text>
+                <line x1="95" y1="125" x2="95" y2="255" stroke="#94A3B8" stroke-width="0.9"/>
+                <text class="mono1" x="84" y="194" text-anchor="end">約90% (根)</text>
+                <line x1="185" y1="88" x2="185" y2="140" stroke="#EA580C" stroke-width="2" marker-end="url(#ptrA1)"/>
+                <circle cx="185" cy="105" r="2" fill="#EA580C"/><text class="amb1" x="242" y="109">重力荷重 G</text>
+                <line x1="185" y1="235" x2="185" y2="180" stroke="#0284C7" stroke-width="2" marker-end="url(#ptrC1)"/>
+                <circle cx="185" cy="205" r="2" fill="#0284C7"/><text class="cyn1" x="242" y="209">浮力反力 B</text>
+                <line x1="24" y1="295" x2="388" y2="295" stroke="#E2E8F0"/>
+                <text class="mono1" x="206" y="316" fill="#475569" text-anchor="middle">静的平衡条件：G = B (ΣF_z = 0)</text>
+              </g>
+              <!-- Right Card: Crust -->
+              <g transform="translate(500, 60)">
+                <rect width="412" height="340" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+                <text class="head1" x="24" y="28">02 / 地球物理：地殻の根とマントル</text>
+                <text class="sub1" x="24" y="44">AIRY ISOSTASY [ ρ_c: 2.7 / ρ_m: 3.3 ]</text>
+                <rect x="24" y="180" width="364" height="95" fill="url(#mantleP1)" rx="2"/>
+                <path d="M 24,140 L 125,140 Q 165,140 185,115 L 206,85 L 227,115 Q 247,140 287,140 L 388,140 L 388,195 L 287,195 Q 245,195 225,222 L 206,248 L 187,222 Q 167,195 125,195 L 24,195 Z" fill="url(#crustP1)" stroke="#475569" stroke-width="1.2"/>
+                <path d="M 24,195 L 125,195 Q 167,195 187,222 L 206,248 L 225,222 Q 245,195 287,195 L 388,195" stroke="#EA580C" stroke-width="1.6" stroke-dasharray="3 2" fill="none"/>
+                <text class="mono1" x="56" y="178" fill="#EA580C">モホ面</text>
+                <text class="mono1" x="256" y="247" fill="#FDBA74">地殻の根 (Root)</text>
+                <line x1="206" y1="98" x2="206" y2="142" stroke="#EA580C" stroke-width="2" marker-end="url(#ptrA1)"/>
+                <text class="amb1" x="248" y="116">荷重 ΔM</text>
+                <line x1="206" y1="230" x2="206" y2="185" stroke="#0284C7" stroke-width="2" marker-end="url(#ptrC1)"/>
+                <text class="cyn1" x="156" y="212" fill="#38BDF8" text-anchor="end">浮力</text>
+                <line x1="24" y1="295" x2="388" y2="295" stroke="#E2E8F0"/>
+                <text class="mono1" x="206" y="316" fill="#475569" text-anchor="middle">浮力均衡：深部高密度排除による補償</text>
+              </g>
+              <g transform="translate(48, 420)">
+                <line x1="24" y1="16" x2="260" y2="16" stroke="#64748B" stroke-dasharray="6 3" stroke-width="1.5"/>
+                <circle cx="24" cy="16" r="3" fill="#64748B"/>
+                <text class="mono1" x="432" y="20" fill="#0F172A" font-weight="bold" text-anchor="middle">補償深度面 (DEPTH OF COMPENSATION)</text>
+                <line x1="604" y1="16" x2="840" y2="16" stroke="#64748B" stroke-dasharray="6 3" stroke-width="1.5"/>
+                <circle cx="840" cy="16" r="3" fill="#64748B"/>
+                <text class="mono1" x="432" y="52" fill="#475569" text-anchor="middle">この基準面において上載単位柱の全静水圧荷重は均一となる</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- PLATE 02 -->
+          <div class="plate-panel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+              <defs>
+                <linearGradient id="bgP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+                <linearGradient id="waterP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.25"/><stop offset="100%" stop-color="#075985" stop-opacity="0.9"/></linearGradient>
+                <linearGradient id="contP2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#64748B"/><stop offset="100%" stop-color="#475569"/></linearGradient>
+                <linearGradient id="ocnP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#475569"/><stop offset="100%" stop-color="#334155"/></linearGradient>
+                <linearGradient id="mantP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+                <linearGradient id="iceP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#7DD3FC" stop-opacity="0.4"/></linearGradient>
+                <marker id="ptrA2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#EA580C"/></marker>
+                <marker id="ptrC2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#0284C7"/></marker>
+              </defs>
+              <style>
+                .mono2 { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #64748B; }
+                .head2 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #0F172A; }
+                .tagA2 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #EA580C; }
+                .tagC2 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #0284C7; }
+              </style>
+              <rect width="960" height="540" fill="url(#bgP2)"/>
+              <g transform="translate(48, 28)">
+                <text class="mono2" x="0" y="10">MODULE 02 // GLOBAL MASS REDISTRIBUTION &amp; GIA COUPLING</text>
+                <text class="mono2" x="864" y="10" text-anchor="end">MASS_SHIFT</text>
+                <line x1="0" y1="18" x2="864" y2="18" stroke="#CBD5E1" stroke-width="1.2"/>
+              </g>
+              <g transform="translate(48, 56)">
+                <rect width="864" height="396" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+                <text class="head2" x="24" y="32">大陸域（減圧反発）</text>
+                <text class="head2" x="840" y="32" text-anchor="end">海洋域（加圧沈降）</text>
+                <rect x="20" y="250" width="824" height="130" fill="url(#mantP2)" rx="2"/>
+                <path d="M 20,130 L 180,130 Q 250,130 310,148 L 360,168 L 440,195 L 490,235 L 490,275 L 360,285 Q 220,290 100,275 L 20,265 Z" fill="url(#contP2)" stroke="#334155" stroke-width="1.2"/>
+                <path d="M 490,235 Q 570,252 660,260 Q 750,262 844,252 L 844,282 Q 750,292 660,290 Q 570,282 490,275 Z" fill="url(#ocnP2)" stroke="#1E293B" stroke-width="1.2"/>
+                <path d="M 360,168 L 844,168 L 844,252 Q 750,262 660,260 Q 570,252 490,235 L 440,195 L 360,168 Z" fill="url(#waterP2)"/>
+                <line x1="360" y1="168" x2="844" y2="168" stroke="#0284C7" stroke-width="1.8"/>
+                <path d="M 38,130 Q 85,90 145,90 Q 200,90 230,130 Z" fill="url(#iceP2)" stroke="#7DD3FC" stroke-width="1.4"/>
+                <path d="M 205,82 C 275,52 355,65 440,162" fill="none" stroke="#0284C7" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#ptrC2)"/>
+                <rect x="252" y="48" width="176" height="22" rx="4" fill="#E0F2FE" stroke="#0284C7"/>
+                <text class="tagC2" x="340" y="63" text-anchor="middle">水塊移動 (ΔM_water)</text>
+                <g transform="translate(130, 165)">
+                  <line x1="0" y1="45" x2="0" y2="6" stroke="#0284C7" stroke-width="2.2" marker-end="url(#ptrC2)"/>
+                  <rect x="-85" y="54" width="170" height="32" rx="4" fill="#1E293B" stroke="#0284C7"/>
+                  <text class="tagC2" x="0" y="69" text-anchor="middle">氷河アイソスタシー隆起 ↑</text>
+                </g>
+                <g transform="translate(660, 115)">
+                  <rect x="-115" y="0" width="230" height="30" rx="4" fill="#FFF7ED" stroke="#EA580C"/>
+                  <text class="tagA2" x="0" y="18" text-anchor="middle">ハイドロアイソスタシー荷重 ↓</text>
+                  <line x1="0" y1="36" x2="0" y2="135" stroke="#EA580C" stroke-width="2.4" marker-end="url(#ptrA2)"/>
+                </g>
+                <path d="M 720,300 C 600,325 480,318 360,285" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-dasharray="8 4" marker-end="url(#ptrA2)"/>
+                <rect x="430" y="322" width="190" height="20" rx="3" fill="#0F172A" stroke="#EA580C"/>
+                <text class="mono2" x="525" y="336" fill="#FDBA74" text-anchor="middle">マントル側方排除流動 →</text>
+              </g>
+              <g transform="translate(48, 466)">
+                <rect width="864" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1"/>
+                <text class="mono2" x="432" y="22" fill="#0F172A" font-weight="bold" text-anchor="middle">[1] 陸域除荷・隆起  →  [2] 全球海水流入  →  [3] 海底沈降・側方流動</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- PLATE 03 -->
+          <div class="plate-panel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+              <defs>
+                <linearGradient id="bgP3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+                <linearGradient id="waterP3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.25"/><stop offset="100%" stop-color="#075985" stop-opacity="0.9"/></linearGradient>
+                <linearGradient id="bufP3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EA580C" stop-opacity="0.2"/><stop offset="100%" stop-color="#EA580C" stop-opacity="0.06"/></linearGradient>
+                <linearGradient id="mantP3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+              </defs>
+              <style>
+                .mono3 { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #64748B; }
+                .head3 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #0F172A; }
+                .tagA3 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #EA580C; }
+                .tagC3 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #0284C7; }
+              </style>
+              <rect width="960" height="540" fill="url(#bgP3)"/>
+              <g transform="translate(48, 28)">
+                <text class="mono3" x="0" y="10">MODULE 03 // GEOMETRIC BUFFERING</text>
+                <text class="mono3" x="864" y="10" text-anchor="end">DAMPING_RATIO</text>
+                <line x1="0" y1="18" x2="864" y2="18" stroke="#CBD5E1" stroke-width="1.2"/>
+              </g>
+              <g transform="translate(48, 56)">
+                <rect width="864" height="396" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+                <text class="head3" x="24" y="28">器の深化による海面上昇の幾何学的相殺</text>
+                <rect x="20" y="270" width="824" height="110" fill="url(#mantP3)" rx="2"/>
+                <path d="M 20,120 L 130,120 L 180,148 L 232,176 L 310,215 L 340,240 L 340,315 L 20,315 Z" fill="#64748B"/>
+                <line x1="340" y1="240" x2="844" y2="240" stroke="#7DD3FC" stroke-width="1.4" stroke-dasharray="5 3"/>
+                <path d="M 340,240 Q 440,264 560,266 Q 700,267 844,262 L 844,295 Q 700,300 560,298 Q 440,296 340,270 Z" fill="#334155"/>
+                <path d="M 232,176 L 844,176 L 844,262 Q 700,267 560,266 Q 440,264 340,240 L 310,215 L 232,176 Z" fill="url(#waterP3)"/>
+                <path d="M 180,148 L 844,148 L 844,176 L 232,176 Z" fill="url(#bufP3)"/>
+                <line x1="180" y1="148" x2="844" y2="148" stroke="#EA580C" stroke-dasharray="4 3" stroke-width="1.5"/>
+                <line x1="232" y1="176" x2="844" y2="176" stroke="#0284C7" stroke-width="1.8"/>
+                <g transform="translate(440, 148)">
+                  <line x1="0" y1="0" x2="0" y2="28" stroke="#EA580C" stroke-width="1.5"/>
+                  <rect x="25" y="3" width="200" height="22" rx="3" fill="#FFF7ED" stroke="#EA580C" stroke-width="0.9"/>
+                  <text class="tagA3" x="33" y="18">緩和相殺幅 Δh ≈ 33%</text>
+                </g>
+                <g transform="translate(440, 240)">
+                  <line x1="0" y1="0" x2="0" y2="26" stroke="#EA580C" stroke-width="1.5"/>
+                  <rect x="25" y="2" width="200" height="22" rx="3" fill="#FFF7ED" stroke="#EA580C" stroke-width="0.9"/>
+                  <text class="tagA3" x="33" y="17">海底沈降量 Δw ≈ Δh</text>
+                </g>
+                <g transform="translate(24, 62)">
+                  <rect width="190" height="46" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text class="mono3" x="10" y="16" fill="#0F172A" font-weight="bold">Δh_actual = Δh_rigid - Δw</text>
+                  <text class="mono3" x="10" y="32" fill="#EA580C">Δw / Δh_rigid ≈ 1/3</text>
+                </g>
+                <text class="mono3" x="836" y="136" fill="#C2410C" font-weight="600" text-anchor="end">理論海面（剛体）</text>
+                <text class="mono3" x="836" y="196" fill="#0369A1" font-weight="600" text-anchor="end">実効観測海面</text>
+              </g>
+              <g transform="translate(48, 466)">
+                <rect width="864" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1"/>
+                <text class="mono3" x="432" y="22" fill="#0F172A" font-weight="bold" text-anchor="middle">VERDICT: 海底が自ら沈むことで、見かけの上昇の約1/3が幾何学的に相殺される</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Module 04, 05 -->
+        <div class="matrix-row-bottom">
+          <!-- PLATE 04 -->
+          <div class="plate-panel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+              <defs>
+                <linearGradient id="bgP4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+                <linearGradient id="waterP4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.25"/><stop offset="100%" stop-color="#075985" stop-opacity="0.9"/></linearGradient>
+                <linearGradient id="mantP4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+                <marker id="ptrA4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#EA580C"/></marker>
+                <marker id="ptrC4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#0284C7"/></marker>
+              </defs>
+              <style>
+                .mono4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #64748B; }
+                .head4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #0F172A; }
+                .tagA4 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #EA580C; }
+              </style>
+              <rect width="960" height="540" fill="url(#bgP4)"/>
+              <g transform="translate(48, 28)">
+                <text class="mono4" x="0" y="10">MODULE 04 // LATERAL MANTLE DISPLACEMENT &amp; FOREBULGE</text>
+                <text class="mono4" x="864" y="10" text-anchor="end">VISCOUS_FLOW</text>
+                <line x1="0" y1="18" x2="864" y2="18" stroke="#CBD5E1" stroke-width="1.2"/>
+              </g>
+              <g transform="translate(48, 56)">
+                <rect width="864" height="396" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+                <text class="head4" x="24" y="28">マントル側方流動と大陸縁辺の周縁隆起（フォアバルジ）</text>
+                <rect x="20" y="245" width="824" height="135" fill="url(#mantP4)" rx="2"/>
+                <path d="M 20,155 L 150,155 Q 210,155 280,125 Q 325,108 360,165 L 440,195 L 490,235 L 490,275 L 360,285 Q 220,290 100,275 L 20,265 Z" fill="#475569" stroke="#334155" stroke-width="1.2"/>
+                <path d="M 490,235 Q 570,255 660,265 Q 760,268 844,255 L 844,285 Q 760,298 660,295 Q 570,285 490,275 Z" fill="#334155" stroke="#1E293B" stroke-width="1.2"/>
+                <path d="M 360,165 L 844,165 L 844,255 Q 760,268 660,265 Q 570,255 490,235 L 440,195 L 360,165 Z" fill="url(#waterP4)"/>
+                <line x1="360" y1="165" x2="844" y2="165" stroke="#0284C7" stroke-width="1.8"/>
+                <g transform="translate(660, 178)">
+                  <rect x="-110" y="0" width="220" height="28" rx="4" fill="#FFF7ED" stroke="#EA580C"/>
+                  <text class="tagA4" x="0" y="18" text-anchor="middle">水圧荷重過剰負荷 (Pumping) ↓</text>
+                  <line x1="0" y1="32" x2="0" y2="80" stroke="#EA580C" stroke-width="2.4" marker-end="url(#ptrA4)"/>
+                </g>
+                <path d="M 720,305 C 600,328 470,320 340,285" fill="none" stroke="#EA580C" stroke-width="2.5" stroke-dasharray="8 4" marker-end="url(#ptrA4)"/>
+                <rect x="430" y="324" width="200" height="20" rx="3" fill="#0F172A" stroke="#EA580C"/>
+                <text class="mono4" x="530" y="338" fill="#FDBA74" text-anchor="middle">マントル側方流動 (η ≈ 10²¹ Pa·s) →</text>
+                <g transform="translate(280, 125)">
+                  <line x1="0" y1="50" x2="0" y2="18" stroke="#0284C7" stroke-width="2.4" marker-end="url(#ptrC4)"/>
+                  <rect x="-90" y="-48" width="180" height="26" rx="4" fill="#FFF7ED" stroke="#EA580C"/>
+                  <text class="tagA4" x="0" y="-31" text-anchor="middle">周縁隆起 (Forebulge) ↑</text>
+                </g>
+              </g>
+              <g transform="translate(48, 466)">
+                <rect width="864" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1"/>
+                <text class="mono4" x="432" y="22" fill="#0F172A" font-weight="bold" text-anchor="middle">COUPLING: 海底ピストンが側方へ押し出したマントルが沿岸を押し上げる</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- PLATE 05 -->
+          <div class="plate-panel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+              <defs>
+                <linearGradient id="bgP5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+                <linearGradient id="waterP5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.3"/><stop offset="100%" stop-color="#075985" stop-opacity="0.9"/></linearGradient>
+                <linearGradient id="ghostP5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#38BDF8" stop-opacity="0.18"/><stop offset="100%" stop-color="#0284C7" stop-opacity="0.25"/></linearGradient>
+                <linearGradient id="mantP5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+                <marker id="ptrA5" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 2 L 7 5 L 0 8 z" fill="#EA580C"/></marker>
+              </defs>
+              <style>
+                .mono5 { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #64748B; }
+                .head5 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #0F172A; }
+                .tagA5 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #EA580C; }
+                .tagC5 { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; fill: #0284C7; }
+              </style>
+              <rect width="960" height="540" fill="url(#bgP5)"/>
+              <g transform="translate(48, 28)">
+                <text class="mono5" x="0" y="10">MODULE 05 // TEMPORAL VISCOUS LAG &amp; REGRESSION</text>
+                <text class="mono5" x="864" y="10" text-anchor="end">TIME_LAG</text>
+                <line x1="0" y1="18" x2="864" y2="18" stroke="#CBD5E1" stroke-width="1.2"/>
+              </g>
+              <g transform="translate(48, 56)">
+                <rect width="864" height="396" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+                <text class="head5" x="24" y="28">高粘性マントルの応答遅延と見かけの海退（縄文海進）</text>
+                <rect x="20" y="265" width="824" height="115" fill="url(#mantP5)" rx="2"/>
+                <path d="M 20,130 L 140,130 Q 180,130 220,155 L 270,195 L 270,310 L 20,310 Z" fill="#64748B"/>
+                <path d="M 220,155 L 380,185 L 520,185 L 620,215 L 720,250 L 844,260 L 844,310 L 270,310 Z" fill="#94A3B8"/>
+                <path d="M 220,155 L 360,165 L 520,185 L 380,185 Z" fill="#CBD5E1"/>
+                <path d="M 220,155 L 844,155 L 844,260 L 720,250 L 620,215 L 520,185 L 360,165 Z" fill="url(#ghostP5)"/>
+                <path d="M 520,185 L 844,185 L 844,260 L 720,250 L 620,215 L 520,185 Z" fill="url(#waterP5)"/>
+                <line x1="220" y1="155" x2="844" y2="155" stroke="#EA580C" stroke-dasharray="4 3" stroke-width="1.6"/>
+                <line x1="520" y1="185" x2="844" y2="185" stroke="#0284C7" stroke-width="1.8"/>
+                <g transform="translate(195, 130)">
+                  <path d="M -12,12 Q 0,-4 12,12 Z" fill="#FFFFFF" stroke="#EA580C" stroke-width="1.5"/>
+                  <rect x="28" y="-34" width="168" height="24" rx="3" fill="#FFF7ED" stroke="#EA580C" stroke-width="0.9"/>
+                  <text class="tagA5" x="112" y="-18" text-anchor="middle">縄文貝塚（当時の汀線）</text>
+                </g>
+                <g transform="translate(0, 140)">
+                  <line x1="220" y1="0" x2="520" y2="0" stroke="#0284C7" stroke-width="1.4"/>
+                  <rect x="250" y="-12" width="240" height="22" rx="3" fill="#E0F2FE" stroke="#0284C7" stroke-width="0.9"/>
+                  <text class="tagC5" x="370" y="3" text-anchor="middle">汀線後退距離（陸化平野）</text>
+                </g>
+                <g transform="translate(750, 205)">
+                  <rect x="-85" y="0" width="170" height="24" rx="3" fill="#FFF7ED" stroke="#EA580C" stroke-width="0.9"/>
+                  <text class="tagA5" x="0" y="15" text-anchor="middle">外洋底の遅延沈降 ↓</text>
+                  <line x1="0" y1="26" x2="0" y2="54" stroke="#EA580C" stroke-width="2.2" marker-end="url(#ptrA5)"/>
+                </g>
+                <!-- Inset Graph in Asthenosphere -->
+                <g transform="translate(24, 280)">
+                  <rect width="206" height="64" rx="4" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <text class="mono5" x="10" y="15" fill="#0F172A" font-weight="bold">時間軸の乖離（氷量 vs 海面）</text>
+                  <line x1="15" y1="46" x2="190" y2="46" stroke="#94A3B8"/>
+                  <path d="M 18,44 Q 60,35 100,24 L 188,24" fill="none" stroke="#64748B" stroke-width="1.2" stroke-dasharray="3 2"/>
+                  <path d="M 18,44 Q 65,30 115,18 Q 150,26 188,34" fill="none" stroke="#EA580C" stroke-width="1.8"/>
+                  <circle cx="115" cy="18" r="2.5" fill="#EA580C"/>
+                  <text class="mono5" x="115" y="56" fill="#EA580C" font-size="8" text-anchor="middle">6k (ピーク)</text>
+                </g>
+              </g>
+              <g transform="translate(48, 466)">
+                <rect width="864" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1"/>
+                <text class="mono5" x="432" y="22" fill="#0F172A" font-weight="bold" text-anchor="middle">MISPERCEPTION: 水が減ったのではなく、数千年遅れて沈む外洋底が海水を吸引した</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Global Footer -->
+    <footer class="sys-footer">
+      <span>GIA OBSERVATION LAB // 16:9 FULL-VIEWPORT EXHIBITION COMPLIANT</span>
+      <span>HYDRO-MECHANICAL MATRIX: AIRY_HEISKANEN / GLOBAL_GIA / SATELLITE_GEODESY</span>
+    </footer>
+  </div>
+</body>
+</html>
