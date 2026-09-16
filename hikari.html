@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>光は言ではなく命である――ヨハネ福音書 1:1–5 の存在論的階層</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --line-color: #cbd5e1;
+      --primary: #0f172a;
+      --primary-sub: #1e293b;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --gold: #d97706;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+      --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--primary);
+      font-family: var(--font-main);
+      line-height: 1.9;
+      font-size: 16px;
+      padding: 64px 20px 120px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    strong {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    header {
+      margin-bottom: 56px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 14px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .header-desc {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .scripture-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .scripture-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .scripture-text {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      line-height: 2.1;
+      color: var(--primary-sub);
+    }
+
+    .scripture-text span.verse-num {
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      vertical-align: super;
+      margin-right: 4px;
+    }
+
+    .intro-essay {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 56px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .intro-essay h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .intro-essay h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .intro-essay p {
+      margin-bottom: 16px;
+      color: var(--text-body);
+      text-align: justify;
+    }
+
+    .intro-essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .vocab-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+
+    .vocab-term {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .vocab-greek {
+      font-family: var(--font-serif);
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .vocab-def {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .overview-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 64px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .overview-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .overview-intro {
+      font-size: 15px;
+      color: var(--text-body);
+      margin-bottom: 24px;
+      text-align: justify;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 52px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 21px;
+      top: 20px;
+      bottom: 24px;
+      width: 2px;
+      background: var(--line-color);
+    }
+
+    .step-item {
+      position: relative;
+      margin-bottom: 64px;
+    }
+
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-node {
+      position: absolute;
+      left: -52px;
+      top: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent);
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+    }
+
+    .step-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .step-category {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .step-body p {
+      margin-bottom: 18px;
+      color: var(--text-body);
+      text-align: justify;
+    }
+
+    .svg-container {
+      width: 100%;
+      margin: 28px 0 20px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+    }
+
+    .svg-container svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .key-takeaway {
+      background: #f8fafc;
+      border-left: 3px solid var(--accent);
+      padding: 14px 20px;
+      margin-top: 24px;
+      font-size: 14.5px;
+      color: var(--primary-sub);
+    }
+
+    .epilogue-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 40px 32px;
+      margin-top: 64px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .epilogue-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .epilogue-section h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 22px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .epilogue-section p {
+      margin-bottom: 18px;
+      color: var(--text-body);
+      text-align: justify;
+      line-height: 2;
+    }
+
+    .epilogue-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+      font-family: var(--font-serif);
+      font-style: italic;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 40px 14px 80px; font-size: 15px; }
+      .timeline { padding-left: 36px; }
+      .timeline::before { left: 15px; }
+      .step-node { left: -36px; width: 32px; height: 32px; font-size: 13px; }
+      .step-content { padding: 24px 18px; }
+      .step-header { flex-direction: column; gap: 6px; }
+      .intro-essay, .overview-section, .epilogue-section, .scripture-box { padding: 22px 16px; }
+      h1 { font-size: 24px; }
+      .vocab-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <span class="badge">Ontological Exegesis</span>
+      <h1>光は言ではなく命である</h1>
+      <p class="header-desc">
+        ヨハネによる福音書第1章1節から5節の脱構築――形式の論理（ロゴス）から溢れ出る生命（ゾーエー）と、それを捕らえきれぬ神聖なる暗闇
+      </p>
+    </header>
+
+    <section class="scripture-box">
+      <div class="scripture-title">基礎テキスト：ヨハネによる福音書 1章1節–5節</div>
+      <div class="scripture-text">
+        <p>
+          <span class="verse-num">1</span>初めに言（ロゴス）があった。言は神と共にあった。言は神であった。<br>
+          <span class="verse-num">2</span>この言は、初めに神と共にあった。<br>
+          <span class="verse-num">3</span>万物は言によって成った。成ったもので、言によらずに成ったものは何一つなかった。<br>
+          <span class="verse-num">4</span>言の内に命（ゾーエー）があった。命は人間を照らす光であった。<br>
+          <span class="verse-num">5</span>光は暗闇（スコティア）の中で輝いている。暗闇は光を理解しなかった（カタランバノー）。
+        </p>
+      </div>
+    </section>
+
+    <section class="intro-essay">
+      <h2>思索の原点：なぜこの読解が必要なのか</h2>
+      <p>
+        キリスト教の歴史において、ヨハネ福音書の冒頭はもっとも名高い教義的言明のひとつとして親しまれてきました。そこでは通例、「言（ロゴス）＝キリスト＝世界を照らす真理の光」という図式が直感的に重ね合わされ、暗闇とは神を拒絶する世の無知や悪を意味するものとして、道徳的な二元論の枠組みで理解されてきました。
+      </p>
+      <p>
+        しかし、テキストの言葉遣いに厳密な眼差しを向けるとき、私たちはこの古典的教義が覆い隠してきた、驚くべき論理の跳躍に気づかされます。ヨハネは「言が光であった」とは一度も語っていません。人間を照らす光として名指されているのは、言そのものではなく、言の内部に宿る「<strong>命（ゾーエー）</strong>」です。
+      </p>
+      <p>
+        さらに、冒頭において「言は神であった」「万物は言によって成った」と宣言される徹底した一元論を貫くならば、原初の地平において、光を照らし出された「暗闇」が神の領域の外側に独立して存在するはずはありません。暗闇とは神と敵対する外部の悪などではなく、言葉や形式に先立つ神自身の「不可知の深淵（無底）」でなければ論理が破綻します。
+      </p>
+      <p>
+        本稿は、このテキストが内包する微細な言葉の差異に徹底して立ち返り、理法（ロゴス）と生命（ゾーエー）、そして神聖なる暗闇（スコティア）が織りなす四重の存在論的力学を、順を追って解き明かす試みです。
+      </p>
+
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="vocab-term">ロゴス <span class="vocab-greek">Logos</span></div>
+          <div class="vocab-def">言、論理、理法、秩序。世界を分節し、名づけ、境界を引く知的な力。</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-term">ゾーエー <span class="vocab-greek">Zoē</span></div>
+          <div class="vocab-def">生命そのもの。個別の人生（ビオス）を超えて息づく、尽きることのない永遠の生の跳動。</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-term">スコティア <span class="vocab-greek">Skotia</span></div>
+          <div class="vocab-def">暗闇。外的な悪ではなく、言葉になる前の原初の深淵、神自身の沈黙の深み。</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-term">カタランバノー <span class="vocab-greek">Katalambanō</span></div>
+          <div class="vocab-def">理解する、把握する、力づくで捕らえる、自己の枠組みの中に包摂し尽くす。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 全体統合図セクション -->
+    <section class="overview-section">
+      <h2 class="overview-title">存在論的トポロジー全景</h2>
+      <p class="overview-intro">
+        秩序を司る幾何学的骨組み（言）の内奥に、境界を越境する無規定な熱量（命）が宿り、神自身の不可知の深淵（暗闇）を突き破って人間へと共鳴する――。四つの層位が織りなす力学の全景を俯瞰します。
+      </p>
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%">
+          <defs>
+            <radialGradient id="ov_zoeCoreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+              <stop offset="25%" stop-color="#FDE68A" stop-opacity="0.95" />
+              <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.6" />
+              <stop offset="100%" stop-color="#D97706" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="ov_scotiaVoid" cx="50%" cy="46%" r="55%">
+              <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9" />
+              <stop offset="50%" stop-color="#0F172A" stop-opacity="0.75" />
+              <stop offset="85%" stop-color="#090D16" stop-opacity="0.35" />
+              <stop offset="100%" stop-color="#F8FAFC" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="ov_resonanceBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.7" />
+              <stop offset="70%" stop-color="#F59E0B" stop-opacity="0.3" />
+              <stop offset="100%" stop-color="#2563EB" stop-opacity="0.6" />
+            </linearGradient>
+          </defs>
+
+          <rect x="0" y="0" width="800" height="520" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+          <g stroke="#E2E8F0" stroke-width="0.8" opacity="0.7">
+            <line x1="28" y1="64" x2="772" y2="64" />
+            <line x1="28" y1="450" x2="772" y2="450" />
+            <line x1="400" y1="64" x2="400" y2="450" stroke-dasharray="4,4" opacity="0.5" />
+          </g>
+
+          <g transform="translate(28, 20)">
+            <rect x="0" y="0" width="144" height="22" rx="4" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="1" />
+            <text x="72" y="11" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5px" fill="#2563EB" letter-spacing="0.05em">存在論的ダイナミクス</text>
+            <text x="156" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="15px" fill="#0F172A" letter-spacing="0.02em">言・命・光・暗闇の構造連鎖</text>
+            <text x="400" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="11px" fill="#64748B">ヨハネ福音書 1:1–5 における存在論的トポロジー全景</text>
+          </g>
+
+          <ellipse cx="400" cy="232" rx="170" ry="150" fill="url(#ov_scotiaVoid)" />
+          <ellipse cx="400" cy="232" rx="170" ry="150" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,3" opacity="0.4" />
+          <ellipse cx="400" cy="232" rx="195" ry="170" fill="none" stroke="#64748B" stroke-width="0.8" stroke-dasharray="6,6" opacity="0.25" />
+
+          <g transform="translate(325, 96)">
+            <rect x="0" y="0" width="150" height="20" rx="3" fill="#0F172A" fill-opacity="0.88" stroke="#334155" stroke-width="1" />
+            <text x="75" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#FFFFFF" font-weight="700" font-size="10px" letter-spacing="0.04em">不可知の深淵（神聖なる暗闇）</text>
+          </g>
+
+          <line x1="400" y1="230" x2="400" y2="385" stroke="url(#ov_resonanceBeam)" stroke-width="2.5" stroke-dasharray="2,2" />
+
+          <g stroke="#F59E0B" stroke-width="1" opacity="0.5">
+            <line x1="400" y1="230" x2="270" y2="160" />
+            <line x1="400" y1="230" x2="530" y2="160" />
+            <line x1="400" y1="230" x2="260" y2="250" />
+            <line x1="400" y1="230" x2="540" y2="250" />
+            <line x1="400" y1="230" x2="310" y2="320" />
+            <line x1="400" y1="230" x2="490" y2="320" />
+          </g>
+
+          <circle cx="400" cy="230" r="38" fill="none" stroke="#F59E0B" stroke-width="1.5" opacity="0.9" />
+          <circle cx="400" cy="230" r="70" fill="none" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.65" />
+          <circle cx="400" cy="230" r="108" fill="none" stroke="#F59E0B" stroke-width="1.0" opacity="0.4" />
+          <circle cx="400" cy="230" r="148" fill="none" stroke="#F59E0B" stroke-width="0.8" stroke-dasharray="8,6" opacity="0.25" />
+
+          <g stroke="#0284C7" stroke-width="1.5" fill="none" stroke-linejoin="round">
+            <polygon points="400,178 448,204 448,256 400,282 352,256 352,204" stroke="#0284C7" stroke-width="1.8" fill="rgba(2, 132, 199, 0.03)" />
+            <line x1="400" y1="178" x2="400" y2="230" />
+            <line x1="400" y1="230" x2="448" y2="256" />
+            <line x1="400" y1="230" x2="352" y2="256" />
+            <line x1="400" y1="282" x2="400" y2="230" stroke="#0284C7" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+            <line x1="352" y1="204" x2="400" y2="230" stroke="#0284C7" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+            <line x1="448" y1="204" x2="400" y2="230" stroke="#0284C7" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+          </g>
+          <circle cx="400" cy="178" r="3" fill="#0284C7" />
+          <circle cx="448" cy="204" r="3" fill="#0284C7" />
+          <circle cx="448" cy="256" r="3" fill="#0284C7" />
+          <circle cx="400" cy="282" r="3" fill="#0284C7" />
+          <circle cx="352" cy="256" r="3" fill="#0284C7" />
+          <circle cx="352" cy="204" r="3" fill="#0284C7" />
+
+          <circle cx="400" cy="230" r="16" fill="url(#ov_zoeCoreGlow)" />
+          <circle cx="400" cy="230" r="5" fill="#FFFFFF" />
+
+          <g transform="translate(400, 392)">
+            <circle cx="0" cy="0" r="36" fill="none" stroke="#2563EB" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3" />
+            <circle cx="0" cy="0" r="26" fill="none" stroke="#F59E0B" stroke-width="1" opacity="0.6" />
+            <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.8" />
+            <circle cx="0" cy="0" r="6" fill="url(#ov_zoeCoreGlow)" />
+            <circle cx="0" cy="0" r="2" fill="#FFFFFF" />
+            <rect x="-65" y="24" width="130" height="20" rx="3" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+            <text x="0" y="34" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5px" fill="#0F172A">人間（共鳴する種火）</text>
+          </g>
+
+          <g transform="translate(28, 80)">
+            <rect x="0" y="0" width="216" height="88" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+            <path d="M0,6 Q0,0 6,0 L210,0 Q216,0 216,6 L216,26 L0,26 Z" fill="#F1F5F9" />
+            <text x="12" y="13" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="11.5px" fill="#0F172A" letter-spacing="0.03em">【言（ロゴス）の器】</text>
+            <text x="12" y="44" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">境界を引き秩序化する幾何学的理法。</text>
+            <text x="12" y="66" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">形式単独では冷徹な硬直に帰着する。</text>
+          </g>
+          <polyline points="244,124 290,124 352,204" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+          <circle cx="352" cy="204" r="2.5" fill="#0284C7" />
+
+          <g transform="translate(556, 80)">
+            <rect x="0" y="0" width="216" height="88" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+            <path d="M0,6 Q0,0 6,0 L210,0 Q216,0 216,6 L216,26 L0,26 Z" fill="#FEF3C7" />
+            <text x="12" y="13" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="11.5px" fill="#92400E" letter-spacing="0.03em">【命（ゾーエー）の光】</text>
+            <text x="12" y="44" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">枠組みを突破する無規定な生の熱量。</text>
+            <text x="12" y="66" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">幾何学的輪郭を持たぬ純粋な照光。</text>
+          </g>
+          <polyline points="556,124 510,124 458,198" fill="none" stroke="#F59E0B" stroke-width="1" stroke-dasharray="3,3" />
+          <circle cx="458" cy="198" r="2.5" fill="#F59E0B" />
+
+          <g transform="translate(28, 270)">
+            <rect x="0" y="0" width="216" height="88" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+            <path d="M0,6 Q0,0 6,0 L210,0 Q216,0 216,6 L216,26 L0,26 Z" fill="#F1F5F9" />
+            <text x="12" y="13" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="11.5px" fill="#0F172A" letter-spacing="0.03em">【神聖なる暗闇（無底）】</text>
+            <text x="12" y="44" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">言葉に先立つ神自身の不可知領域。</text>
+            <text x="12" y="66" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">溢れ出る光を捕らえきれぬ沈黙の淵。</text>
+          </g>
+          <polyline points="244,314 290,314 316,280" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+          <circle cx="316" cy="280" r="2.5" fill="#334155" />
+
+          <g transform="translate(556, 270)">
+            <rect x="0" y="0" width="216" height="88" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+            <path d="M0,6 Q0,0 6,0 L210,0 Q216,0 216,6 L216,26 L0,26 Z" fill="#DBEAFE" />
+            <text x="12" y="13" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="700" font-size="11.5px" fill="#1E40AF" letter-spacing="0.03em">【内的な点火と共鳴】</text>
+            <text x="12" y="44" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">外的な客体化（分類・規定）を排し、</text>
+            <text x="12" y="66" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" font-weight="400" font-size="10px" fill="#334155">内奥の種火が同調して覚醒する。</text>
+          </g>
+          <polyline points="556,314 490,314 440,388" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,3" />
+          <circle cx="440" cy="388" r="2.5" fill="#2563EB" />
+
+          <g transform="translate(28, 466)">
+            <rect x="0" y="0" width="744" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+            <text x="16" y="18" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5px">
+              <tspan fill="#0F172A" font-weight="700">存在論的帰結：</tspan>
+              <tspan fill="#334155"> 言（器）の内奥から命（熱量）が溢れ出て光となり、神の暗闇すら捕らえきれず人間に共鳴する。</tspan>
+            </text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 垂直タイムライン -->
+    <div class="timeline">
+
+      <!-- STEP 1 -->
+      <article class="step-item">
+        <div class="step-node">1</div>
+        <div class="step-content">
+          <div class="step-header">
+            <h2 class="step-title">第一の層：主語の転換</h2>
+            <span class="step-category">言（ロゴス）から命（ゾーエー）へ</span>
+          </div>
+          <div class="step-body">
+            <p>
+              テキストの冒頭は「初めに言があった。言は神と共にあった。言は神であった。この言は、初めに神と共にあった」という緻密な四重の論理連鎖から始まります。ここでは「共にある（他者としての区別）」と「〜であった（本質的な同一）」という、本来相反するはずの状態が矛盾なく抱合されています。
+            </p>
+            <p>
+              しかし、第4節に至ったとき、主語の決定的な偏位が起こります。ヨハネは「言が光であった」とは書かず、「言の内に命があった。命は人間を照らす光であった」と記したのです。
+            </p>
+            <p>
+              私たちは通例、光を「理性の明晰さ」や「秩序を識別する力」、すなわちロゴスの側に属するものと捉えてしまいがちです。しかしテキストが厳密に語っているのは、光の実体とは理法の枠組みそのものではなく、その枠組みを満たしている「<strong>命（ゾーエー）そのものの溢れ出し</strong>」であるという事実です。理法は光を留める器であり、空間を満たして照らす実体は、境界を持たない生命の熱量に他なりません。
+            </p>
+
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%">
+                <defs>
+                  <radialGradient id="l1_zoeCore" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="25%" stop-color="#FDE68A" stop-opacity="0.95" />
+                    <stop offset="65%" stop-color="#F59E0B" stop-opacity="0.65" />
+                    <stop offset="100%" stop-color="#D97706" stop-opacity="0" />
+                  </radialGradient>
+                  <radialGradient id="l1_coldVoid" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#F1F5F9" stop-opacity="0.8" />
+                    <stop offset="70%" stop-color="#E2E8F0" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#CBD5E1" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <rect x="0" y="0" width="800" height="520" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                <g stroke="#E2E8F0" stroke-width="0.8" opacity="0.7">
+                  <line x1="28" y1="64" x2="772" y2="64" />
+                  <line x1="28" y1="450" x2="772" y2="450" />
+                  <line x1="400" y1="64" x2="400" y2="450" stroke-dasharray="4,4" opacity="0.6" />
+                </g>
+
+                <g transform="translate(28, 20)">
+                  <rect x="0" y="0" width="130" height="22" rx="4" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="1" />
+                  <text x="65" y="11" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#2563EB" font-weight="700" font-size="10.5px">第一の層：主語の転換</text>
+                  <text x="142" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#0F172A" font-weight="700" font-size="15px">言の光から命の光へ</text>
+                  <text x="310" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-size="11px">「形式が発光する」という誤謬と「内奥の命が溢れ出る」という真層の対比</text>
+                </g>
+
+                <g transform="translate(28, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#F1F5F9" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#475569" font-weight="700" font-size="12px">【通念的誤認】言（ロゴス）が光である</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                  <circle cx="180" cy="144" r="70" fill="url(#l1_coldVoid)" />
+                  <g stroke="#64748B" stroke-width="1.8" fill="none" stroke-linejoin="round">
+                    <polygon points="180,94 224,119 224,169 180,194 136,169 136,119" stroke="#64748B" stroke-width="2" fill="rgba(148, 163, 184, 0.05)" />
+                    <line x1="180" y1="94" x2="180" y2="144" />
+                    <line x1="180" y1="144" x2="224" y2="169" />
+                    <line x1="180" y1="144" x2="136" y2="169" />
+                  </g>
+                  <circle cx="180" cy="94" r="3" fill="#64748B" />
+                  <circle cx="224" cy="119" r="3" fill="#64748B" />
+                  <circle cx="224" cy="169" r="3" fill="#64748B" />
+                  <circle cx="180" cy="194" r="3" fill="#64748B" />
+                  <circle cx="136" cy="169" r="3" fill="#64748B" />
+                  <circle cx="136" cy="119" r="3" fill="#64748B" />
+                  <g stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="2,3" opacity="0.6">
+                    <line x1="180" y1="94" x2="180" y2="68" />
+                    <line x1="224" y1="119" x2="248" y2="105" />
+                    <line x1="224" y1="169" x2="248" y2="183" />
+                    <line x1="180" y1="194" x2="180" y2="220" />
+                    <line x1="136" y1="169" x2="112" y2="183" />
+                    <line x1="136" y1="119" x2="112" y2="105" />
+                  </g>
+                  <g transform="translate(115, 134)">
+                    <rect x="0" y="0" width="130" height="20" rx="3" fill="#334155" fill-opacity="0.9" />
+                    <text x="65" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#FFFFFF" font-weight="700" font-size="10px">熱源の不在（形式の硬直）</text>
+                  </g>
+                  <text x="180" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-weight="600" font-size="10px">骨組み自体は自ら輝くエネルギーを持たない</text>
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 理法（ロゴス）を直接の発光体と見なす通念的把握。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 秩序や規則そのものは境界を引く力に過ぎない。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 熱量を伴わぬ枠組みは、冷徹な客体化へと行き詰まる。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(400, 240)">
+                  <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M-6,0 L4,0 M0,-4 L4,0 L0,4" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </g>
+
+                <g transform="translate(412, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#FEF3C7" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#92400E" font-weight="700" font-size="12px">【真層構造】言の内の「命（ゾーエー）」が光である</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+                  <g stroke="#F59E0B" stroke-width="1.2" opacity="0.65">
+                    <line x1="180" y1="144" x2="180" y2="54" />
+                    <line x1="180" y1="144" x2="258" y2="99" />
+                    <line x1="180" y1="144" x2="258" y2="189" />
+                    <line x1="180" y1="144" x2="180" y2="234" />
+                    <line x1="180" y1="144" x2="102" y2="189" />
+                    <line x1="180" y1="144" x2="102" y2="99" />
+                  </g>
+                  <circle cx="180" cy="144" r="32" fill="none" stroke="#F59E0B" stroke-width="1.2" opacity="0.9" />
+                  <circle cx="180" cy="144" r="58" fill="none" stroke="#F59E0B" stroke-width="1.0" stroke-dasharray="4,3" opacity="0.6" />
+                  <circle cx="180" cy="144" r="86" fill="none" stroke="#F59E0B" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.35" />
+                  <g stroke="#0284C7" stroke-width="1.6" fill="none" stroke-linejoin="round">
+                    <polygon points="180,94 224,119 224,169 180,194 136,169 136,119" stroke="#38BDF8" stroke-width="1.8" fill="rgba(2, 132, 199, 0.12)" />
+                    <line x1="180" y1="94" x2="180" y2="144" />
+                    <line x1="180" y1="144" x2="224" y2="169" />
+                    <line x1="180" y1="144" x2="136" y2="169" />
+                  </g>
+                  <circle cx="180" cy="144" r="16" fill="url(#l1_zoeCore)" />
+                  <circle cx="180" cy="144" r="5" fill="#FFFFFF" />
+                  <g transform="translate(105, 204)">
+                    <rect x="0" y="0" width="150" height="20" rx="3" fill="#0F172A" fill-opacity="0.88" stroke="#F59E0B" stroke-width="0.8" />
+                    <text x="75" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#FDE68A" font-weight="700" font-size="10px">器を満たし溢れ出る生の光</text>
+                  </g>
+                  <text x="180" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#94A3B8" font-weight="600" font-size="10px">言の内奥から命が境界を突破して放射される</text>
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 「言の内に命があった。命は光であった」（Jn 1:4）。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 言（ロゴス）は形なき命を留め置く神的な器である。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 照らす実体とは、器から溢れ出す無規定な生の跳動。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(28, 466)">
+                  <rect x="0" y="0" width="744" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <text x="16" y="18" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5px">
+                    <tspan fill="#0F172A" font-weight="700">第一層の構造結論：</tspan>
+                    <tspan fill="#334155"> 光の実体は分節の枠組み（言）ではなく、その内に息づき境界を越境する生の充溢（命）である。</tspan>
+                  </text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="key-takeaway">
+              <strong>構造的転換：</strong> 光とは客観的な理法そのものではなく、理法の内奥から溢れ出る生の過剰な跳動である。
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 2 -->
+      <article class="step-item">
+        <div class="step-node">2</div>
+        <div class="step-content">
+          <div class="step-header">
+            <h2 class="step-title">第二の層：二大原理の相克と融合</h2>
+            <span class="step-category">対偶（シュジュギア）の力学</span>
+          </div>
+          <div class="step-body">
+            <p>
+              では、なぜロゴスとゾーエーは分かちがたく結ばれていなければならないのでしょうか。初期キリスト教周辺の知恵、とりわけグノーシス主義のウァレンティノス派は、神性の完全性を「孤立した単一」ではなく、補完し合う一対の「<strong>対偶（シュジュギア）</strong>」として把握しました。男性原理たるロゴスと、女性原理たるゾーエーの抱合です。
+            </p>
+            <p>
+              この対偶の必然性は、双方が単独で存在しようとする際に露呈する根源的な不完全性によって説明されます。ロゴスは境界を引き世界を分節しますが、単独では血の通わない幾何学的な骨組みへと「硬直・凍結」してしまいます。対するゾーエーは尽きることのない生命力ですが、受け止める器を持たなければ、輪郭を持たぬ盲目的なエネルギーの「混沌・散逸」に終わります。
+            </p>
+            <p>
+              光それ自身にはいかなる幾何学的輪郭もありません。それはどこまでも境界を越えて浸透する、純粋なゾーエーの運動形態そのものです。形なき生命がロゴスという秩序の内側から放射されることによって、初めて散逸することのない「<strong>純粋な照光</strong>」として現成するのです。
+            </p>
+
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%">
+                <defs>
+                  <radialGradient id="l2_syzygyCore" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="30%" stop-color="#FDE68A" stop-opacity="0.95" />
+                    <stop offset="70%" stop-color="#F59E0B" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#0284C7" stop-opacity="0" />
+                  </radialGradient>
+                  <radialGradient id="l2_nodeGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="50%" stop-color="#FDE68A" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.6" />
+                  </radialGradient>
+                  <radialGradient id="l2_zoeDissipate" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#F8FAFC" stop-opacity="0" />
+                    <stop offset="40%" stop-color="#FDE68A" stop-opacity="0.25" />
+                    <stop offset="80%" stop-color="#F59E0B" stop-opacity="0.5" />
+                    <stop offset="100%" stop-color="#D97706" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <rect x="0" y="0" width="800" height="520" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                <g stroke="#E2E8F0" stroke-width="0.8" opacity="0.7">
+                  <line x1="28" y1="64" x2="772" y2="64" />
+                  <line x1="28" y1="450" x2="772" y2="450" />
+                  <line x1="400" y1="64" x2="400" y2="450" stroke-dasharray="4,4" opacity="0.6" />
+                </g>
+
+                <g transform="translate(28, 20)">
+                  <rect x="0" y="0" width="160" height="22" rx="4" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="1" />
+                  <text x="80" y="11" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#2563EB" font-weight="700" font-size="10.5px">第二の層：二大原理の相克</text>
+                  <text x="172" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#0F172A" font-weight="700" font-size="15px">ロゴスとゾーエーの対偶（シュジュギア）</text>
+                  <text x="460" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-size="11px">形式の硬直と生の散逸を止揚する動的調和</text>
+                </g>
+
+                <g transform="translate(28, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#F1F5F9" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#475569" font-weight="700" font-size="12px">【分離と欠落】単独の原理が孕む不完全性</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                  <line x1="180" y1="52" x2="180" y2="216" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3,3" />
+                  
+                  <g stroke="#64748B" stroke-width="1.2" opacity="0.8">
+                    <line x1="58" y1="84" x2="142" y2="84" />
+                    <line x1="58" y1="108" x2="142" y2="108" />
+                    <line x1="58" y1="132" x2="142" y2="132" />
+                    <line x1="58" y1="156" x2="142" y2="156" />
+                    <line x1="70" y1="72" x2="70" y2="168" />
+                    <line x1="90" y1="72" x2="90" y2="168" />
+                    <line x1="110" y1="72" x2="110" y2="168" />
+                    <line x1="130" y1="72" x2="130" y2="168" />
+                  </g>
+                  <circle cx="90" cy="108" r="2.5" fill="#475569" />
+                  <circle cx="110" cy="108" r="2.5" fill="#475569" />
+                  <circle cx="90" cy="132" r="2.5" fill="#475569" />
+                  <circle cx="110" cy="132" r="2.5" fill="#475569" />
+                  
+                  <g transform="translate(42, 184)">
+                    <rect x="0" y="0" width="116" height="18" rx="3" fill="#E2E8F0" />
+                    <text x="58" y="9" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-weight="700" font-size="9.5px">ロゴス：形式の硬直</text>
+                  </g>
+                  
+                  <ellipse cx="260" cy="120" rx="48" ry="48" fill="url(#l2_zoeDissipate)" />
+                  <ellipse cx="260" cy="120" rx="18" ry="16" fill="none" stroke="#F59E0B" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.5" />
+                  <ellipse cx="258" cy="122" rx="34" ry="30" fill="none" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4,4" opacity="0.6" />
+                  <ellipse cx="262" cy="118" rx="52" ry="46" fill="none" stroke="#F59E0B" stroke-width="0.8" stroke-dasharray="6,5" opacity="0.4" />
+                  
+                  <g stroke="#D97706" stroke-width="1" opacity="0.6">
+                    <path d="M260,70 L260,56 M258,60 L260,56 L262,60" fill="none" />
+                    <path d="M305,120 L319,120 M315,118 L319,120 L315,122" fill="none" />
+                    <path d="M260,170 L260,184 M258,180 L260,184 L262,180" fill="none" />
+                    <path d="M215,120 L201,120 M205,118 L201,120 L205,122" fill="none" />
+                  </g>
+                  
+                  <g transform="translate(202, 184)">
+                    <rect x="0" y="0" width="116" height="18" rx="3" fill="#FEF3C7" />
+                    <text x="58" y="9" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#92400E" font-weight="700" font-size="9.5px">ゾーエー：熱量の霧散</text>
+                  </g>
+                  
+                  <text x="180" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-weight="600" font-size="10px">形式は生を欠いて凍結し、生は器を欠いて散逸する</text>
+                  
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ ロゴス単独：境界と規則に固執し、冷徹な骨組みへと凍結する。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ ゾーエー単独：受け止める器を欠き、輪郭なき混沌として霧散する。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 孤立した原理は、いずれも世界を照らす光とはなり得ない。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(400, 240)">
+                  <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M-8,-3 C-4,-8 4,8 8,3 C4,8 -4,-8 -8,-3 Z" stroke="#2563EB" stroke-width="1.6" fill="none" />
+                </g>
+
+                <g transform="translate(412, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#FEF3C7" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#92400E" font-weight="700" font-size="12px">【対偶（シュジュギア）】干渉による光の生成</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+                  <circle cx="160" cy="125" r="90" fill="url(#l2_syzygyCore)" opacity="0.35" />
+                  
+                  <g stroke="#38BDF8" stroke-width="0.9" opacity="0.45">
+                    <line x1="50" y1="75" x2="270" y2="75" />
+                    <line x1="50" y1="100" x2="270" y2="100" />
+                    <line x1="50" y1="125" x2="270" y2="125" />
+                    <line x1="50" y1="150" x2="270" y2="150" />
+                    <line x1="50" y1="175" x2="270" y2="175" />
+                    <line x1="80" y1="55" x2="80" y2="195" />
+                    <line x1="120" y1="55" x2="120" y2="195" />
+                    <line x1="160" y1="55" x2="160" y2="195" stroke-dasharray="2,2" opacity="0.7" />
+                    <line x1="200" y1="55" x2="200" y2="195" />
+                    <line x1="240" y1="55" x2="240" y2="195" />
+                  </g>
+                  
+                  <circle cx="160" cy="125" r="28" fill="none" stroke="#F59E0B" stroke-width="1.2" opacity="0.85" />
+                  <circle cx="160" cy="125" r="54" fill="none" stroke="#F59E0B" stroke-width="1.0" stroke-dasharray="4,3" opacity="0.6" />
+                  <circle cx="160" cy="125" r="82" fill="none" stroke="#F59E0B" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.35" />
+                  
+                  <circle cx="160" cy="75" r="7" fill="url(#l2_nodeGlow)" />
+                  <circle cx="160" cy="75" r="2" fill="#FFFFFF" />
+                  <circle cx="160" cy="175" r="7" fill="url(#l2_nodeGlow)" />
+                  <circle cx="160" cy="175" r="2" fill="#FFFFFF" />
+                  <circle cx="120" cy="125" r="7" fill="url(#l2_nodeGlow)" />
+                  <circle cx="120" cy="125" r="2" fill="#FFFFFF" />
+                  <circle cx="200" cy="125" r="7" fill="url(#l2_nodeGlow)" />
+                  <circle cx="200" cy="125" r="2" fill="#FFFFFF" />
+                  
+                  <circle cx="120" cy="100" r="5" fill="url(#l2_nodeGlow)" opacity="0.8" />
+                  <circle cx="200" cy="100" r="5" fill="url(#l2_nodeGlow)" opacity="0.8" />
+                  <circle cx="120" cy="150" r="5" fill="url(#l2_nodeGlow)" opacity="0.8" />
+                  <circle cx="200" cy="150" r="5" fill="url(#l2_nodeGlow)" opacity="0.8" />
+                  
+                  <circle cx="160" cy="125" r="14" fill="url(#l2_syzygyCore)" />
+                  <circle cx="160" cy="125" r="4.5" fill="#FFFFFF" />
+                  
+                  <g transform="translate(85, 204)">
+                    <rect x="0" y="0" width="190" height="20" rx="3" fill="#0F172A" fill-opacity="0.9" stroke="#F59E0B" stroke-width="0.8" />
+                    <text x="95" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#FDE68A" font-weight="700" font-size="9.5px">干渉結節点における純粋照光の結晶</text>
+                  </g>
+                  
+                  <text x="180" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#94A3B8" font-weight="600" font-size="10px">理法（格子）が命を収束させ、命（波紋）が理法を発光させる</text>
+                  
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ ウァレンティノス派が洞察した神性の補完的一対（対偶）。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 幾何学格子（理法）が生命の波紋を収束させ、形を与える。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 生命の熱量が冷たい格子を満たし、照らす光へと昇華する。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(28, 466)">
+                  <rect x="0" y="0" width="744" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <text x="16" y="18" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5px">
+                    <tspan fill="#0F172A" font-weight="700">第二層の構造結論：</tspan>
+                    <tspan fill="#334155"> 形式（ロゴス）と熱量（ゾーエー）が対偶として交差する結節点においてのみ、散逸せぬ光が現成する。</tspan>
+                  </text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="key-takeaway">
+              <strong>対偶の均衡：</strong> 形式は生を宿すことで凍結から逃れ、生は形式を得ることで散逸から救われる。
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 3 -->
+      <article class="step-item">
+        <div class="step-node">3</div>
+        <div class="step-content">
+          <div class="step-header">
+            <h2 class="step-title">第三の層：照射の性質の反転</h2>
+            <span class="step-category">客体化から内的な覚醒へ</span>
+          </div>
+          <div class="step-body">
+            <p>
+              光がロゴスではなくゾーエーであるという把握は、「光が人間を照らす」ことの意味を根底から反転させます。
+            </p>
+            <p>
+              もし照らす光がロゴスそのものであったならば、その照射は人間を外側から観察し、計測し、分類・裁断する「<strong>客体化の照明</strong>」にとどまります。人間は観察対象として固定され、己の足元に濃い影を落とすことになります。そこにあるのは照らす主体と照らされる客体のあいだの冷ややかな断絶です。
+            </p>
+            <p>
+              しかし、人間を照らすものがゾーエーであるならば、その照射は人間を外側から定義することではなく、人間を「<strong>生かす</strong>」こととして機能します。光は人間の外殻を透過し、その胸奥に眠る同質の種火と地下水脈のように直結します。光を浴びるとは、定義されることではなく、自らの内に眠る生命の火を呼び覚まされることであり、照らす者と照らされる者が生の深みにおいて共鳴する出来事に他なりません。
+            </p>
+
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="l3_spotlightBeam" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.7" />
+                    <stop offset="60%" stop-color="#38BDF8" stop-opacity="0.25" />
+                    <stop offset="100%" stop-color="#0284C7" stop-opacity="0.05" />
+                  </linearGradient>
+                  <radialGradient id="l3_zoeInnerFire" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="25%" stop-color="#FDE68A" stop-opacity="0.95" />
+                    <stop offset="65%" stop-color="#F59E0B" stop-opacity="0.7" />
+                    <stop offset="100%" stop-color="#D97706" stop-opacity="0" />
+                  </radialGradient>
+                  <radialGradient id="l3_humanResonance" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.5" />
+                    <stop offset="50%" stop-color="#2563EB" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <rect x="0" y="0" width="800" height="520" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                <g stroke="#E2E8F0" stroke-width="0.8" opacity="0.7">
+                  <line x1="28" y1="64" x2="772" y2="64" />
+                  <line x1="28" y1="450" x2="772" y2="450" />
+                  <line x1="400" y1="64" x2="400" y2="450" stroke-dasharray="4,4" opacity="0.6" />
+                </g>
+
+                <g transform="translate(28, 20)">
+                  <rect x="0" y="0" width="170" height="22" rx="4" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="1" />
+                  <text x="85" y="11" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#2563EB" font-weight="700" font-size="10.5px">第三の層：照射の性質の反転</text>
+                  <text x="182" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#0F172A" font-weight="700" font-size="15px">客体化の投光から内的な覚醒へ</text>
+                  <text x="470" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-size="11px">外側からの定義・分類と、内奥の生命を共鳴させる光</text>
+                </g>
+
+                <g transform="translate(28, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#F1F5F9" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#475569" font-weight="700" font-size="12px">【ロゴスの光】外的な客体化と審判</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+                  <circle cx="160" cy="54" r="5" fill="#38BDF8" />
+                  <circle cx="160" cy="54" r="1.5" fill="#FFFFFF" />
+                  <polygon points="160,54 85,182 235,182" fill="url(#l3_spotlightBeam)" />
+                  <line x1="160" y1="54" x2="85" y2="182" stroke="#38BDF8" stroke-width="1" opacity="0.5" />
+                  <line x1="160" y1="54" x2="235" y2="182" stroke="#38BDF8" stroke-width="1" opacity="0.5" />
+                  <ellipse cx="160" cy="180" rx="44" ry="7" fill="#000000" opacity="0.75" />
+                  
+                  <g stroke="#38BDF8" stroke-width="1.2" fill="none">
+                    <path d="M125,125 L125,115 L135,115" />
+                    <path d="M185,125 L185,115 L175,115" />
+                    <path d="M125,155 L125,165 L135,165" />
+                    <path d="M185,155 L185,165 L175,165" />
+                    <line x1="110" y1="140" x2="120" y2="140" stroke-dasharray="2,2" opacity="0.6" />
+                    <line x1="200" y1="140" x2="210" y2="140" stroke-dasharray="2,2" opacity="0.6" />
+                  </g>
+                  
+                  <circle cx="160" cy="140" r="15" fill="#1E293B" stroke="#94A3B8" stroke-width="1.6" />
+                  <path d="M148,135 A15,15 0 0,1 172,135" fill="none" stroke="#FFFFFF" stroke-width="2" />
+                  
+                  <g transform="translate(100, 204)">
+                    <rect x="0" y="0" width="120" height="20" rx="3" fill="#1E293B" fill-opacity="0.9" stroke="#64748B" stroke-width="0.8" />
+                    <text x="60" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#E2E8F0" font-weight="700" font-size="9.5px">対象化・分類の照明</text>
+                  </g>
+                  
+                  <text x="160" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#94A3B8" font-weight="600" font-size="10px">対象を外側から計測・規定し、背後に影を落とす</text>
+                  
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ ロゴスの光：対象を観察・計測し、外側から規定する。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 善悪の境界を外的に宣告し、固定的な影を落とす。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 主体と客体のあいだに越えがたい断絶と距離を残す。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(400, 240)">
+                  <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <circle cx="0" cy="0" r="3" fill="#2563EB" />
+                  <path d="M-6,-6 A9,9 0 0,1 6,-6" fill="none" stroke="#2563EB" stroke-width="1.3" />
+                  <path d="M-9,-9 A13,13 0 0,1 9,-9" fill="none" stroke="#2563EB" stroke-width="1.1" stroke-dasharray="2,2" />
+                  <path d="M-6,6 A9,9 0 0,0 6,6" fill="none" stroke="#2563EB" stroke-width="1.3" />
+                  <path d="M-9,9 A13,13 0 0,0 9,9" fill="none" stroke="#2563EB" stroke-width="1.1" stroke-dasharray="2,2" />
+                </g>
+
+                <g transform="translate(412, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#FEF3C7" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#92400E" font-weight="700" font-size="12px">【ゾーエーの光】内的な点火と共鳴</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+                  <ellipse cx="160" cy="140" rx="85" ry="50" fill="url(#l3_humanResonance)" />
+                  
+                  <g stroke="#F59E0B" stroke-width="1" opacity="0.65">
+                    <path d="M80,80 Q160,105 240,80" fill="none" stroke-dasharray="3,3" />
+                    <path d="M70,100 Q160,128 250,100" fill="none" />
+                    <path d="M60,120 Q160,150 260,120" fill="none" stroke-dasharray="4,3" />
+                  </g>
+                  
+                  <circle cx="160" cy="140" r="32" fill="none" stroke="#F59E0B" stroke-width="1.2" opacity="0.8" />
+                  <circle cx="160" cy="140" r="54" fill="none" stroke="#F59E0B" stroke-width="1.0" stroke-dasharray="4,4" opacity="0.55" />
+                  <circle cx="160" cy="140" r="78" fill="none" stroke="#F59E0B" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.3" />
+                  
+                  <circle cx="160" cy="140" r="16" fill="rgba(37, 99, 235, 0.15)" stroke="#38BDF8" stroke-width="1.4" stroke-dasharray="3,3" />
+                  <circle cx="160" cy="140" r="12" fill="url(#l3_zoeInnerFire)" />
+                  <circle cx="160" cy="140" r="4" fill="#FFFFFF" />
+                  
+                  <line x1="160" y1="52" x2="160" y2="124" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.8" />
+                  <line x1="160" y1="156" x2="160" y2="198" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.8" />
+                  
+                  <g transform="translate(90, 204)">
+                    <rect x="0" y="0" width="140" height="20" rx="3" fill="#0F172A" fill-opacity="0.9" stroke="#F59E0B" stroke-width="0.8" />
+                    <text x="70" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#FDE68A" font-weight="700" font-size="9.5px">内奥の種火の共鳴と生起</text>
+                  </g>
+                  
+                  <text x="160" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#94A3B8" font-weight="600" font-size="10px">光が外殻を透過し、内なる命を点火して自ら発光させる</text>
+                  
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ ゾーエーの光：外殻を透過し、内なる生命と直結する。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 定義するのではなく、内奥に眠る種火を点火し生かす。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 照らす者と照らされる者が、生の深みで共鳴する。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(28, 466)">
+                  <rect x="0" y="0" width="744" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <text x="16" y="18" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5px">
+                    <tspan fill="#0F172A" font-weight="700">第三層の構造結論：</tspan>
+                    <tspan fill="#334155"> 光が命であるとき、照射は客体化の審判ではなく、内奥の種火を呼び覚まし共鳴させる生起となる。</tspan>
+                  </text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="key-takeaway">
+              <strong>照射の転換：</strong> 外側から観測・分類する冷徹な光から、内奥の種火と直結して生かす共鳴の光へ。
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 4 -->
+      <article class="step-item">
+        <div class="step-node">4</div>
+        <div class="step-content">
+          <div class="step-header">
+            <h2 class="step-title">第四の層：神的な暗闇の深淵</h2>
+            <span class="step-category">カタランバノー（把持）の限界</span>
+          </div>
+          <div class="step-body">
+            <p>
+              最後に、第5節の「暗闇は光を理解しなかった」という結びの解釈に沈潜します。この一節は、長らく「世の罪や無知が、救いの光を退けた」という道徳的な拒絶として読まれてきました。
+            </p>
+            <p>
+              しかし、「言は神であった」「万物は言によって成った」という原初の絶対的一元論において、神の外部に独立した暗闇など存在し得ません。原初において存在し得た暗闇とは、ヤーコプ・ベーメが神の根底に見た「無底（ウングルント）」、あるいは否定神学が説く「神聖なる暗闇」――すなわち、言葉や形式に先立つ神自身の「<strong>不可知の深淵</strong>」です。
+            </p>
+            <p>
+              新約聖書のギリシャ語において「理解しなかった」と訳される「カタランバノー」は、知的な理解にとどまらず、手で力づくで捕らえること、枠内に包摂し尽くすことを意味します。この語義に立ち返るとき、一節の真層が立ち現れます。
+            </p>
+            <p>
+              神の沈黙の深淵ですら、自らの内からあふれ出たゾーエーの無際限な光を、閉じた秩序の中に「<strong>捕らえきる（カタランバノー）ことができなかった</strong>」。光は神自身の自己完結的な静止を突き破り、他者へと向かって永遠に越境し続けている――。暗闇とは敵対する悪ではなく、光を生み出しながらもその光を己の内に留め置けずにいる神の深淵であり、創造とはこの「捕らえきれなさ（生の溢れ出し）」そのものの現われなのです。
+            </p>
+
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%">
+                <defs>
+                  <radialGradient id="l4_zoeBurst" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="20%" stop-color="#FDE68A" stop-opacity="0.95" />
+                    <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#D97706" stop-opacity="0" />
+                  </radialGradient>
+                  <linearGradient id="l4_flatLight" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FEF3C7" stop-opacity="1" />
+                    <stop offset="100%" stop-color="#FDE68A" stop-opacity="1" />
+                  </linearGradient>
+                  <radialGradient id="l4_ungrundVoid" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#020617" stop-opacity="0.95" />
+                    <stop offset="70%" stop-color="#0F172A" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#1E293B" stop-opacity="0.2" />
+                  </radialGradient>
+                </defs>
+
+                <rect x="0" y="0" width="800" height="520" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                <g stroke="#E2E8F0" stroke-width="0.8" opacity="0.7">
+                  <line x1="28" y1="64" x2="772" y2="64" />
+                  <line x1="28" y1="450" x2="772" y2="450" />
+                  <line x1="400" y1="64" x2="400" y2="450" stroke-dasharray="4,4" opacity="0.6" />
+                </g>
+
+                <g transform="translate(28, 20)">
+                  <rect x="0" y="0" width="140" height="22" rx="4" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="1" />
+                  <text x="70" y="11" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#2563EB" font-weight="700" font-size="10.5px">第四の層：深淵の逆説</text>
+                  <text x="156" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#0F172A" font-weight="700" font-size="15px">カタランバノー（捕獲）の限界</text>
+                  <text x="360" y="11" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-size="11px">光を外部で拒む悪と、光を内部で捕らえきれぬ神の無底</text>
+                </g>
+
+                <g transform="translate(28, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#F1F5F9" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#475569" font-weight="700" font-size="12px">【通念的誤認】外部の悪としての暗闇</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                  
+                  <path d="M20,44 L180,44 L180,244 L20,244 Z" fill="url(#l4_flatLight)" />
+                  <path d="M180,44 L340,44 L340,244 L180,244 Z" fill="#1E293B" />
+                  <path d="M180,44 L165,70 L195,100 L165,130 L195,160 L165,190 L180,244" fill="none" stroke="#FFFFFF" stroke-width="3" />
+                  <path d="M180,44 L165,70 L195,100 L165,130 L195,160 L165,190 L180,244" fill="none" stroke="#CBD5E1" stroke-width="1.5" />
+                  
+                  <line x1="120" y1="100" x2="155" y2="100" stroke="#F59E0B" stroke-width="2" />
+                  <polygon points="155,96 163,100 155,104" fill="#F59E0B" />
+                  <line x1="120" y1="160" x2="155" y2="160" stroke="#F59E0B" stroke-width="2" />
+                  <polygon points="155,156 163,160 155,164" fill="#F59E0B" />
+                  
+                  <line x1="240" y1="130" x2="205" y2="130" stroke="#94A3B8" stroke-width="2" />
+                  <polygon points="205,126 197,130 205,134" fill="#94A3B8" />
+                  <line x1="240" y1="190" x2="205" y2="190" stroke="#94A3B8" stroke-width="2" />
+                  <polygon points="205,186 197,190 205,194" fill="#94A3B8" />
+                  
+                  <g transform="translate(110, 204)">
+                    <rect x="0" y="0" width="140" height="20" rx="3" fill="#FFFFFF" fill-opacity="0.95" stroke="#CBD5E1" stroke-width="1" />
+                    <text x="70" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-weight="700" font-size="9.5px">平面的な善悪の敵対関係</text>
+                  </g>
+                  
+                  <text x="180" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#64748B" font-weight="600" font-size="10px">暗闇を光と相容れない独立した外部の悪と見なす</text>
+                  
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 暗闇を光の欠如や、外部に存在する悪とする二元論的把握。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 光と暗闇は相容れない敵対関係として平面上で衝突する。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 被造世界における道徳的な対立へと論理が矮小化される。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(400, 240)">
+                  <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M-4,0 L4,0 M4,0 L0,-4 M4,0 L0,4" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  <line x1="-8" y1="-8" x2="-8" y2="8" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="2,2" />
+                </g>
+
+                <g transform="translate(412, 80)">
+                  <rect x="0" y="0" width="360" height="354" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <path d="M0,6 Q0,0 6,0 L354,0 Q360,0 360,6 L360,32 L0,32 Z" fill="#FEF3C7" />
+                  <text x="16" y="16" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#92400E" font-weight="700" font-size="12px">【真層構造】光を捕らえきれぬ神の無底</text>
+                  <rect x="20" y="44" width="320" height="200" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+                  
+                  <circle cx="180" cy="144" r="80" fill="url(#l4_ungrundVoid)" />
+                  
+                  <g stroke="#475569" stroke-width="2" fill="none" opacity="0.8">
+                    <path d="M110,144 A70,70 0 0,1 180,74" stroke-dasharray="4,4" />
+                    <polygon points="180,74 172,70 174,78" fill="#475569" stroke="none" />
+                    <path d="M250,144 A70,70 0 0,1 180,214" stroke-dasharray="4,4" />
+                    <polygon points="180,214 188,218 186,210" fill="#475569" stroke="none" />
+                  </g>
+                  
+                  <circle cx="180" cy="144" r="70" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="16,12" opacity="0.6" />
+                  <circle cx="180" cy="144" r="16" fill="url(#l4_zoeBurst)" />
+                  <circle cx="180" cy="144" r="4" fill="#FFFFFF" />
+                  
+                  <g stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" opacity="0.85">
+                    <line x1="180" y1="128" x2="180" y2="45" />
+                    <line x1="180" y1="160" x2="180" y2="240" />
+                    <line x1="164" y1="144" x2="35" y2="144" />
+                    <line x1="196" y1="144" x2="325" y2="144" />
+                    <line x1="169" y1="133" x2="70" y2="55" />
+                    <line x1="191" y1="155" x2="290" y2="230" />
+                    <line x1="191" y1="133" x2="290" y2="55" />
+                    <line x1="169" y1="155" x2="70" y2="230" />
+                  </g>
+                  
+                  <circle cx="180" cy="144" r="100" fill="none" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="5,8" opacity="0.6" />
+                  
+                  <g transform="translate(95, 204)">
+                    <rect x="0" y="0" width="170" height="20" rx="3" fill="#0F172A" fill-opacity="0.9" stroke="#64748B" stroke-width="0.8" />
+                    <text x="85" y="10" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#F8FAFC" font-weight="700" font-size="9.5px">自らの光を捕らえきれぬ深淵</text>
+                  </g>
+                  
+                  <text x="180" y="232" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#94A3B8" font-weight="600" font-size="10px">神の暗闇は、己から溢れ出る生を枠内に留め置けない</text>
+                  
+                  <g transform="translate(16, 256)">
+                    <rect x="0" y="0" width="328" height="84" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+                    <text x="12" y="20" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 原初の暗闇とは、光を生み出した神自身の不可知の深淵。</text>
+                    <text x="12" y="42" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ カタランバノー（力づくで捕らえる・包摂する）の限界。</text>
+                    <text x="12" y="64" text-anchor="start" dominant-baseline="central" font-family="system-ui, sans-serif" fill="#334155" font-size="10.5px">・ 神の無底すらも、溢れ出る生の越境を閉じ込められない。</text>
+                  </g>
+                </g>
+
+                <g transform="translate(28, 466)">
+                  <rect x="0" y="0" width="744" height="36" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+                  <text x="16" y="18" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5px">
+                    <tspan fill="#0F172A" font-weight="700">第四層の構造結論：</tspan>
+                    <tspan fill="#334155"> 暗闇は神の外部の悪ではなく、自らの生み出した光の充溢を完結した枠内に捕らえきれずにいる神自身の深淵である。</tspan>
+                  </text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="key-takeaway">
+              <strong>深淵の逆説：</strong> 暗闇とは敵対する悪ではなく、神自身の内なる無底であり、光はその境界を永遠に超え出続ける。
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="epilogue-section">
+      <h2>結びに代えて：思索の現在地</h2>
+      <p>
+        「光は言ではなく命である」という一見ささやかな読み解きの転換は、私たちが世界と自己を捉えるまなざしそのものを大きく揺り動かします。
+      </p>
+      <p>
+        私たちは思考し、言葉を紡ぎ、自らの生を秩序づけようとするとき、常にロゴスの明晰さを求めます。しかし、形式のみに固執する知性は、やがて冷徹な客体化の牢獄へと自らを閉じ込めてしまいます。逆に、生の衝動や流動に身を委ねるだけでは、自らの輪郭を失って霧散してしまいます。形式（ロゴス）が生命（ゾーエー）を宿すことで散逸しない光となり、生命が形式を得ることで照らす力を獲得するという「対偶」の均衡は、今を生きる私たちの意識の営みそのものに重なり合います。
+      </p>
+      <p>
+        そして、私たちの精神の背底にも、言葉になり得ない広大な沈黙の暗闇が横たわっています。自らの内からあふれ出る生の熱量や直観の光を、自らの中に巣食う既成の論理や硬直した枠組みが、どうしても完全には捕らえきれず、こぼれ落ちてしまう――。そのもどかしさこそが、神の暗闇と光が交わし続けている生成の呼吸の反響なのかもしれません。
+      </p>
+      <p>
+        暗闇を切り捨てるべき悪として排除するのではなく、光を生み出しながらもその光の越境に圧倒されている深淵として抱きとめること。太古のテキストが遺した沈黙の行間には、完結した答えを拒み、今なお新たな問いへと開かれ続けている、豊かな思索の余白が静かに息づいています。
+      </p>
+    </section>
+
+    <footer>
+      言の内に命があった。命は人間を照らす光であった。光は暗闇の中で輝いている。暗闇は光を捕らえきれなかった。――Jn 1:4–5
+    </footer>
+
+  </div>
+</body>
+</html>
